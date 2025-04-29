@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-[#0c0f11]">
-        <header className="text-[#A8ADB2] flex justify-between items-center py-4 px-6 lg:mx-32 xl:mx-64 2xl:mx-96">
+        <header className="text-[#A8ADB2] flex justify-between items-center py-3 px-6 md:mx-32 lg:mx-32 xl:mx-64 2xl:mx-96 ">
           <Link href="/" className={`${jetbrains.className} cursor-pointer text-lg`}>
             {`<Justine/>`}
           </Link>
