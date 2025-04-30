@@ -21,17 +21,17 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-[#0c0f11] w-full">
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
-          <div className="text-[#A8ADB2] flex justify-between items-center py-3 px-6 md:justify-center md:gap-110">
-            <Link href="/#home" className={`${jetbrains.className} cursor-pointer text-lg`}>
+          <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-110">
+            <Link href="/#home" className={`${jetbrains.className} hover:text-gray-100 cursor-pointer text-lg`}>
               {`<Justine/>`}
             </Link>
             <nav className={`${inter.className} flex gap-8`}>
               <Link href="/#project" 
-                className="text-[16px]">
+                className="text-[16px] hover:text-gray-100">
                 Projects
               </Link>
               <Link href="/#contact" 
-                className="text-[16px]">
+                className="text-[16px] hover:text-gray-100">
                 Contact
               </Link>
             </nav>

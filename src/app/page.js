@@ -2,6 +2,8 @@ import { JetBrains_Mono } from 'next/font/google'
 import { Inter } from 'next/font/google'
 import { FaSquareGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import StackCard from '@/component/StackCard';
+import { stack } from '@/data/stackdata'
 
 export const metadata = {
   title: "Justine Jude Cuevas",
@@ -22,11 +24,11 @@ const jetbrains = JetBrains_Mono({
 export default function Home() {
   return (
     <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8">
-      <section id='home' className='flex flex-col items-start text-[#A8ADB2]'>
-        <p className={`${jetbrains.className} mb-3`}>Hey, my name is</p>
+      <section id='home' className='flex flex-col items-start text-[#A8ADB2] mb-20'>
+        <p className={`${jetbrains.className} mb-3`}>Hello, my name is</p>
         <div className='mb-5'>
           <h1 className='text-5xl font-extrabold md:text-6xl flex flex-col'>
-            <span className={`${inter.className} text-white`}>Justine</span>
+            <span className={`${inter.className} text-gray-100`}>Justine</span>
             <span className={`${inter.className} `}>Front end</span>
             <span className={`${inter.className}`}>Developer</span>
           </h1>
@@ -48,7 +50,14 @@ export default function Home() {
           </a>
         </div>
       </section>
-
+      <section>
+        <h1 className={`${inter.className} text-gray-100 text-xl font-bold mb-10`}>Tech Stack</h1>
+        <div className='flex flex-wrap gap-5 justify-center sm:justify-start'>
+          {stack.map((data, index) => (
+            <StackCard key={index} img={data.img} name={data.name}/>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
