@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
       <body className="bg-[#0c0f11] w-full">
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
           <div className="text-[#A8ADB2] flex justify-between items-center py-3 px-6 md:justify-center md:gap-110">
-            <Link href="/" className={`${jetbrains.className} cursor-pointer text-lg`}>
+            <Link href="/#home" className={`${jetbrains.className} cursor-pointer text-lg`}>
               {`<Justine/>`}
             </Link>
             <nav className={`${inter.className} flex gap-8`}>
