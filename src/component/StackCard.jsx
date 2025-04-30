@@ -14,6 +14,7 @@ export default function StackCard({img, name}) {
         width={30}
         height={30}
         alt={name}
+        style={{width: 'auto', height: 'auto'}}
       />
       <h1 className={`${inter.className} text-[#A8ADB2]`}>{name}</h1>
     </div>

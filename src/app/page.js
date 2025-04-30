@@ -4,11 +4,8 @@ import { FaSquareGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import StackCard from '@/component/StackCard';
 import { stack } from '@/data/stackdata'
-
-export const metadata = {
-  title: "Justine Jude Cuevas",
-  description: "",
-};
+import ProjectCard from '@/component/ProjectCard';
+import { projectData } from '@/data/projectdata';
 
 const inter = Inter({
     display: 'swap',
@@ -35,26 +32,34 @@ export default function Home() {
         </div>
         <p className={`${jetbrains.className} mb-3`}>Creating clean and fast web apps</p>
         <div className='flex gap-2 items-center mb-5'>
-          <div className='flex items-center bg-green-600/20 rounded-2xl py-1 px-3'>
+          <div className='flex items-center bg-green-600/20 rounded-2xl py-1 px-3 cursor-pointer hover:bg-green-600/30'>
             <span className="p-1 mb-px mr-1 inline-block bg-green-600 rounded-full"></span>
-            <h1 className={`${inter.className} text-green-600 font-bold text-sm `}>Open to internship</h1>
+            <h1 className={`${inter.className} text-green-600  font-bold text-sm `}>Open to internship</h1>
           </div>
           <h1 className={`${jetbrains.className}`}>🏠 Philippines.</h1>
         </div>
         <div className='flex items-center gap-3'>
           <a href="https://github.com/Syddl" target='_blank'>
-            <FaSquareGithub className='text-4xl'/>
+            <FaSquareGithub className='text-4xl hover:text-gray-100 '/>
           </a>
           <a href="https://www.linkedin.com/in/justine-jude-cuevas-6b6235285/" target='_blank'>
-            <FaLinkedin className='text-4xl'/>
+            <FaLinkedin className='text-4xl hover:text-gray-100'/>
           </a>
         </div>
       </section>
-      <section>
+      <section className='mb-20'>
         <h1 className={`${inter.className} text-gray-100 text-xl font-bold mb-10`}>Tech Stack</h1>
         <div className='flex flex-wrap gap-5 justify-center sm:justify-start'>
           {stack.map((data, index) => (
             <StackCard key={index} img={data.img} name={data.name}/>
+          ))}
+        </div>
+      </section>
+      <section id='project'>
+        <h1 className={`${inter.className} text-gray-100 text-xl font-bold mb-10`}>Projects</h1>
+        <div className='flex flex-col'>
+          {projectData.map((data) => (
+            <ProjectCard key={data.name} data={data}/>
           ))}
         </div>
       </section>
