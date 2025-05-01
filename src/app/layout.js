@@ -2,6 +2,7 @@ import "./globals.css";
 import { JetBrains_Mono } from 'next/font/google'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
+import { IoMdMail } from "react-icons/io";
 
 export const metadata = {
   title: "Justine Jude Cuevas",
@@ -17,20 +18,21 @@ const jetbrains = JetBrains_Mono({
 })
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body className="bg-[#0c0f11] w-full">
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
           <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-110">
-            <Link href="/#home" className={`${jetbrains.className} hover:text-gray-100 cursor-pointer text-lg`}>
+            <Link href="/" className={`${jetbrains.className} hover:text-gray-100 cursor-pointer text-lg`}>
               {`<Justine/>`}
             </Link>
             <nav className={`${inter.className} flex gap-8`}>
-              <Link href="/#project" 
+              <Link href="/project" 
                 className="text-[16px] hover:text-gray-100">
                 Projects
               </Link>
-              <Link href="/#contact" 
+              <Link href="/contact" 
                 className="text-[16px] hover:text-gray-100">
                 Contact
               </Link>
@@ -38,6 +40,12 @@ export default function RootLayout({ children }) {
           </div>
         </header>
         {children}
+        <footer className="border-t-1 border-solid border-gray-800 ">
+          <div className="flex items-center h-15 flex-grow mx-auto max-w-3xl w-full px-6 md:px-8 gap-2">
+            <IoMdMail className="text-[#A8ADB2] text-xl"/>
+            <h1 className={`${jetbrains.className} text-[#A8ADB2]`}>justincuevas19@gmail.com</h1>
+          </div>
+        </footer>
       </body>
     </html>
   );

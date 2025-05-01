@@ -20,8 +20,8 @@ const jetbrains = JetBrains_Mono({
 
 export default function Home() {
   return (
-    <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8">
-      <section id='home' className='flex flex-col items-start text-[#A8ADB2] mb-20'>
+    <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-10">
+      <section className='flex flex-col items-start text-[#A8ADB2] mb-20'>
         <p className={`${jetbrains.className} mb-3`}>Hello, my name is</p>
         <div className='mb-5'>
           <h1 className='text-5xl font-extrabold md:text-6xl flex flex-col'>
@@ -55,7 +55,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section id='project'>
+      <section id='project mb-'>
         <h1 className={`${inter.className} text-gray-100 text-xl font-bold mb-10`}>Projects</h1>
         <div className='flex flex-col'>
           {projectData.map((data) => (
