@@ -36,7 +36,7 @@ export default function ProjectCard(props){
             <Image 
             src={props.data.stackLogo[index]} 
             alt={tech} width={15} height={15} 
-            style={{width: 'auto', height: 'auto'}}/>
+            className="h-auto w-auto"/>
             <p className={`${inter.className}`}>{tech}</p>
           </div>
         ))}
@@ -59,7 +59,7 @@ export default function ProjectCard(props){
           <p className="font-bold text-xs">SOURCE CODE</p>
         </a>
         <Link 
-        href="" 
+        href={`/projects/${props.data.name}`} 
         className={`${inter.className} max-md:w-full flex text-gray-100 justify-center items-center gap-2 bg-gray-400/20 rounded-full w-1/3 py-2 hover:bg-gray-200/20`
         }>
           <FiAlertCircle className="text-xl"/>

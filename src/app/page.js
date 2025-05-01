@@ -26,7 +26,7 @@ export default function Home() {
     initial={{ y: 30, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }} 
     transition={{ duration: 0.7 }} 
-    className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-10">
+    className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 pt-10 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-10 ">
       <section className='flex flex-col items-start text-[#A8ADB2] mb-20'>
         <p className={`${jetbrains.className} mb-3`}>Hello, my name is</p>
         <div className='mb-5'>
