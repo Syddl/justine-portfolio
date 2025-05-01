@@ -1,3 +1,4 @@
+"use client"
 import { JetBrains_Mono } from 'next/font/google'
 import { Inter } from 'next/font/google'
 import { FaSquareGithub } from "react-icons/fa6";
@@ -6,6 +7,7 @@ import StackCard from '@/component/StackCard';
 import { stack } from '@/data/stackdata'
 import ProjectCard from '@/component/ProjectCard';
 import { projectData } from '@/data/projectdata';
+import { motion } from "framer-motion"
 
 const inter = Inter({
     display: 'swap',
@@ -20,7 +22,11 @@ const jetbrains = JetBrains_Mono({
 
 export default function Home() {
   return (
-    <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-10">
+    <motion.main 
+    initial={{ y: 30, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }} 
+    transition={{ duration: 0.7 }} 
+    className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-10">
       <section className='flex flex-col items-start text-[#A8ADB2] mb-20'>
         <p className={`${jetbrains.className} mb-3`}>Hello, my name is</p>
         <div className='mb-5'>
@@ -73,6 +79,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-    </main>
+    </motion.main>
   );
 }

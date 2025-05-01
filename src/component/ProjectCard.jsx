@@ -1,10 +1,10 @@
+"use client"
 import Image from "next/image";
 import { Inter } from 'next/font/google'
 import { CiGlobe } from "react-icons/ci";
 import { FiGithub } from "react-icons/fi";
 import Link from "next/link";
 import { FiAlertCircle } from "react-icons/fi";
-
 
 const inter = Inter({
     display: 'swap',
@@ -13,13 +13,15 @@ const inter = Inter({
 
 export default function ProjectCard(props){
   return (
-    <div className="border-1 border-gray-500 p-5 rounded-lg cursor-pointer">
+    <div 
+    className="border-1 border-gray-500 p-5 rounded-lg cursor-pointer">
       <Image 
         src={props.data.landingPage}
         width={1000}
         height={900}
         alt="name"
         className="mb-5"
+        style={{width: 'auto', height: 'auto'}}
       />
       <h1 className={`${inter.className}  text-gray-100 text-lg font-bold mb-5`}>{props.data.name}</h1>
       <p className={`${inter.className} text-[#A8ADB2] mb-5 text-justify`}>
@@ -31,7 +33,10 @@ export default function ProjectCard(props){
             key={index}
             className="flex items-center gap-2 py-1 rounded-full text-white text-sm font-medium"
           >
-            <Image src={props.data.stackLogo[index]} alt={tech} width={15} height={15} />
+            <Image 
+            src={props.data.stackLogo[index]} 
+            alt={tech} width={15} height={15} 
+            style={{width: 'auto', height: 'auto'}}/>
             <p className={`${inter.className}`}>{tech}</p>
           </div>
         ))}
