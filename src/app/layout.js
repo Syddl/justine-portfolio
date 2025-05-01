@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
               {`<Justine/>`}
             </Link>
             <nav className={`${inter.className} flex gap-8`}>
-              <Link href="/project" 
+              <Link href="/projects" 
                 className="text-[16px] hover:text-gray-100">
                 Projects
               </Link>

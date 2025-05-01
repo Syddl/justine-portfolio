@@ -57,7 +57,7 @@ export default function Home() {
           difference. Whether it’s crafting sleek UI or learning new tech, I’m always up for a challenge.
         </p>
       </section>
-      <section className='mb-20'>
+      <section className='mb-10'>
         <h1 className={`${inter.className} text-gray-100 text-xl font-bold mb-10`}>Tech Stack</h1>
         <div className='flex flex-wrap gap-5 justify-center sm:justify-start'>
           {stack.map((data, index) => (

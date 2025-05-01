@@ -13,5 +13,8 @@ export const projectData = [
         It features a intuitive UI that allows users to easily add, edit, and delete expenses, categorize them, and instantly view spending summaries.`,
     stack: ['React', 'JavaScript', 'Tailwind', 'Firebase', 'MUI'],
     stackLogo: [react, js, tailwind, firebase, mui],
+    projectURL: "https://expensync-nine.vercel.app/",
+    github: null,
+    
   }
 ]

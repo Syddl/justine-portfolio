@@ -22,7 +22,7 @@ export default function ProjectCard(props){
         className="mb-5"
       />
       <h1 className={`${inter.className}  text-gray-100 text-lg font-bold mb-5`}>{props.data.name}</h1>
-      <p className={`${inter.className} text-[#A8ADB2] mb-5`}>
+      <p className={`${inter.className} text-[#A8ADB2] mb-5 text-justify`}>
         {props.data.description}
       </p>
       <div className="flex flex-wrap gap-5 mb-5">
@@ -38,7 +38,7 @@ export default function ProjectCard(props){
       </div>
       <div className="flex flex-col items-center gap-2 md:flex-row">
         <a 
-        href="https://expensync-nine.vercel.app/" 
+        href={props.data.projectURL} 
         target="_blank" 
         className={`${inter.className} max-md:w-full flex justify-center text-gray-100 items-center gap-2 bg-gray-400/20 rounded-full w-1/3 py-2 hover:bg-gray-200/20`
         }>
@@ -46,7 +46,7 @@ export default function ProjectCard(props){
           <p className="font-bold text-xs">LIVE DEMO</p>
         </a>
         <a 
-        href="" 
+        href={props.data.github} 
         target="_blank" 
         className={`${inter.className} max-md:w-full flex text-gray-100 justify-center items-center gap-2 bg-gray-400/20 rounded-full w-1/3 py-2 hover:bg-gray-200/20`
         }>
