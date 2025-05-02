@@ -1,5 +1,5 @@
 'use client'
-import { MdEmail } from "react-icons/md";
+import { BiLogoGmail } from "react-icons/bi";
 import { inter } from "../font";
 import { FaSquareGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
@@ -18,11 +18,8 @@ export default function ContactPage(){
             href="https://mail.google.com/mail/?view=cm&fs=1&to=justinecuevas19@gmail.com" 
             target="_blank"
             className="h-[50%] rounded-xl flex justify-center items-center border-1 border-gray-500 cursor-pointer hover:bg-gray-700/10"
-          >
-            <div className={`${inter.className} bg-[#3e3d42]  flex items-center gap-1 px-2 py-1 rounded-lg`}>
-              <MdEmail className="text-4xl md:text-xl"/>
-              <p className="text-xs hidden md:text-sm md:block">justinecuevas19@gmail.com</p>
-            </div>
+          > 
+            <BiLogoGmail className="text-6xl"/>
           </motion.a>
           <motion.a 
             initial={{ y: -50, opacity: 0 }}
