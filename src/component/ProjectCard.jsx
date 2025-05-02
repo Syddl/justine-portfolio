@@ -34,9 +34,10 @@ export default function ProjectCard(props){
             className="flex items-center gap-2 py-1 rounded-full text-white text-sm font-medium"
           >
             <Image 
-            src={props.data.stackLogo[index]} 
-            alt={tech} width={15} height={15} 
-            className="h-auto w-auto"/>
+              src={props.data.stackLogo[index]} 
+              alt={tech} width={15} height={15} 
+              style={{width: 'auto', height: 'auto'}}
+            />
             <p className={`${inter.className}`}>{tech}</p>
           </div>
         ))}

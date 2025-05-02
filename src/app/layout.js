@@ -42,8 +42,7 @@ export default function RootLayout({ children }) {
         {children}
         <footer className="border-t-1 border-solid border-gray-800 ">
           <div className="flex items-center h-15 flex-grow mx-auto max-w-3xl w-full px-6 md:px-8 gap-2">
-            <IoMdMail className="text-[#A8ADB2] text-xl"/>
-            <h1 className={`${jetbrains.className} text-[#A8ADB2]`}>justincuevas19@gmail.com</h1>
+            <h1 className={`${inter.className} text-sm font-semibold text-[#A8ADB2]`}>© 2025 Justine Jude Cuevas</h1>
           </div>
         </footer>
       </body>

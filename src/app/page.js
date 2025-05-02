@@ -36,7 +36,7 @@ export default function Home() {
             <span className={`${inter.className}`}>Developer</span>
           </h1>
         </div>
-        <p className={`${jetbrains.className} mb-3`}>Creating clean and fast web apps</p>
+        <p className={`${jetbrains.className} mb-5`}>Creating clean and fast web apps</p>
         <div className='flex gap-2 items-center mb-5'>
           <div className='flex items-center bg-green-600/20 rounded-2xl py-1 px-3 cursor-pointer hover:bg-green-600/30'>
             <span className="p-1 mb-px mr-1 inline-block bg-green-600 rounded-full"></span>
@@ -75,7 +75,16 @@ export default function Home() {
         <h1 className={`${inter.className} text-gray-100 text-xl font-bold mb-10`}>Projects</h1>
         <div className='flex flex-col'>
           {projectData.map((data) => (
-            <ProjectCard key={data.name} data={data}/>
+            <motion.div
+              key={data.name} 
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }} 
+              transition={{ duration: 0.5 }} 
+              viewport={{ once: true }}
+            >
+              <ProjectCard data={data}/>
+            </motion.div>
+            
           ))}
         </div>
       </section>

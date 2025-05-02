@@ -84,16 +84,29 @@ export default function Content({result, slug}){
             </h1>
           ))}
         </motion.div>
-        <motion.div 
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }} 
-          transition={{ duration: 0.5 }} 
-        >
+        <div >
           <h1 className="text-xl text-gray-100 font-bold mb-10">Project Overview</h1>
           {result.images.map((data, index) => (
-            <Image key={index} src={data} alt={index} priority style={{ width: 'auto', height: 'auto' }} className="mb-5 rounded-lg" width={1919} height={940}/>
+            <motion.div
+              key={index}
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }} 
+              transition={{ duration: 0.5 }} 
+              viewport={{ once: true }}
+            >
+              <Image 
+                src={data} 
+                alt={index} 
+                priority 
+                style={{ width: 'auto', height: 'auto' }} 
+                className="mb-5 rounded-lg" 
+                width={1919} 
+                height={940}
+              />
+            </motion.div>
+            
           ))}
-      </motion.div>
+      </div>
     </>
   )
 }
