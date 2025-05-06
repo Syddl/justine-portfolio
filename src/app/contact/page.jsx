@@ -6,22 +6,38 @@ import { FaLinkedin } from "react-icons/fa";
 import { RiTelegram2Line } from "react-icons/ri";
 import { motion } from "framer-motion"
 import emailjs from 'emailjs-com';
-import { useRef } from 'react'
+import { useRef, useState } from "react"
 
 export default function ContactPage(){
-  const form = useRef();
+  const formRef = useRef(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs.sendForm(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-      formRef.current,
-      process.env.NEXT_PUBLIC_EMAILJS_USER_ID
-    )    
-    .then(() => alert('Message Sent!'))
-    .catch(() => alert('Failed to send. Try again.'));
-  };
+    e.preventDefault()
+
+    if (!formRef.current) return
+
+    setIsSubmitting(true)
+
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
+      )
+      .then(() => {
+        alert("Message Sent!")
+        if (formRef.current) formRef.current.reset()
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error)
+        alert("Failed to send. Try again.")
+      })
+      .finally(() => {
+        setIsSubmitting(false)
+      })
+  }
 
   return(
     <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 pt-10 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-5 ">
@@ -102,6 +118,7 @@ export default function ContactPage(){
             />
           </div>
           <button 
+            disabled={isSubmitting}
             type="submit"
             className="bg-gray-400/20 flex items-center justify-center py-3 rounded-md w-full gap-2 md:w-50 cursor-pointer hover:bg-gray-200/20"
           >
