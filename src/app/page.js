@@ -22,7 +22,7 @@ const jetbrains = JetBrains_Mono({
 
 export default function Home() {
 
-  const about = "I'm Justine, a frontend developer based in the Philippines with a passion for building clean, fast, and user-friendly web applications. I enjoy turning ideas into functional and visually appealing interfaces using tools like React, Next.js, and Tailwind CSS. Currently open to internship opportunities, I'm eager to grow as a developer and collaborate on meaningful projects that make a difference. Whether it's crafting sleek UI or learning new tech, I'm always up for a challenge.";
+  const about = "I'm Justine, a frontend developer based in the Philippines with a passion for building clean, fast, and user-friendly web applications. I enjoy turning ideas into functional and visually appealing interfaces using tools like React, Next.js, and Tailwind CSS. Currently open to work opportunities, I'm eager to grow as a developer and collaborate on meaningful projects that make a difference. Whether it's crafting sleek UI or learning new tech, I'm always up for a challenge.";
 
   return (
     <motion.main 
