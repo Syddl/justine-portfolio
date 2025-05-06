@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
           <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-110">
             <Link href="/" className={`${jetbrains.className} hover:text-gray-100 cursor-pointer text-lg`}>
-              {`<Justine/>`}
+              {`.justine`}
             </Link>
             <nav className={`${inter.className} flex gap-8`}>
               <Link href="/projects" 
