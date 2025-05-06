@@ -21,6 +21,9 @@ const jetbrains = JetBrains_Mono({
 })
 
 export default function Home() {
+
+
+  
   return (
     <motion.main 
     initial={{ y: 30, opacity: 0 }}
