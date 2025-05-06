@@ -43,7 +43,7 @@ export default function Home() {
         <div className='flex gap-2 items-center mb-5'>
           <div className='flex items-center bg-green-600/20 rounded-2xl py-1 px-3 cursor-pointer hover:bg-green-600/30'>
             <span className="p-1 mb-px mr-1 inline-block bg-green-600 rounded-full"></span>
-            <h1 className={`${inter.className} text-green-600  font-bold text-sm `}>Open to internship</h1>
+            <h1 className={`${inter.className} text-green-600  font-bold text-sm `}>Open to work</h1>
           </div>
           <h1 className={`${jetbrains.className}`}>🏠 Philippines.</h1>
         </div>
