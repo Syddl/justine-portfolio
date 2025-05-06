@@ -14,11 +14,11 @@ export default function ContactPage(){
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs.sendForm(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID,
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-      form.current,
-      process.env.REACT_APP_EMAILJS_USER_ID
-    )
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+      formRef.current,
+      process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+    )    
     .then(() => alert('Message Sent!'))
     .catch(() => alert('Failed to send. Try again.'));
   };
