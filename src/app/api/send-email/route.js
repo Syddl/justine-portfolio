@@ -1,22 +1,9 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-if (!process.env.RESEND_API_KEY) {
-  return Response.json(
-    {
-      error: "RESEND_API_KEY environment variable is not set",
-      debug: {
-        nodeEnv: process.env.NODE_ENV,
-        hasResendKey: !!process.env.RESEND_API_KEY,
-      },
-    },
-    { status: 500 }
-  );
-}
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { name, email, message } = await request.json();
 
