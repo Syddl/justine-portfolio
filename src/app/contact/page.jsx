@@ -161,12 +161,11 @@ export default function ContactPage() {
             />
           </div>
           <button
-            disabled={loading}
             type="submit"
             className="bg-gray-400/20 flex items-center justify-center py-3 rounded-md w-full gap-2 md:w-50 cursor-pointer hover:bg-gray-200/20"
           >
             <RiTelegram2Line className="text-xl" />
-            <p>Send Message</p>
+            <p>{loading ? "Sending..." : "Send Message"}</p>
           </button>
         </form>
       </motion.div>

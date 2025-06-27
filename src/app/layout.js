@@ -3,10 +3,14 @@ import { JetBrains_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import { Toaster } from "sonner";
+import Script from "next/script";
 
 export const metadata = {
   title: "Justine Jude Cuevas",
-  description: "",
+  description: "My personal portfolio site",
+  icons: {
+    icon: "/favicon.jpg",
+  },
 };
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +24,20 @@ const jetbrains = JetBrains_Mono({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-LLY8H65WKM"
+        ></Script>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+          `}
+        </Script>
+      </head>
       <body className="bg-[#171717] w-full">
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
           <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-120">
