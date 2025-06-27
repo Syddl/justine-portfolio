@@ -6,8 +6,6 @@ export async function POST(request) {
 
   try {
     const { name, email, message } = await request.json();
-
-    // Validate required fields
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -19,7 +17,7 @@ export async function POST(request) {
       from: "Justine <justine@devjustine.me>",
       to: ["justinecuevas19@gmail.com"],
       subject: `Message from ${name}`,
-      replyTo: email, // Note: it's replyTo, not reply_to
+      replyTo: email,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333;">New Contact Form Message</h2>
