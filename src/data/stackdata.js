@@ -1,38 +1,43 @@
-import css from '../../public/css.png'
-import html from '../../public/html.webp'
-import git from '../../public/git.png'
-import js from '../../public/js.webp'
-import nextjs from '../../public/nextjs.png'
-import react from '../../public/react.png'
-import tailwind from '../../public/tailwind.png'
+import css from "../../public/css.png";
+import html from "../../public/html.webp";
+import git from "../../public/git.png";
+import js from "../../public/js.webp";
+import nextjs from "../../public/nextjs.png";
+import react from "../../public/react.png";
+import tailwind from "../../public/tailwind.png";
+import ts from "../../public/ts.png";
 
 export const stack = [
   {
     img: react,
-    name: "React"
+    name: "React",
   },
   {
     img: nextjs,
-    name: "Next JS"
+    name: "Next JS",
+  },
+  {
+    img: ts,
+    name: "TypeScript",
   },
   {
     img: js,
-    name: "JavaScript"
+    name: "JavaScript",
   },
   {
     img: tailwind,
-    name: "Tailwind"
+    name: "Tailwind",
   },
   {
     img: git,
-    name: "Git"
+    name: "Git",
   },
   {
     img: html,
-    name: "HTML"
+    name: "HTML",
   },
   {
     img: css,
-    name: "CSS"
+    name: "CSS",
   },
-]
+];

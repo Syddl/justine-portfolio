@@ -2,7 +2,7 @@ import "./globals.css";
 import { JetBrains_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import { IoMdMail } from "react-icons/io";
+import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Justine Jude Cuevas",
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-[#171717] w-full">
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
-          <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-110">
+          <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-120">
             <Link
               href="/"
               className={`${jetbrains.className} hover:text-gray-100 cursor-pointer text-lg`}
@@ -43,6 +43,7 @@ export default function RootLayout({ children }) {
           </div>
         </header>
         {children}
+        <Toaster richColors />
         <footer className="border-t-1 border-solid border-gray-800 ">
           <div className="flex items-center h-15 flex-grow mx-auto max-w-3xl w-full px-6 md:px-8 gap-2">
             <h1
