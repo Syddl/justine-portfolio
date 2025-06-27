@@ -7,7 +7,6 @@ import Script from "next/script";
 
 export const metadata = {
   title: "Justine Jude Cuevas",
-  description: "My personal portfolio site",
   icons: {
     icon: "/favicon.jpg",
   },
