@@ -60,11 +60,11 @@ export default function Content({ result, slug }) {
         >
           Tech Stack
         </h1>
-        <div className="flex flex-wrap gap-5 mb-5">
+        <div className="flex flex-wrap gap-3 mb-5">
           {result.stack.map((tech, index) => (
             <div
               key={index}
-              className={` flex items-center gap-2 py-1 rounded-full text-white text-sm font-medium`}
+              className={`px-3 py-1 bg-neutral-800 text-neutral-300 text-sm rounded-full flex items-center justify-between gap-2 hover:bg-neutral-700 transition-colors duration-200`}
             >
               <Image
                 style={{ width: "auto", height: "auto" }}

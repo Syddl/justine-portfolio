@@ -7,6 +7,7 @@ import HeroSection from "@/component/HeroSection";
 import AboutMeSection from "@/component/AboutMeSection";
 import TechStackSection from "@/component/TechStackSection";
 import ProjectSection from "@/component/ProjectSection";
+import { Geist } from "next/font/google";
 
 const inter = Inter({
   display: "swap",
@@ -16,6 +17,12 @@ const inter = Inter({
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400"],
+});
+
+const geist = Geist({
+  display: "swap",
+  subsets: ["latin"],
   weight: ["400"],
 });
 
@@ -29,7 +36,7 @@ export default function Home() {
     >
       <MouseHoverEffect />
       <HeroSection jetbrains={jetbrains} inter={inter} />
-      <AboutMeSection jetbrains={jetbrains} inter={inter} />
+      <AboutMeSection inter={inter} geist={geist} />
       <TechStackSection inter={inter} />
       <ProjectSection inter={inter} />
     </motion.main>
