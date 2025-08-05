@@ -14,8 +14,9 @@ const inter = Inter({
 
 export default function ProjectCard(props) {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
+
   return (
     <div className="border-1 border-gray-500 p-5 rounded-lg cursor-pointer">
       <Image

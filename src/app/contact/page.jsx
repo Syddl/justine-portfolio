@@ -7,6 +7,7 @@ import { RiTelegram2Line } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
+import MouseHoverEffect from "@/component/MouseHoverEffect";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -62,6 +63,7 @@ export default function ContactPage() {
 
   return (
     <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 pt-10 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-5 ">
+      <MouseHoverEffect />
       <div className="h-80 flex gap-3 text-gray-100 mb-10">
         <div className="w-[50%] flex flex-col gap-3">
           <motion.a

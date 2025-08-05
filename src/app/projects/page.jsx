@@ -4,6 +4,7 @@ import { JetBrains_Mono } from "next/font/google";
 import ProjectCard from "@/component/ProjectCard";
 import { projectData } from "@/data/projectdata";
 import { motion } from "framer-motion";
+import MouseHoverEffect from "@/component/MouseHoverEffect";
 
 const inter = Inter({
   display: "swap",
@@ -19,6 +20,7 @@ const jetbrains = JetBrains_Mono({
 export default function ProjectPage() {
   return (
     <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-10">
+      <MouseHoverEffect />
       <motion.div
         initial={{ x: -50, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}

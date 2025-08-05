@@ -8,6 +8,7 @@ import { stack } from "@/data/stackdata";
 import ProjectCard from "@/component/ProjectCard";
 import { projectData } from "@/data/projectdata";
 import { motion } from "framer-motion";
+import MouseHoverEffect from "@/component/MouseHoverEffect";
 
 const inter = Inter({
   display: "swap",
@@ -31,6 +32,7 @@ export default function Home() {
       transition={{ duration: 0.7 }}
       className="flex-grow mx-auto max-w-3xl w-full p-6 pb-6 pt-5 sm:px-6 lg:pt-15 mb-10 "
     >
+      <MouseHoverEffect />
       <section className="flex flex-col items-start text-[#A8ADB2] mb-20">
         <p className={`${jetbrains.className} mb-3`}>Hello, my name is</p>
         <div className="mb-5">
