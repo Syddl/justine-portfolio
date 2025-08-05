@@ -9,6 +9,8 @@ import ts from "../../public/ts.png";
 import cs from "../../public/cs.png";
 import java from "../../public/java.webp";
 import pythn from "../../public/python.png";
+import supabase from "../../public/supabase.webp";
+import firebase from "../../public/firebase.png";
 
 export const stack = [
   {
@@ -46,6 +48,14 @@ export const stack = [
   {
     img: cs,
     name: "C#",
+  },
+  {
+    img: supabase,
+    name: "Supabase",
+  },
+  {
+    img: firebase,
+    name: "Firebase",
   },
   {
     img: html,

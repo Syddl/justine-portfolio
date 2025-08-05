@@ -47,4 +47,37 @@ export const projectData = [
       analytics,
     ],
   },
+  {
+    name: "StaffTrackr",
+    subName: "Finance App",
+    landingPage: langing,
+    description: `Expensync is a sleek and minimal expense tracking app designed to help users gain control over their daily finances.
+        It features a intuitive UI that allows users to easily add, edit, and delete expenses, categorize them, and instantly view spending summaries.`,
+    stack: ["NextJS", "TypeScript", "Tailwind", "Supabase", "Shadcn"],
+    stackLogo: [react, js, tailwind, firebase, mui],
+    projectURL: "https://stafftrackr.vercel.app/",
+    github: "https://github.com/Syddl",
+    key: [
+      "🔐 User Authentication ",
+      "📊 Real-Time Data ",
+      "🛠️ Data Management ",
+      "👤 Profile Settings ",
+    ],
+    subKey: [
+      "Sign up and log in securely to the app.",
+      "Get real time data.",
+      "Add, remove, or update your data.",
+      "Update your profile name",
+    ],
+    images: [
+      landing,
+      login,
+      signup,
+      dashboard,
+      expenses,
+      income,
+      bills,
+      analytics,
+    ],
+  },
 ];

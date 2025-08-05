@@ -1,11 +1,10 @@
 "use client";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import { CiGlobe } from "react-icons/ci";
 import { FiGithub } from "react-icons/fi";
 import Link from "next/link";
 import { FiAlertCircle } from "react-icons/fi";
 import { useEffect } from "react";
+import { FiExternalLink } from "react-icons/fi";
 
 const inter = Inter({
   display: "swap",
@@ -18,64 +17,52 @@ export default function ProjectCard(props) {
   }, []);
 
   return (
-    <div className="border-1 border-gray-500 p-5 rounded-lg cursor-pointer">
-      <Image
-        src={props.data.landingPage}
-        width={1000}
-        height={900}
-        alt="name"
-        className="mb-5"
-        style={{ width: "auto", height: "auto" }}
-      />
-      <h1
-        className={`${inter.className}  text-gray-100 text-lg font-bold mb-5`}
+    <div className="group cursor-pointer p-4 -m-4 rounded-lg hover:bg-neutral-800/30 transition-all duration-300">
+      <div className="flex items-start justify-between mb-3">
+        <h1
+          className={`${inter.className}  text-xl font-medium text-neutral-100 group-hover:text-blue-400 transition-colors`}
+        >
+          {props.data.name}
+        </h1>
+        <div className="flex items-center gap-4 ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Link
+            target="_blank"
+            href={props.data.github}
+            className="text-neutral-500 hover:text-neutral-300 transition-colors"
+          >
+            <FiGithub className="h-4 w-4" />
+          </Link>
+          <Link
+            target="_blank"
+            href={props.data.projectURL}
+            className="text-neutral-500 hover:text-blue-400 transition-colors"
+          >
+            <FiExternalLink className="h-4 w-4" />
+          </Link>
+          <Link
+            href={`/projects/${props.data.name}`}
+            className="text-neutral-500 hover:text-blue-400 transition-colors"
+          >
+            <FiAlertCircle className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+
+      <p
+        className={`${inter.className} text-neutral-400 leading-relaxed mb-4 group-hover:text-neutral-300 transition-colors`}
       >
-        {props.data.name}
-      </h1>
-      <p className={`${inter.className} text-[#A8ADB2] mb-5 text-justify`}>
         {props.data.description}
       </p>
-      <div className="flex flex-wrap gap-5 mb-5">
+      <div className="flex flex-wrap gap-5">
         {props.data.stack.map((tech, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-2 py-1 rounded-full text-white text-sm font-medium"
-          >
-            <Image
-              src={props.data.stackLogo[index]}
-              alt={tech}
-              width={15}
-              height={15}
-              style={{ width: "auto", height: "auto" }}
-            />
-            <p className={`${inter.className}`}>{tech}</p>
+          <div key={index} className="flex flex-wrap gap-2">
+            <p
+              className={`${inter.className} text-neutral-500 text-sm group-hover:text-neutral-400 transition-colors`}
+            >
+              {tech}
+            </p>
           </div>
         ))}
-      </div>
-      <div className="flex flex-col items-center gap-2 md:flex-row">
-        <a
-          href={props.data.projectURL}
-          target="_blank"
-          className={`${inter.className} max-md:w-full flex justify-center text-gray-100 items-center gap-2 bg-gray-400/20 rounded-full w-1/3 py-2 hover:bg-gray-200/20`}
-        >
-          <CiGlobe className="text-xl" />
-          <p className="font-bold text-xs">LIVE DEMO</p>
-        </a>
-        <a
-          href={props.data.github}
-          target="_blank"
-          className={`${inter.className} max-md:w-full flex text-gray-100 justify-center items-center gap-2 bg-gray-400/20 rounded-full w-1/3 py-2 hover:bg-gray-200/20`}
-        >
-          <FiGithub className="text-xl" />
-          <p className="font-bold text-xs">SOURCE CODE</p>
-        </a>
-        <Link
-          href={`/projects/${props.data.name}`}
-          className={`${inter.className} max-md:w-full flex text-gray-100 justify-center items-center gap-2 bg-gray-400/20 rounded-full w-1/3 py-2 hover:bg-gray-200/20`}
-        >
-          <FiAlertCircle className="text-xl" />
-          <p className="font-bold text-xs">MORE DETAILS</p>
-        </Link>
       </div>
     </div>
   );

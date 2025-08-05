@@ -8,15 +8,15 @@ const inter = Inter({
 
 export default function StackCard({ img, name }) {
   return (
-    <div className="hover:scale-110 transition-transform cursor-pointer hover:bg-gray-100/5 border-1 border-gray-500 flex flex-col items-center justify-center h-23 w-32 gap-2 rounded-lg">
+    <div className="flex flex-col items-center justify-center p-4 bg-neutral-800 border border-neutral-700 rounded-lg text-neutral-300 text-sm hover:bg-neutral-700 transition-colors duration-200 w-30 h-24">
       <Image
         src={img}
-        width={30}
-        height={30}
+        width={24}
+        height={24}
         alt={name}
-        style={{ width: "auto", height: "auto" }}
+        className="object-contain w-10 h-10 mb-1"
       />
-      <h1 className={`${inter.className} text-[#A8ADB2]`}>{name}</h1>
+      <span className={`${inter.className} text-center`}>{name}</span>
     </div>
   );
 }

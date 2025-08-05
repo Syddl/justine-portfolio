@@ -1,5 +1,5 @@
-import { FaSquareGithub } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
+import { FiGithub } from "react-icons/fi";
+import { FiLinkedin } from "react-icons/fi";
 
 const HeroSection = ({ jetbrains, inter }) => {
   return (
@@ -28,13 +28,13 @@ const HeroSection = ({ jetbrains, inter }) => {
       </div>
       <div className="flex items-center gap-3">
         <a href="https://github.com/Syddl" target="_blank">
-          <FaSquareGithub className="text-4xl hover:text-gray-100 " />
+          <FiGithub className="text-2xl hover:text-gray-100 " />
         </a>
         <a
           href="https://www.linkedin.com/in/justine-jude-cuevas-6b6235285/"
           target="_blank"
         >
-          <FaLinkedin className="text-4xl hover:text-gray-100" />
+          <FiLinkedin className="text-2xl hover:text-gray-100" />
         </a>
       </div>
     </section>
