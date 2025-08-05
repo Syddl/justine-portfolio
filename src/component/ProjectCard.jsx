@@ -18,13 +18,13 @@ export default function ProjectCard(props) {
 
   return (
     <div className="group cursor-pointer p-4 -m-4 rounded-lg hover:bg-neutral-800/30 transition-all duration-300">
-      <div className="flex items-start justify-between mb-3">
+      <div className="flex items-center justify-between mb-3">
         <h1
           className={`${inter.className}  text-xl font-medium text-neutral-100 group-hover:text-blue-400 transition-colors`}
         >
           {props.data.name}
         </h1>
-        <div className="flex items-center gap-4 ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="flex items-center gap-4 ml-4 opacity-75 group-hover:opacity-100 transition-opacity duration-300">
           <Link
             target="_blank"
             href={props.data.github}
