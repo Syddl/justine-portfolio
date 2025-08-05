@@ -1,16 +1,16 @@
-import css from "../../public/css.png";
+import css from "../../public/css.webp";
 import html from "../../public/html.webp";
-import git from "../../public/git.png";
+import git from "../../public/git.webp";
 import js from "../../public/js.webp";
-import nextjs from "../../public/nextjs.png";
-import react from "../../public/react.png";
-import tailwind from "../../public/tailwind.png";
-import ts from "../../public/ts.png";
-import cs from "../../public/cs.png";
+import nextjs from "../../public/nextjs.webp";
+import react from "../../public/react.webp";
+import tailwind from "../../public/tailwind.webp";
+import ts from "../../public/ts.webp";
+import cs from "../../public/cs.webp";
 import java from "../../public/java.webp";
-import pythn from "../../public/python.png";
+import pythn from "../../public/python.webp";
 import supabase from "../../public/supabase.webp";
-import firebase from "../../public/firebase.png";
+import firebase from "../../public/firebase.webp";
 
 export const stack = [
   {
