@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
       </head>
-      <body className="bg-[#171717] w-full">
+      <body className="bg-neutral-900 w-full">
         <header className="lg:w-[50%] lg:relative lg:left-[25%]">
           <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-120">
             <Link

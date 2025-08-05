@@ -6,6 +6,9 @@ import nextjs from "../../public/nextjs.png";
 import react from "../../public/react.png";
 import tailwind from "../../public/tailwind.png";
 import ts from "../../public/ts.png";
+import cs from "../../public/cs.png";
+import java from "../../public/java.webp";
+import pythn from "../../public/python.png";
 
 export const stack = [
   {
@@ -31,6 +34,18 @@ export const stack = [
   {
     img: git,
     name: "Git",
+  },
+  {
+    img: java,
+    name: "Java",
+  },
+  {
+    img: pythn,
+    name: "Python",
+  },
+  {
+    img: cs,
+    name: "C#",
   },
   {
     img: html,
