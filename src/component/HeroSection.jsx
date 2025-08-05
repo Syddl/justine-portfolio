@@ -16,8 +16,11 @@ const HeroSection = ({ jetbrains, inter }) => {
         Creating clean and fast web apps
       </p>
       <div className="flex gap-2 items-center mb-5">
-        <div className="flex items-center bg-green-600/20 rounded-2xl py-1 px-3 cursor-pointer hover:bg-green-600/30">
-          <span className="p-1 mb-px mr-1 inline-block bg-green-600 rounded-full"></span>
+        <div className="flex items-center bg-green-600/20 rounded-2xl py-1 px-3 cursor-pointer hover:bg-green-600/30 gap-2">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+          </span>
           <h1
             className={`${inter.className} text-green-600  font-bold text-sm `}
           >

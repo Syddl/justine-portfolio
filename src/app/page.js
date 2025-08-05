@@ -20,12 +20,6 @@ const jetbrains = JetBrains_Mono({
   weight: ["400"],
 });
 
-const geist = Geist({
-  display: "swap",
-  subsets: ["latin"],
-  weight: ["400"],
-});
-
 export default function Home() {
   return (
     <motion.main
@@ -36,7 +30,7 @@ export default function Home() {
     >
       <MouseHoverEffect />
       <HeroSection jetbrains={jetbrains} inter={inter} />
-      <AboutMeSection inter={inter} geist={geist} />
+      <AboutMeSection inter={inter} />
       <TechStackSection inter={inter} />
       <ProjectSection inter={inter} />
     </motion.main>
