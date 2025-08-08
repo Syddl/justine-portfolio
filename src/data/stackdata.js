@@ -1,68 +1,68 @@
-import css from "../../public/css.webp";
-import html from "../../public/html.webp";
-import git from "../../public/git.webp";
-import js from "../../public/js.webp";
-import nextjs from "../../public/nextjs.webp";
-import react from "../../public/react.webp";
-import tailwind from "../../public/tailwind.webp";
-import ts from "../../public/ts.webp";
-import cs from "../../public/cs.webp";
-import java from "../../public/java.webp";
-import pythn from "../../public/python.webp";
-import supabase from "../../public/supabase.webp";
-import firebase from "../../public/firebase.webp";
+import { FaReact } from "react-icons/fa";
+import { RiNextjsFill } from "react-icons/ri";
+import { BiLogoTypescript } from "react-icons/bi";
+import { RiJavascriptFill } from "react-icons/ri";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { FaGitAlt } from "react-icons/fa";
+import { FaJava } from "react-icons/fa";
+import { FaPython } from "react-icons/fa";
+import { RiSupabaseFill } from "react-icons/ri";
+import { TbBrandCSharp } from "react-icons/tb";
+import { IoLogoFirebase } from "react-icons/io5";
+import { FaHtml5 } from "react-icons/fa";
+import { IoLogoCss3 } from "react-icons/io";
 
 export const stack = [
   {
-    img: react,
+    icon: FaReact,
     name: "React",
   },
   {
-    img: nextjs,
+    icon: RiNextjsFill,
     name: "Next JS",
   },
   {
-    img: ts,
+    icon: BiLogoTypescript,
     name: "TypeScript",
   },
   {
-    img: js,
+    icon: RiJavascriptFill,
     name: "JavaScript",
   },
   {
-    img: tailwind,
+    icon: RiTailwindCssFill,
     name: "Tailwind",
   },
   {
-    img: git,
+    icon: FaGitAlt,
     name: "Git",
   },
   {
-    img: java,
+    icon: FaJava,
     name: "Java",
   },
   {
-    img: pythn,
+    icon: FaPython,
     name: "Python",
   },
   {
-    img: cs,
+    icon: TbBrandCSharp,
     name: "C#",
   },
   {
-    img: supabase,
+    icon: RiSupabaseFill,
     name: "Supabase",
   },
   {
-    img: firebase,
+    icon: IoLogoFirebase,
     name: "Firebase",
   },
   {
-    img: html,
+    icon: FaHtml5,
     name: "HTML",
   },
   {
-    img: css,
+    icon: IoLogoCss3,
     name: "CSS",
   },
 ];

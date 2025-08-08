@@ -27,7 +27,7 @@ const HeroSection = ({ jetbrains, inter }) => {
             Open to work
           </h1>
         </div>
-        <h1 className={`${jetbrains.className}`}>🏠 Philippines.</h1>
+        <h1 className={`${jetbrains.className}`}>🏠Philippines.</h1>
       </div>
       <div className="flex items-center gap-3">
         <a href="https://github.com/Syddl" target="_blank">

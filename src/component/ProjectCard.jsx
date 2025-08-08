@@ -20,7 +20,7 @@ export default function ProjectCard(props) {
     <div className="group cursor-pointer p-4 -m-4 rounded-lg hover:bg-neutral-800/30 transition-all duration-300">
       <div className="flex items-center justify-between mb-3">
         <h1
-          className={`${inter.className}  text-xl font-medium text-neutral-100 group-hover:text-blue-400 transition-colors`}
+          className={`${inter.className}  text-xl font-medium text-neutral-100 group-hover:text-green-400 transition-colors`}
         >
           {props.data.name}
         </h1>
@@ -35,13 +35,13 @@ export default function ProjectCard(props) {
           <Link
             target="_blank"
             href={props.data.projectURL}
-            className="text-neutral-500 hover:text-blue-400 transition-colors"
+            className="text-neutral-500 hover:text-neutral-300 transition-colors"
           >
             <FiExternalLink className="h-4 w-4" />
           </Link>
           <Link
             href={`/projects/${props.data.name}`}
-            className="text-neutral-500 hover:text-blue-400 transition-colors"
+            className="text-neutral-500 hover:text-neutral-300 transition-colors"
           >
             <FiAlertCircle className="h-4 w-4" />
           </Link>

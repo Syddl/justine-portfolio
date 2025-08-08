@@ -11,7 +11,7 @@ const TechStackSection = ({ inter }) => {
       </h1>
       <div className="flex flex-wrap gap-5 justify-center items-center">
         {stack.map((data, index) => (
-          <StackCard key={index} img={data.img} name={data.name} />
+          <StackCard key={index} icon={data.icon} name={data.name} />
         ))}
       </div>
     </section>
