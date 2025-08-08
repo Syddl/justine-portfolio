@@ -24,6 +24,29 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <title>
+          Justine Jude Cuevas | Frontend Developer in the Philippines
+        </title>
+        <meta
+          name="description"
+          content="Justine is a frontend developer specializing in React, Next.js, and Tailwind CSS. Building fast, clean, and user-friendly web apps."
+        />
+        <meta
+          name="keywords"
+          content="Justine Jude Cuevas, frontend developer, React developer, Next.js, Tailwind CSS, web developer Philippines"
+        />
+        <meta name="author" content="Justine Jude Cuevas" />
+        <meta
+          property="og:title"
+          content="Justine Jude Cuevas | Frontend Developer"
+        />
+        <meta
+          property="og:description"
+          content="Frontend developer from the Philippines skilled in React, Next.js, and Tailwind CSS."
+        />
+        <meta property="og:image" content="/images/og-image.jpg" />
+        <meta property="og:url" content="https://devjustine.me" />
+        <meta name="twitter:card" content="summary_large_image" />
         <Script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
