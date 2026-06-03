@@ -11,58 +11,49 @@ import { TbBrandCSharp } from "react-icons/tb";
 import { IoLogoFirebase } from "react-icons/io5";
 import { FaHtml5 } from "react-icons/fa";
 import { IoLogoCss3 } from "react-icons/io";
+import { FaNodeJs } from "react-icons/fa";
+import { SiExpress, SiFastapi, SiMongodb, SiPostgresql } from "react-icons/si";
 
-export const stack = [
+export const stackGroups = [
   {
-    icon: FaReact,
-    name: "React",
+    label: "Frontend",
+    items: [
+      { icon: FaReact, name: "React" },
+      { icon: RiNextjsFill, name: "Next.js" },
+      { icon: BiLogoTypescript, name: "TypeScript" },
+      { icon: RiJavascriptFill, name: "JavaScript" },
+      { icon: RiTailwindCssFill, name: "Tailwind" },
+      { icon: FaHtml5, name: "HTML" },
+      { icon: IoLogoCss3, name: "CSS" },
+    ],
   },
   {
-    icon: RiNextjsFill,
-    name: "Next JS",
+    label: "Backend",
+    items: [
+      { icon: SiFastapi, name: "FastAPI" },
+      { icon: SiExpress, name: "Express.js" },
+      { icon: FaNodeJs, name: "Node.js" },
+    ],
   },
   {
-    icon: BiLogoTypescript,
-    name: "TypeScript",
+    label: "Database",
+    items: [
+      { icon: SiPostgresql, name: "PostgreSQL" },
+      { icon: SiMongodb, name: "MongoDB" },
+      { icon: RiSupabaseFill, name: "Supabase" },
+      { icon: IoLogoFirebase, name: "Firebase" },
+    ],
   },
   {
-    icon: RiJavascriptFill,
-    name: "JavaScript",
-  },
-  {
-    icon: RiTailwindCssFill,
-    name: "Tailwind",
-  },
-  {
-    icon: FaGitAlt,
-    name: "Git",
-  },
-  {
-    icon: FaJava,
-    name: "Java",
-  },
-  {
-    icon: FaPython,
-    name: "Python",
-  },
-  {
-    icon: TbBrandCSharp,
-    name: "C#",
-  },
-  {
-    icon: RiSupabaseFill,
-    name: "Supabase",
-  },
-  {
-    icon: IoLogoFirebase,
-    name: "Firebase",
-  },
-  {
-    icon: FaHtml5,
-    name: "HTML",
-  },
-  {
-    icon: IoLogoCss3,
-    name: "CSS",
+    label: "Tools",
+    items: [
+      { icon: FaGitAlt, name: "Git" },
+      { icon: FaPython, name: "Python" },
+      { icon: FaJava, name: "Java" },
+      { icon: TbBrandCSharp, name: "C#" },
+    ],
   },
 ];
+
+// Flat list for backward compatibility
+export const stack = stackGroups.flatMap((group) => group.items);

@@ -8,12 +8,12 @@ const HeroSection = ({ jetbrains, inter }) => {
       <div className="mb-5">
         <h1 className="text-5xl font-extrabold md:text-6xl flex flex-col">
           <span className={`${inter.className} text-gray-100`}>Justine</span>
-          <span className={`${inter.className} `}>Front end</span>
+          <span className={`${inter.className} `}>Full Stack</span>
           <span className={`${inter.className}`}>Developer</span>
         </h1>
       </div>
       <p className={`${jetbrains.className} mb-5`}>
-        Creating clean and fast web apps
+        Building complete web applications from front to back
       </p>
       <div className="flex gap-2 items-center mb-5">
         <div className="flex items-center bg-green-600/20 rounded-2xl py-1 px-3 cursor-pointer hover:bg-green-600/30 gap-1">
