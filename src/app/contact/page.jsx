@@ -1,13 +1,32 @@
 "use client";
+
+import { Inter } from "next/font/google";
 import { BiLogoGmail } from "react-icons/bi";
-import { inter } from "../font";
 import { FaSquareGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
-import { RiTelegram2Line } from "react-icons/ri";
+import { FiSend } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
+
+const inter = Inter({
+  display: "swap",
+  subsets: ["latin"],
+});
+
+const container = {
+  hidden: { opacity: 1 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
+const cardItem = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +43,6 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (
       !formData.name.trim() ||
       !formData.email.trim() ||
@@ -37,21 +55,25 @@ export default function ContactPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/send-email", {
+      const form = new FormData();
+      form.append("access_key", process.env.NEXT_PUBLIC_WEB3FORMS_KEY);
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("message", formData.message);
+      form.append("subject", `Portfolio Contact: ${formData.name}`);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: form,
       });
 
       const data = await res.json();
 
-      if (res.ok) {
+      if (data.success) {
         toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        toast.error(data.error || "Failed to send message");
+        toast.error("Failed to send message. Please try again.");
       }
     } catch (err) {
       console.error("Error:", err);
@@ -62,63 +84,93 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="flex-grow mx-auto max-w-3xl w-full p-4 pb-6 pt-10 sm:px-6 lg:px-8 lg:pb-8 lg:pt-8 mb-5 ">
+    <main className="flex-grow mx-auto max-w-3xl w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
       <MouseHoverEffect />
-      <div className="h-80 flex gap-3 text-gray-100 mb-10">
-        <div className="w-[50%] flex flex-col gap-3">
-          <motion.a
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=justinecuevas19@gmail.com"
-            target="_blank"
-            className="h-[50%] rounded-xl flex justify-center items-center border-1 border-gray-500 cursor-pointer hover:bg-gray-700/10"
-          >
-            <BiLogoGmail className="text-6xl" />
-          </motion.a>
-          <motion.a
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            href="https://github.com/Syddl"
-            target="_blank"
-            className="h-[50%] rounded-xl flex justify-center items-center border-1 border-gray-500 cursor-pointer hover:bg-gray-700/10"
-          >
-            <FaSquareGithub className="text-6xl" />
-          </motion.a>
-        </div>
+
+      {/* Social links grid */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-2 gap-3 mb-12"
+      >
         <motion.a
-          initial={{ x: -70, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          variants={cardItem}
+          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=justinecuevas19@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Send email via Gmail"
+          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
+            border border-neutral-700/60 bg-neutral-800/30
+            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer"
+        >
+          <BiLogoGmail className="text-5xl text-neutral-200" />
+          <span className={`${inter.className} text-xs text-neutral-500`}>
+            justinecuevas19@gmail.com
+          </span>
+        </motion.a>
+
+        <motion.a
+          variants={cardItem}
+          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
           href="https://www.linkedin.com/in/justine-jude-cuevas-6b6235285/"
           target="_blank"
-          className="border-1 border-gray-500 w-[50%]  rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-700/10"
+          rel="noopener noreferrer"
+          aria-label="Visit LinkedIn profile"
+          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
+            border border-neutral-700/60 bg-neutral-800/30
+            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer"
         >
-          <FaLinkedin className="text-6xl" />
+          <FaLinkedin className="text-5xl text-neutral-200" />
+          <span className={`${inter.className} text-xs text-neutral-500`}>
+            LinkedIn
+          </span>
         </motion.a>
-      </div>
 
+        <motion.a
+          variants={cardItem}
+          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          href="https://github.com/Syddl"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit GitHub profile"
+          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
+            border border-neutral-700/60 bg-neutral-800/30
+            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer col-span-2 sm:col-span-1"
+        >
+          <FaSquareGithub className="text-5xl text-neutral-200" />
+          <span className={`${inter.className} text-xs text-neutral-500`}>
+            @Syddl
+          </span>
+        </motion.a>
+      </motion.div>
+
+      {/* Contact form */}
       <motion.div
-        initial={{ y: 50, opacity: 0 }}
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className={`${inter.className}`}>
-          <h1 className="text-gray-100 text-xl font-bold mb-2">
-            Contact with me
+        <div className={`${inter.className} mb-6`}>
+          <h1 className="text-gray-100 text-xl font-bold mb-1">
+            Get in touch
           </h1>
-          <p className="text-[#A8ADB2] mb-5 text-sm font-semibold">
-            You can also get in touch with me through this form below
+          <p className="text-neutral-500 text-sm">
+            Have a project in mind or just want to say hello? Drop me a message.
           </p>
         </div>
+
         <form
           onSubmit={handleSubmit}
           className={`${inter.className} text-gray-100`}
         >
-          <div className="flex flex-col md:flex-row gap-3 mb-5">
-            <div className="flex flex-col">
-              <label htmlFor="name" className="mb-2 text-sm font-semibold">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="name" className="text-sm font-medium text-neutral-300">
                 Name
               </label>
               <input
@@ -128,28 +180,35 @@ export default function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your name"
-                className="border-1 border-gray-700 p-2 md:w-86.5 rounded-md w-full"
+                className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
+                  text-neutral-100 placeholder-neutral-600
+                  focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                  transition-all duration-200"
                 required
               />
             </div>
-            <div className="flex flex-col">
-              <label htmlFor="email" className="mb-2 text-sm font-semibold">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="email" className="text-sm font-medium text-neutral-300">
                 Email
               </label>
               <input
                 id="email"
+                name="email"
+                type="email"
                 value={formData.email}
                 onChange={handleChange}
-                type="email"
-                name="email"
                 placeholder="Your email"
-                className="border-1 border-gray-700 p-2 md:w-86.5 rounded-md"
+                className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
+                  text-neutral-100 placeholder-neutral-600
+                  focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                  transition-all duration-200"
                 required
               />
             </div>
           </div>
-          <div className="flex flex-col mb-5">
-            <label htmlFor="message" className="mb-2 text-sm font-semibold">
+
+          <div className="flex flex-col gap-1.5 mb-6">
+            <label htmlFor="message" className="text-sm font-medium text-neutral-300">
               Message
             </label>
             <textarea
@@ -158,17 +217,28 @@ export default function ContactPage() {
               value={formData.message}
               onChange={handleChange}
               placeholder="Your message"
-              className="rounded-md border-1 border-gray-700 p-2 min-h-[150px]"
+              rows={5}
+              className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
+                text-neutral-100 placeholder-neutral-600 resize-none
+                focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                transition-all duration-200"
               required
             />
           </div>
-          <button
+
+          <motion.button
             type="submit"
-            className="bg-gray-400/20 flex items-center justify-center py-3 rounded-md w-full gap-2 md:w-50 cursor-pointer hover:bg-gray-200/20"
+            disabled={loading}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg
+              bg-neutral-100 text-neutral-900 font-medium text-sm
+              hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed
+              transition-colors duration-200"
           >
-            <RiTelegram2Line className="text-xl" />
-            <p>{loading ? "Sending..." : "Send Message"}</p>
-          </button>
+            <FiSend className="w-4 h-4" />
+            {loading ? "Sending..." : "Send Message"}
+          </motion.button>
         </form>
       </motion.div>
     </main>
