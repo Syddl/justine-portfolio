@@ -1,8 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { inter } from "@/app/fonts";
 
-const AboutMeSection = ({ inter }) => {
+const AboutMeSection = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -11,11 +14,11 @@ const AboutMeSection = ({ inter }) => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="mb-16"
     >
-      <h1
+      <h2
         className={`${inter.className} text-gray-100 text-xl font-bold mb-8`}
       >
         About me
-      </h1>
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
         {/* Left side — text (60%) */}
@@ -39,10 +42,20 @@ const AboutMeSection = ({ inter }) => {
         {/* Right side — code card (40%) */}
         <motion.div
           className="md:col-span-2"
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          style={{ willChange: "transform" }}
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : { y: [0, -12, 0], rotate: [0, -0.5, 0] }
+          }
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            repeatType: "loop",
+            ease: "easeInOut",
+          }}
         >
-          <div className="rounded-xl border border-neutral-700/60 bg-neutral-900/80 backdrop-blur-sm p-5 shadow-lg shadow-black/20 relative overflow-hidden">
+          <div className="rounded-xl border border-neutral-700/60 bg-neutral-900/80 backdrop-blur-sm p-5 shadow-2xl shadow-black/40 relative overflow-hidden">
             {/* Subtle glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 pointer-events-none" />
 

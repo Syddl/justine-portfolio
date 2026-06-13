@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { stackGroups } from "@/data/stackdata";
+import { inter } from "@/app/fonts";
 
-const TechStackSection = ({ inter }) => {
+const TechStackSection = () => {
   return (
     <motion.section
       initial={{ opacity: 0, y: 30 }}
@@ -12,17 +13,17 @@ const TechStackSection = ({ inter }) => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="mb-16"
     >
-      <h1
+      <h2
         className={`${inter.className} text-gray-100 text-xl font-bold mb-8`}
       >
         Tech Stack
-      </h1>
+      </h2>
 
       <div className="space-y-6">
         {stackGroups.map((group) => (
           <div key={group.label}>
             {/* Group label */}
-            <p className={`${inter.className} text-neutral-500 text-xs uppercase tracking-wider font-medium mb-3`}>
+            <p className={`${inter.className} text-neutral-400 text-xs uppercase tracking-wider font-medium mb-3`}>
               {group.label}
             </p>
 
