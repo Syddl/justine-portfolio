@@ -1,25 +1,32 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const MouseHoverEffect = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const ref = useRef(null);
 
   useEffect(() => {
+    let frame = 0;
+
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const el = ref.current;
+        if (el) {
+          el.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(59, 130, 246, 0.15), transparent 40%)`;
+        }
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, []);
 
   return (
-    <div
-      className="fixed inset-0 opacity-30 pointer-events-none"
-      style={{
-        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.15), transparent 40%)`,
-      }}
-    />
+    <div ref={ref} className="fixed inset-0 opacity-30 pointer-events-none" />
   );
 };
 

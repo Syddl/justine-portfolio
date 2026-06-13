@@ -54,6 +54,3 @@ export const stackGroups = [
     ],
   },
 ];
-
-// Flat list for backward compatibility
-export const stack = stackGroups.flatMap((group) => group.items);

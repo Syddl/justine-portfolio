@@ -1,79 +1,92 @@
 import "./globals.css";
-import { JetBrains_Mono } from "next/font/google";
-import { Inter } from "next/font/google";
 import Link from "next/link";
 import { Toaster } from "sonner";
 import Script from "next/script";
+import { inter, jetbrainsMono } from "./fonts";
+import MouseHoverEffect from "@/component/MouseHoverEffect";
+
+const siteUrl = "https://devjustine.me";
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
+const description =
+  "Justine Jude Cuevas is a full stack developer from the Philippines building fast, clean, and user-friendly web apps with React, Next.js, Tailwind CSS, FastAPI, and Express.js.";
 
 export const metadata = {
-  title: "Justine Jude Cuevas",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Justine Jude Cuevas | Full Stack Developer",
+    template: "%s | Justine Jude Cuevas",
+  },
+  description,
+  keywords: [
+    "Justine Jude Cuevas",
+    "full stack developer",
+    "frontend developer",
+    "React developer",
+    "Next.js",
+    "Tailwind CSS",
+    "web developer Philippines",
+  ],
+  authors: [{ name: "Justine Jude Cuevas" }],
+  creator: "Justine Jude Cuevas",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Justine Jude Cuevas",
+    title: "Justine Jude Cuevas | Full Stack Developer",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Justine Jude Cuevas | Full Stack Developer",
+    description,
+  },
   icons: {
     icon: "/favicon.jpg",
   },
 };
 
-const inter = Inter({ subsets: ["latin"] });
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["600"],
-});
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Justine Jude Cuevas",
+  jobTitle: "Full Stack Developer",
+  url: siteUrl,
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "Philippines",
+  },
+  sameAs: [
+    "https://github.com/Syddl",
+    "https://www.linkedin.com/in/justine-jude-cuevas-6b6235285/",
+  ],
+};
 
 export default function RootLayout({ children }) {
+  const year = new Date().getFullYear();
+
   return (
     <html lang="en">
-      <head>
-        <title>
-          Justine Jude Cuevas | Frontend Developer in the Philippines
-        </title>
-        <meta
-          name="description"
-          content="Justine is a frontend developer specializing in React, Next.js, and Tailwind CSS. Building fast, clean, and user-friendly web apps."
-        />
-        <meta
-          name="keywords"
-          content="Justine Jude Cuevas, frontend developer, React developer, Next.js, Tailwind CSS, web developer Philippines"
-        />
-        <meta name="author" content="Justine Jude Cuevas" />
-        <meta
-          property="og:title"
-          content="Justine Jude Cuevas | Frontend Developer"
-        />
-        <meta
-          property="og:description"
-          content="Frontend developer from the Philippines skilled in React, Next.js, and Tailwind CSS."
-        />
-        <meta property="og:image" content="/images/og-image.jpg" />
-        <meta property="og:url" content="https://devjustine.me" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <Script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-        ></Script>
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-          `}
-        </Script>
-      </head>
       <body className="bg-neutral-900 w-full">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <MouseHoverEffect />
         <header className="lg:w-[50%] lg:relative lg:left-[25%] ">
           <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-120">
             <Link
               href="/"
-              className={`${jetbrains.className} hover:text-gray-100 cursor-pointer text-lg`}
+              className={`${jetbrainsMono.className} font-semibold hover:text-gray-100 cursor-pointer text-lg`}
             >
               {`.justine`}
             </Link>
             <nav className={`${inter.className} flex gap-8`}>
-              <Link
-                href="/projects"
-                className="text-[16px] hover:text-gray-100"
-              >
+              <Link href="/projects" className="text-[16px] hover:text-gray-100">
                 Projects
               </Link>
               <Link href="/contact" className="text-[16px] hover:text-gray-100">
@@ -86,13 +99,29 @@ export default function RootLayout({ children }) {
         <Toaster richColors />
         <footer className="border-t-1 border-solid border-gray-800 ">
           <div className="flex items-center h-15 flex-grow mx-auto max-w-3xl w-full px-6 md:px-8 gap-2">
-            <h1
+            <p
               className={`${inter.className} text-sm font-semibold text-[#A8ADB2]`}
             >
-              © 2025 Justine Jude Cuevas
-            </h1>
+              © {year} Justine Jude Cuevas
+            </p>
           </div>
         </footer>
+        {gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

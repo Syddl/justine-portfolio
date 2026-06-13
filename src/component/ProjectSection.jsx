@@ -4,44 +4,16 @@ import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
+import { inter } from "@/app/fonts";
+import { projects } from "@/data/projects";
+import { staggerContainer, fadeInUp } from "@/lib/animations";
 
-const projects = [
-  {
-    name: "QuizyLite",
-    description:
-      "A PDF study tool that lets students highlight key passages while reading and turn them into source-linked recall cards. Missed a question? Jump back to the exact page and highlighted context to review it again.",
-    stack: ["NextJS", "TypeScript", "Tailwind", "Supabase"],
-    github: "https://github.com/Syddl",
-    live: "https://www.quizylite.app/",
-    image: "/quizylite/quizylite.png",
-    gradientStyle: "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(109,40,217,0.1), transparent)",
-  },
-  {
-    name: "StaffTrackr",
-    description:
-      "StaffTrackr is a workforce management app where companies can onboard employees, track attendance, manage roles, and automate payroll based on flexible pay schedules. It features role-based access, real-time data handling, and a dedicated internal environment for platform administrators to manage system-wide settings.",
-    stack: ["NextJS", "TypeScript", "Tailwind", "Supabase", "Shadcn", "Motion"],
-    github: "https://github.com/Syddl",
-    live: "https://stafftrackr.vercel.app/",
-    image: "/stafftrackr/st_landing.png",
-    gradientStyle: "linear-gradient(135deg, rgba(37,99,235,0.2), rgba(79,70,229,0.1), transparent)",
-  },
-];
+const featured = projects.slice(0, 2);
 
-const container = {
-  hidden: { opacity: 1 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-};
+const container = staggerContainer(0.15);
+const cardVariant = fadeInUp(30, 0.5);
 
-const cardVariant = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-const ProjectSection = ({ inter }) => {
+const ProjectSection = () => {
   return (
     <section className="mb-16">
       {/* Section header */}
@@ -53,11 +25,9 @@ const ProjectSection = ({ inter }) => {
         className="mb-8"
       >
         <div className="flex items-center justify-between mb-2">
-          <h1
-            className={`${inter.className} text-gray-100 text-xl font-bold`}
-          >
+          <h2 className={`${inter.className} text-gray-100 text-xl font-bold`}>
             Projects
-          </h1>
+          </h2>
           <Link
             href="/projects"
             className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors group/link`}
@@ -66,13 +36,15 @@ const ProjectSection = ({ inter }) => {
             <FiArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" />
           </Link>
         </div>
-        <p className={`${inter.className} text-neutral-500 text-sm leading-relaxed max-w-xl`}>
+        <p
+          className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-xl`}
+        >
           A curated selection of projects that highlight my expertise in full
           stack development, responsive design, and creative problem-solving.
         </p>
       </motion.div>
 
-      {/* Cards grid — only show 2 */}
+      {/* Cards grid — featured projects only */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -80,7 +52,7 @@ const ProjectSection = ({ inter }) => {
         viewport={{ once: true, margin: "-60px" }}
         className="grid grid-cols-1 md:grid-cols-2 gap-5"
       >
-        {projects.map((project) => (
+        {featured.map((project) => (
           <motion.div
             key={project.name}
             variants={cardVariant}
@@ -98,6 +70,7 @@ const ProjectSection = ({ inter }) => {
                   src={project.image}
                   alt={`${project.name} landing page`}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111113] via-transparent to-transparent opacity-40" />
@@ -123,14 +96,14 @@ const ProjectSection = ({ inter }) => {
 
             {/* Content */}
             <div className="p-5">
-              <h2
+              <h3
                 className={`${inter.className} text-lg font-semibold text-neutral-100 mb-2`}
               >
                 {project.name}
-              </h2>
+              </h3>
 
               <p
-                className={`${inter.className} text-sm text-neutral-400 leading-relaxed mb-4 line-clamp-3`}
+                className={`${inter.className} text-sm text-neutral-400 leading-relaxed mb-4`}
               >
                 {project.description}
               </p>
@@ -152,7 +125,8 @@ const ProjectSection = ({ inter }) => {
                 <Link
                   href={project.github}
                   target="_blank"
-                  className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-200 transition-colors`}
+                  rel="noopener noreferrer"
+                  className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
                 >
                   <FiGithub className="w-3.5 h-3.5" />
                   Code
@@ -160,7 +134,8 @@ const ProjectSection = ({ inter }) => {
                 <Link
                   href={project.live}
                   target="_blank"
-                  className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-200 transition-colors`}
+                  rel="noopener noreferrer"
+                  className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
                 >
                   <FiExternalLink className="w-3.5 h-3.5" />
                   Live Demo
