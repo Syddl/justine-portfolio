@@ -1,8 +1,7 @@
 // Builds a complete, consistent metadata object for a page.
 // Next.js overwrites (does not deep-merge) nested metadata objects like
 // `openGraph`/`twitter` per route segment, so each page must emit the full set.
-const siteUrl = "https://devjustine.me";
-const siteName = "Justine Jude Cuevas";
+import { siteUrl, siteName } from "@/lib/site";
 
 export function pageMetadata({ title, description, path = "/" }) {
   const url = `${siteUrl}${path}`;

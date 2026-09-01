@@ -4,8 +4,8 @@ import { Toaster } from "sonner";
 import Script from "next/script";
 import { inter, jetbrainsMono } from "./fonts";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
+import { siteUrl, siteName, github, linkedin } from "@/lib/site";
 
-const siteUrl = "https://devjustine.me";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const description =
@@ -29,9 +29,6 @@ export const metadata = {
   ],
   authors: [{ name: "Justine Jude Cuevas" }],
   creator: "Justine Jude Cuevas",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -60,10 +57,7 @@ const personJsonLd = {
     "@type": "PostalAddress",
     addressCountry: "Philippines",
   },
-  sameAs: [
-    "https://github.com/Syddl",
-    "https://www.linkedin.com/in/justine-jude-cuevas-6b6235285/",
-  ],
+  sameAs: [github, linkedin],
 };
 
 export default function RootLayout({ children }) {

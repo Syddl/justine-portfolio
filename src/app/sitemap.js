@@ -1,4 +1,4 @@
-const siteUrl = "https://devjustine.me";
+import { siteUrl } from "@/lib/site";
 
 export default function sitemap() {
   const lastModified = new Date();

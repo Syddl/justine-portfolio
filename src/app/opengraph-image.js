@@ -1,4 +1,7 @@
 import { ImageResponse } from "next/og";
+import { siteUrl } from "@/lib/site";
+
+const siteHost = new URL(siteUrl).host;
 
 export const alt = "Justine Jude Cuevas — Full Stack Developer";
 export const size = { width: 1200, height: 630 };
@@ -74,7 +77,7 @@ export default function Image() {
             fontWeight: 700,
           }}
         >
-          devjustine.me
+          {siteHost}
         </div>
       </div>
     ),

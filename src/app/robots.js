@@ -1,4 +1,4 @@
-const siteUrl = "https://devjustine.me";
+import { siteUrl } from "@/lib/site";
 
 export default function robots() {
   return {
@@ -7,6 +7,5 @@ export default function robots() {
       allow: "/",
     },
     sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
   };
 }
