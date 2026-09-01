@@ -4,12 +4,12 @@ import { Toaster } from "sonner";
 import Script from "next/script";
 import { inter, jetbrainsMono } from "./fonts";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
-import { siteUrl, siteName, github, linkedin } from "@/lib/site";
+import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const description =
-  "Justine Jude Cuevas is a full stack developer from the Philippines building fast, clean, and user-friendly web apps with React, Next.js, Tailwind CSS, FastAPI, and Express.js.";
+  "Justine Jude Cuevas is a freelance full-stack developer in the Philippines building web apps, dashboards, and AI tools for startups and small businesses.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -47,17 +47,61 @@ export const metadata = {
   },
 };
 
+// Entity backbone for Google and AI answer engines: the @id lets every
+// other schema block (WebSite, ProfilePage, CreativeWork) reference this
+// one Person instead of redefining it.
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Justine Jude Cuevas",
+  "@id": personId,
+  name: siteName,
+  givenName: "Justine Jude",
+  familyName: "Cuevas",
   jobTitle: "Full Stack Developer",
+  description,
   url: siteUrl,
+  email: `mailto:${email}`,
+  image: `${siteUrl}/opengraph-image`,
   address: {
     "@type": "PostalAddress",
     addressCountry: "Philippines",
   },
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Tailwind CSS",
+    "Node.js",
+    "Express.js",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "MongoDB",
+    "Supabase",
+    "Firebase",
+    "Redis",
+    "Stripe",
+    "FFmpeg",
+    "Docker",
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "Interactive Content Digital s.r.o.",
+  },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Full Stack Developer",
+  },
   sameAs: [github, linkedin],
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  publisher: { "@id": personId },
 };
 
 export default function RootLayout({ children }) {
@@ -69,6 +113,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
         <MouseHoverEffect />
         <header className="lg:w-[50%] lg:relative lg:left-[25%] ">
