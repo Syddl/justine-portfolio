@@ -9,6 +9,9 @@ export const projects = [
   {
     name: "QuizyLite",
     slug: "quizylite",
+    seoTitle: "QuizyLite — PDF Study Tool Built with Next.js & MongoDB",
+    seoDescription:
+      "Case study: how I built QuizyLite, a PDF study tool that turns highlights into source-linked recall cards, using Next.js, TypeScript, Tailwind CSS, and MongoDB.",
     tagline:
       "A study tool that turns PDF highlights into recall cards linked back to the exact page.",
     summary:
@@ -50,6 +53,9 @@ export const projects = [
   {
     name: "StaffTrackr",
     slug: "stafftrackr",
+    seoTitle: "StaffTrackr — Workforce & Payroll App with Next.js & Supabase",
+    seoDescription:
+      "Case study: StaffTrackr, a workforce app with real-time attendance, employee records, and automated, validated payroll runs — built with Next.js, TypeScript, and Supabase.",
     tagline:
       "A payroll and attendance platform that replaces the spreadsheet stack.",
     summary:
@@ -92,6 +98,9 @@ export const projects = [
   {
     name: "ExpenSync",
     slug: "expensync",
+    seoTitle: "ExpenSync — Expense Tracker Built with React & Firebase",
+    seoDescription:
+      "Case study: ExpenSync, a minimal expense tracker with instant category summaries, built with React, Firebase, Tailwind CSS, and Material UI.",
     tagline: "A minimal expense tracker built so the habit actually sticks.",
     summary:
       "Add, edit, categorize — instant summaries keep daily spending visible.",
