@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
 import { siteUrl } from "@/lib/site";
 
-const siteHost = new URL(siteUrl).host;
+// Drop the "www." for display: the share card is branding, not a URL bar.
+const siteHost = new URL(siteUrl).host.replace(/^www\./, "");
 
 export const alt = "Justine Jude Cuevas | Full Stack Developer";
 export const size = { width: 1200, height: 630 };

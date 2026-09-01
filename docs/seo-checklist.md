@@ -3,19 +3,32 @@
 The code side is done. These are the actions only you can take, roughly in
 order of impact. Most are one-time; the last section is a recurring habit.
 
-## 1. Domain (do this first — everything compounds on it)
+## 1. Domain: merge and deploy this branch first
 
-The site's code now uses `https://justinecuevas.me` everywhere. To go live:
+Checked live on 2026-09-01:
 
-1. **Vercel → Project → Settings → Domains**: add `justinecuevas.me` (and
-   `www.justinecuevas.me`, redirecting www → apex).
-2. At your registrar, point the domain at Vercel (it shows you the exact
-   A/CNAME records when you add the domain).
-3. Keep `devjustine.me` in the same Domains list and set it to
-   **Redirect to justinecuevas.me (308 permanent)** — old links and any
-   Google equity transfer instead of dying. Keep renewing devjustine.me.
-4. Update the resume PDF, email signature, and every social bio to use
-   `justinecuevas.me` only.
+- `www.justinecuevas.me` serves the site (200). The apex `justinecuevas.me`
+  308-redirects to it, so **www is the canonical host**, and the code now
+  says so in `src/lib/site.js`.
+- `devjustine.me` **no longer resolves at all** (DNS failure).
+- The currently deployed site still advertises `devjustine.me` in its
+  sitemap and canonical tags. Google is being handed URLs on a domain that
+  does not exist.
+
+So there is nothing to redirect and no domain to buy back. The fix is simply
+to **merge and deploy this branch**, which repoints every canonical, sitemap
+entry, OG URL, and JSON-LD id at `www.justinecuevas.me`. Do that before any
+of the steps below, because they all depend on the right URL being live.
+
+Two follow-ups once it is deployed:
+
+1. If you would rather the apex be canonical than www, flip the primary
+   domain in **Vercel → Settings → Domains** and change `siteUrl` in
+   `src/lib/site.js` to match. Keep the two in agreement either way.
+2. `Syddl.github.io` still contains a `CNAME` file claiming `devjustine.me`.
+   It serves nothing now, but delete that repo (or at least the CNAME) so a
+   stale GitHub Pages claim can never collide with a domain you use later.
+3. Update the resume PDF and email signature to `justinecuevas.me`.
 
 ## 2. Search consoles (without these you're flying blind)
 
