@@ -26,7 +26,7 @@ const ProjectSection = () => {
       >
         <div className="flex items-center justify-between mb-2">
           <h2 className={`${inter.className} text-gray-100 text-xl font-bold`}>
-            Projects
+            Selected work
           </h2>
           <Link
             href="/projects"
@@ -39,8 +39,8 @@ const ProjectSection = () => {
         <p
           className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-xl`}
         >
-          A curated selection of projects that highlight my expertise in full
-          stack development, responsive design, and creative problem-solving.
+          Real products with live demos — and a case study on how each one was
+          scoped, built, and shipped.
         </p>
       </motion.div>
 
@@ -105,7 +105,7 @@ const ProjectSection = () => {
               <p
                 className={`${inter.className} text-sm text-neutral-400 leading-relaxed mb-4`}
               >
-                {project.description}
+                {project.summary}
               </p>
 
               {/* Tech pills */}
@@ -120,16 +120,14 @@ const ProjectSection = () => {
                 ))}
               </div>
 
-              {/* Action links */}
-              <div className="flex items-center gap-4">
+              {/* Action links — case study first */}
+              <div className="flex items-center gap-4 flex-wrap">
                 <Link
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
+                  href={`/projects/${project.slug}`}
+                  className={`${inter.className} group/case inline-flex items-center gap-1.5 text-sm text-neutral-200 hover:text-white transition-colors`}
                 >
-                  <FiGithub className="w-3.5 h-3.5" />
-                  Code
+                  Read case study
+                  <FiArrowRight className="w-3.5 h-3.5 group-hover/case:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href={project.live}
@@ -140,6 +138,17 @@ const ProjectSection = () => {
                   <FiExternalLink className="w-3.5 h-3.5" />
                   Live Demo
                 </Link>
+                {project.github && (
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
+                  >
+                    <FiGithub className="w-3.5 h-3.5" />
+                    Code
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>

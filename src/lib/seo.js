@@ -3,13 +3,15 @@
 // `openGraph`/`twitter` per route segment, so each page must emit the full set.
 import { siteUrl, siteName } from "@/lib/site";
 
-export function pageMetadata({ title, description, path = "/" }) {
+// `absolute: true` bypasses the root layout's "%s | Justine Jude Cuevas"
+// title template — for pages whose title already contains the name.
+export function pageMetadata({ title, description, path = "/", absolute = false }) {
   const url = `${siteUrl}${path}`;
-  const fullTitle = `${title} | ${siteName}`;
+  const fullTitle = absolute ? title : `${title} | ${siteName}`;
   const imageAlt = "Justine Jude Cuevas - Full Stack Developer";
 
   return {
-    title,
+    title: absolute ? { absolute: title } : title,
     description,
     alternates: {
       canonical: path,

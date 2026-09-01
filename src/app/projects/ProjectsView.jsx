@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
 import { inter } from "@/app/fonts";
@@ -29,8 +29,8 @@ export default function ProjectsView() {
         <p
           className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-2xl`}
         >
-          A curated selection of projects that highlight my expertise in full
-          stack development, responsive design, and creative problem-solving.
+          Every project here is live — click the demo, poke around, then read
+          the case study for what problem it solves and how it was built.
         </p>
       </motion.div>
 
@@ -102,7 +102,7 @@ export default function ProjectsView() {
               <p
                 className={`${inter.className} text-sm text-neutral-400 leading-relaxed mb-4`}
               >
-                {project.description}
+                {project.summary}
               </p>
 
               {/* Tech pills */}
@@ -118,18 +118,16 @@ export default function ProjectsView() {
                 ))}
               </div>
 
-              {/* Action links */}
-              <div className="flex items-center gap-3">
+              {/* Action links — case study first */}
+              <div className="flex items-center gap-3 flex-wrap">
                 <Link
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${inter.className} inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg
-                    border border-white/[0.08] text-neutral-400 hover:text-neutral-100 hover:bg-white/[0.06]
+                  href={`/projects/${project.slug}`}
+                  className={`${inter.className} group/case inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg
+                    bg-white/[0.06] border border-white/[0.1] text-neutral-200 hover:text-white hover:bg-white/[0.1]
                     transition-all duration-200`}
                 >
-                  <FiGithub className="w-3.5 h-3.5" />
-                  Code
+                  Read case study
+                  <FiArrowRight className="w-3.5 h-3.5 group-hover/case:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href={project.live}
@@ -142,6 +140,19 @@ export default function ProjectsView() {
                   <FiExternalLink className="w-3.5 h-3.5" />
                   Live Demo
                 </Link>
+                {project.github && (
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${inter.className} inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg
+                      border border-white/[0.08] text-neutral-400 hover:text-neutral-100 hover:bg-white/[0.06]
+                      transition-all duration-200`}
+                  >
+                    <FiGithub className="w-3.5 h-3.5" />
+                    Code
+                  </Link>
+                )}
               </div>
             </div>
           </motion.div>

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { inter } from "@/app/fonts";
+import { availability } from "@/data/availability";
 
 const AboutMeSection = () => {
   const prefersReducedMotion = useReducedMotion();
@@ -25,16 +26,16 @@ const AboutMeSection = () => {
         <div className="md:col-span-3">
           <div className={`${inter.className} text-[#A8ADB2] space-y-4 leading-relaxed`}>
             <p>
-              I&apos;m Justine, a full stack developer based in the Philippines. I
-              build clean, fast, and user-friendly web applications using React,
-              Next.js, and Tailwind CSS on the frontend, and FastAPI and Express.js
-              on the backend. For data, I work with PostgreSQL, MongoDB, Supabase,
-              and Firebase.
+              I&apos;m Justine. By day I&apos;m a full-stack engineer on an AI
+              video platform, where &quot;it works on my machine&quot; isn&apos;t
+              good enough — my job is payments, media pipelines, and the edge
+              cases that only show up in production.
             </p>
             <p>
-              I&apos;m currently open to work and looking to collaborate on projects
-              where I can keep growing. I like solving problems, learning new tools,
-              and shipping things that actually work well for people.
+              That&apos;s the engineering I bring to client work: clear scope,
+              weekly demos, and software that holds up after launch. If a
+              process has outgrown its spreadsheet, or an idea needs to become
+              a real product, I&apos;d like to hear about it.
             </p>
           </div>
         </div>
@@ -91,7 +92,14 @@ const AboutMeSection = () => {
                 {"\n"}
                 {"  "}<span className="text-emerald-400">openToWork</span>
                 <span className="text-neutral-500">:</span>{" "}
-                <span className="text-blue-400">true</span>
+                <span className="text-blue-400">{String(availability.open)}</span>
+                <span className="text-neutral-500">,</span>
+                {"\n"}
+                {"  "}<span className="text-emerald-400">currentlyBuilding</span>
+                <span className="text-neutral-500">:</span>{" "}
+                <span className="text-amber-300">
+                  &quot;{availability.currentlyBuilding}&quot;
+                </span>
                 <span className="text-neutral-500">,</span>
                 {"\n"}
                 {"  "}<span className="text-emerald-400">frontend</span>
