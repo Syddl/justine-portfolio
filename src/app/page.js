@@ -15,7 +15,7 @@ import { personId } from "@/lib/site";
 // CSS `.page-enter` keyframe; framer-motion stays in below-fold sections.
 // Section order: outcome → offer → proof → process → human → ask.
 export const metadata = pageMetadata({
-  title: "Justine Jude Cuevas — Freelance Full Stack Developer",
+  title: "Justine Jude Cuevas | Freelance Full Stack Developer",
   description:
     "Justine Jude Cuevas is a freelance full-stack developer in the Philippines building web apps, dashboards, and AI tools for startups and small businesses.",
   path: "/",

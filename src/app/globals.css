@@ -4,7 +4,7 @@
   display: none;
 }
 
-/* Server-rendered page entrance — replaces the framer-motion page wrapper so
+/* Server-rendered page entrance - replaces the framer-motion page wrapper so
    the hero paints before hydration (LCP) while keeping the same feel. */
 @keyframes page-enter {
   from {

@@ -1,4 +1,4 @@
-// Work experience entries — most recent first.
+// Work experience entries - most recent first.
 // `type` renders as a small tag, e.g. "Full-time" | "Internship" | "Freelance".
 // A green "current" pulse shows automatically when `dates` ends in "Present".
 // `location`, `description`, and `tech` are all optional per entry.
@@ -10,7 +10,7 @@ export const experience = [
     dates: "June 2026 - Present",
     location: "Remote",
     description:
-      "I build and maintain an AI video platform that turns a script into a 1080p narrated video with a lip-synced avatar, at roughly $0.70 per output minute. My work cut false quality flags on generated clips from 93% to 3% and audio/video drift from ~430 ms to under one frame — via LLM vision guards, checkpoint resume, pre-spend cost guards, and a 70+ gate zero-cost CI suite. I also shipped the SaaS layer around it: a Next.js console, Supabase Auth with RLS across 42 migrations, role-based team seats, a Stripe-backed credit ledger, an admin dashboard, and a Dockerized deploy.",
+      "I build and maintain an AI video platform that turns a script into a 1080p narrated video with a lip-synced avatar, at roughly $0.70 per output minute. My work cut false quality flags on generated clips from 93% to 3% and audio/video drift from ~430 ms to under one frame, using LLM vision guards, checkpoint resume, pre-spend cost guards, and a 70+ gate zero-cost CI suite. I also shipped the SaaS layer around it: a Next.js console, Supabase Auth with RLS across 42 migrations, role-based team seats, a Stripe-backed credit ledger, an admin dashboard, and a Dockerized deploy.",
     tech: [
       "Node.js",
       "TypeScript",

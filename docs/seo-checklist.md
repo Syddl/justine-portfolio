@@ -31,9 +31,8 @@ The site's code now uses `https://justinecuevas.me` everywhere. To go live:
 ## 3. Cross-linking (consistency is what AI engines cross-check)
 
 - **GitHub**: set the profile website field to justinecuevas.me; pin
-  StaffTrackr and Expensync; in each pinned repo's About, link its case
-  study (`justinecuevas.me/projects/stafftrackr`, `.../expensync`) —
-  not just the home page.
+  StaffTrackr; in its About section, link the case study
+  (`justinecuevas.me/projects/stafftrackr`), not just the home page.
 - **LinkedIn**: put justinecuevas.me in Contact Info AND the Featured
   section; make your headline contain "Full Stack Developer" +
   "Philippines"; keep name/role/location wording consistent with the site.

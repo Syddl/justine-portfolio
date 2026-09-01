@@ -1,5 +1,5 @@
 // Single source of truth for site identity. Every file that needs the
-// canonical URL, name, or social links imports from here — never hard-code
+// canonical URL, name, or social links imports from here - never hard-code
 // these elsewhere (they were previously duplicated across four files, which
 // made changing the domain error-prone).
 export const siteUrl = "https://justinecuevas.me";

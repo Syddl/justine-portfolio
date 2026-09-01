@@ -29,7 +29,7 @@ export default function ProjectsView() {
         <p
           className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-2xl`}
         >
-          Every project here is live — click the demo, poke around, then read
+          Every project here is live. Click the demo, poke around, then read
           the case study for what problem it solves and how it was built.
         </p>
       </motion.div>
@@ -50,7 +50,7 @@ export default function ProjectsView() {
             className="group relative rounded-2xl border border-white/[0.06] bg-[#111113] overflow-hidden
               hover:border-blue-500/20 hover:shadow-lg hover:shadow-blue-500/[0.03] transition-all duration-300"
           >
-            {/* Header area — image with gradient overlay */}
+            {/* Header area - image with gradient overlay */}
             {project.image ? (
               <div className="relative h-40 overflow-hidden">
                 <Image
@@ -118,7 +118,7 @@ export default function ProjectsView() {
                 ))}
               </div>
 
-              {/* Action links — case study first */}
+              {/* Action links - case study first */}
               <div className="flex items-center gap-3 flex-wrap">
                 <Link
                   href={`/projects/${project.slug}`}

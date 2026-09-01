@@ -48,7 +48,7 @@ export default async function CaseStudyPage({ params }) {
   };
 
   // CreativeWork (not SoftwareApplication): no offers/ratings exist, so no
-  // rich result is possible — the value is the entity association
+  // rich result is possible - the value is the entity association
   // "Justine Jude Cuevas built <project>" for search and AI answers.
   const creativeWorkJsonLd = {
     "@context": "https://schema.org",

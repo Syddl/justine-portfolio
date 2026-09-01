@@ -5,7 +5,7 @@ import { inter } from "@/app/fonts";
 import { testimonials } from "@/data/testimonials";
 
 // Renders nothing until src/data/testimonials.js has at least one real
-// quote — then a single featured quote appears here. No grids of empty
+// quote - then a single featured quote appears here. No grids of empty
 // slots, no carousel of one.
 const TestimonialsSection = () => {
   if (!testimonials.length) return null;
@@ -34,7 +34,7 @@ const TestimonialsSection = () => {
           className={`${inter.className} text-sm text-neutral-400 mt-4`}
         >
           <span className="text-neutral-200 font-medium">{featured.name}</span>
-          {featured.role && <> — {featured.role}</>}
+          {featured.role && <>, {featured.role}</>}
           {featured.href && featured.source && (
             <>
               {" · "}

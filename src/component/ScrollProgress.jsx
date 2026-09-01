@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useReducedMotion } from "framer-motion";
 
-// Thin reading-progress bar for long case-study pages only — the home page
+// Thin reading-progress bar for long case-study pages only - the home page
 // is short enough that it would just be noise there.
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();

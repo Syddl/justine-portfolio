@@ -81,7 +81,7 @@ export default function CaseStudyView({ project }) {
         </div>
       </motion.div>
 
-      {/* Metric callouts — only when real, verifiable numbers exist */}
+      {/* Metric callouts - only when real, verifiable numbers exist */}
       {project.results?.length > 0 && (
         <Reveal className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-12">
           {project.results.map((result) => (
@@ -172,7 +172,7 @@ export default function CaseStudyView({ project }) {
         </ul>
       </Reveal>
 
-      {/* Tech notes — for the occasional technical evaluator */}
+      {/* Tech notes - for the occasional technical evaluator */}
       <Reveal className="mb-12">
         <div className="rounded-xl border border-neutral-700/60 bg-neutral-800/30 p-5">
           <p
@@ -223,7 +223,7 @@ export default function CaseStudyView({ project }) {
             <p
               className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-md mx-auto mb-6`}
             >
-              Tell me what you&apos;re trying to build — or replace — and
+              Tell me what you&apos;re trying to build or replace, and
               you&apos;ll get an honest read on scope and cost.
             </p>
             <Link

@@ -4,7 +4,7 @@
 import { siteUrl, siteName } from "@/lib/site";
 
 // `absolute: true` bypasses the root layout's "%s | Justine Jude Cuevas"
-// title template — for pages whose title already contains the name.
+// title template - for pages whose title already contains the name.
 export function pageMetadata({ title, description, path = "/", absolute = false }) {
   const url = `${siteUrl}${path}`;
   const fullTitle = absolute ? title : `${title} | ${siteName}`;

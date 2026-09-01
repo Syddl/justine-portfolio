@@ -22,13 +22,13 @@ const AboutMeSection = () => {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
-        {/* Left side — text (60%) */}
+        {/* Left side - text (60%) */}
         <div className="md:col-span-3">
           <div className={`${inter.className} text-[#A8ADB2] space-y-4 leading-relaxed`}>
             <p>
               I&apos;m Justine. By day I&apos;m a full-stack engineer on an AI
               video platform, where &quot;it works on my machine&quot; isn&apos;t
-              good enough — my job is payments, media pipelines, and the edge
+              good enough. My job is payments, media pipelines, and the edge
               cases that only show up in production.
             </p>
             <p>
@@ -40,7 +40,7 @@ const AboutMeSection = () => {
           </div>
         </div>
 
-        {/* Right side — code card (40%) */}
+        {/* Right side - code card (40%) */}
         <motion.div
           className="md:col-span-2"
           style={{ willChange: "transform" }}

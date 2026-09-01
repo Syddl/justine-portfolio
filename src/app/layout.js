@@ -2,7 +2,8 @@ import "./globals.css";
 import Link from "next/link";
 import { Toaster } from "sonner";
 import Script from "next/script";
-import { inter, jetbrainsMono } from "./fonts";
+import { inter } from "./fonts";
+import Logo from "@/component/Logo";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
 import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
@@ -121,12 +122,7 @@ export default function RootLayout({ children }) {
         <MouseHoverEffect />
         <header className="lg:w-[50%] lg:relative lg:left-[25%] ">
           <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-120">
-            <Link
-              href="/"
-              className={`${jetbrainsMono.className} font-semibold hover:text-gray-100 cursor-pointer text-lg`}
-            >
-              {`.justine`}
-            </Link>
+            <Logo />
             <nav className={`${inter.className} flex gap-8`}>
               <Link href="/projects" className="text-[16px] hover:text-gray-100">
                 Projects

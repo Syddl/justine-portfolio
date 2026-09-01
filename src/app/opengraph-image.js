@@ -3,7 +3,7 @@ import { siteUrl } from "@/lib/site";
 
 const siteHost = new URL(siteUrl).host;
 
-export const alt = "Justine Jude Cuevas — Full Stack Developer";
+export const alt = "Justine Jude Cuevas | Full Stack Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,7 +39,7 @@ export default function Image() {
           <span style={{ color: "#a8adb2" }}>Web apps, dashboards & AI tools</span>
         </div>
         <div style={{ display: "flex", color: "#7c8794", fontSize: 28, marginTop: 30 }}>
-          for startups and small businesses — scoped clearly, shipped in weeks
+          for startups and small businesses. Scoped clearly, shipped in weeks.
         </div>
         <div style={{ display: "flex", alignItems: "center", marginTop: 54 }}>
           <div

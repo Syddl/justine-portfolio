@@ -2,9 +2,9 @@ import { pageMetadata } from "@/lib/seo";
 import ProjectsView from "./ProjectsView";
 
 export const metadata = pageMetadata({
-  title: "Projects",
+  title: "Projects & Case Studies",
   description:
-    "A selection of full stack projects by Justine Jude Cuevas, including QuizyLite, StaffTrackr, and ExpenSync, built with Next.js, React, TypeScript, and Tailwind CSS.",
+    "Case studies of web apps built by Justine Jude Cuevas: QuizyLite, a Next.js and MongoDB study tool, and StaffTrackr, a Supabase workforce and payroll platform.",
   path: "/projects",
 });
 

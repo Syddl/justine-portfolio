@@ -4,13 +4,13 @@ import { inter, jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
 import { email, github, linkedin } from "@/lib/site";
 
-// True, verifiable facts only — this strip substitutes for the client-logo
+// True, verifiable facts only. This strip substitutes for the client-logo
 // bar the site doesn't have yet.
 const credibility = [
   "production engineer at an AI video platform",
   "payments & payroll systems (Stripe)",
   "PropTech hackathon finalist",
-  "3 live products you can try today",
+  "live products you can try today",
 ];
 
 const HeroSection = () => {
@@ -37,8 +37,8 @@ const HeroSection = () => {
       <p className={`${inter.className} mb-6 max-w-xl leading-relaxed`}>
         I&apos;m <span className="text-gray-100">Justine Jude Cuevas</span>, a
         full-stack developer in the Philippines. I build web apps for startups
-        and small businesses — payroll platforms, client dashboards, AI-powered
-        tools — scoped clearly, demoed weekly, and shipped in weeks.
+        and small businesses: payroll platforms, client dashboards, AI-powered
+        tools. Scoped clearly, demoed weekly, shipped in weeks.
       </p>
 
       <div className="flex gap-2 items-center mb-6 flex-wrap">

@@ -27,7 +27,7 @@ const FinalCtaSection = () => {
           <p
             className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-md mx-auto mb-6`}
           >
-            Free intro chat — you&apos;ll get an honest read on scope and cost,
+            Free intro chat. You&apos;ll get an honest read on scope and cost,
             whether or not we end up working together.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">

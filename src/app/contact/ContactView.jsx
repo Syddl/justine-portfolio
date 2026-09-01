@@ -35,7 +35,7 @@ export default function ContactView() {
       toast.success("Email copied");
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard can be unavailable (permissions, http) — fall back to
+      // Clipboard can be unavailable (permissions, http) - fall back to
       // opening the mail app instead of failing silently.
       window.location.href = `mailto:${email}`;
     }
@@ -86,7 +86,7 @@ export default function ContactView() {
 
   return (
     <main className="flex-grow mx-auto max-w-3xl w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
-      {/* Intro — indexable copy, not just a form */}
+      {/* Intro - indexable copy, not just a form */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -98,14 +98,15 @@ export default function ContactView() {
         </h1>
         <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl">
           I&apos;m a freelance full-stack developer based in the Philippines
-          (GMT+8), working remotely with clients worldwide — my mornings
-          overlap with US evenings, my evenings with European mornings.
-          Describe your project in a couple of sentences and I&apos;ll reply
-          within 24 hours with an honest read on scope and cost.
+          (GMT+8), working remotely with clients worldwide. My mornings overlap
+          with US evenings, my evenings with European mornings. Describe your
+          project in a couple of sentences and I&apos;ll reply within 24 hours
+          with an honest read on scope and cost.
         </p>
       </motion.div>
 
-      {/* Social links grid */}
+      {/* Social links, laid out as an inverted triangle: email + LinkedIn on
+          top, GitHub centered beneath them at the same card width. */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -128,8 +129,15 @@ export default function ContactView() {
           ) : (
             <BiLogoGmail className="text-5xl text-neutral-200" />
           )}
-          <span className={`${inter.className} text-xs text-neutral-400`}>
-            {copied ? "Copied!" : `${email} — click to copy`}
+          <span
+            className={`${inter.className} flex flex-col items-center gap-1`}
+          >
+            <span className="text-xs text-neutral-400 break-all px-2">
+              {email}
+            </span>
+            <span className="text-[11px] text-neutral-600">
+              {copied ? "Copied" : "Click to copy"}
+            </span>
           </span>
         </motion.button>
 
@@ -161,7 +169,8 @@ export default function ContactView() {
           aria-label="Visit GitHub profile"
           className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
             border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer col-span-2 sm:col-span-1"
+            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer
+            col-span-2 justify-self-center w-[calc(50%-0.375rem)]"
         >
           <FaSquareGithub className="text-5xl text-neutral-200" />
           <span className={`${inter.className} text-xs text-neutral-400`}>
@@ -181,7 +190,7 @@ export default function ContactView() {
             Send a message
           </h2>
           <p className="text-neutral-400 text-sm">
-            A rough idea is enough — &quot;we track this in a spreadsheet and
+            A rough idea is enough. &quot;We track this in a spreadsheet and
             it&apos;s breaking&quot; is a perfectly good first message.
           </p>
         </div>
@@ -247,7 +256,7 @@ export default function ContactView() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="What are you trying to build — or replace?"
+              placeholder="What are you trying to build or replace?"
               rows={5}
               className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
                 text-neutral-100 placeholder-neutral-500 resize-none

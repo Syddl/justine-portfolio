@@ -1,7 +1,7 @@
 import { siteUrl } from "@/lib/site";
 import { projects } from "@/data/projects";
 
-// Real content dates, not build time — stamping every deploy as "modified
+// Real content dates, not build time - stamping every deploy as "modified
 // now" teaches crawlers to distrust the lastmod signal entirely. Bump these
 // when a page's content meaningfully changes.
 const contentUpdated = "2026-09-01";

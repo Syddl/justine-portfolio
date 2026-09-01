@@ -39,12 +39,12 @@ const ProjectSection = () => {
         <p
           className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-xl`}
         >
-          Real products with live demos — and a case study on how each one was
+          Real products with live demos, plus a case study on how each one was
           scoped, built, and shipped.
         </p>
       </motion.div>
 
-      {/* Cards grid — featured projects only */}
+      {/* Cards grid - featured projects only */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -63,7 +63,7 @@ const ProjectSection = () => {
             {/* Gradient border glow on hover */}
             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none border border-blue-500/20" />
 
-            {/* Header — image or gradient fallback */}
+            {/* Header - image or gradient fallback */}
             {project.image ? (
               <div className="relative h-44 overflow-hidden border-b border-white/[0.04]">
                 <Image
@@ -120,7 +120,7 @@ const ProjectSection = () => {
                 ))}
               </div>
 
-              {/* Action links — case study first */}
+              {/* Action links - case study first */}
               <div className="flex items-center gap-4 flex-wrap">
                 <Link
                   href={`/projects/${project.slug}`}
