@@ -10,7 +10,6 @@ import { toast } from "sonner";
 import { inter } from "@/app/fonts";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { email, github, linkedin } from "@/lib/site";
-import FaqAccordion from "@/component/FaqAccordion";
 
 const container = staggerContainer(0.1, 0.1);
 const cardItem = fadeInUp(20, 0.4);
@@ -280,25 +279,6 @@ export default function ContactView() {
             {loading ? "Sending..." : "Send Message"}
           </motion.button>
         </form>
-      </motion.div>
-
-      {/* FAQ */}
-      <motion.div
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.45 }}
-        className="mt-16"
-      >
-        <div className={`${inter.className} mb-6`}>
-          <h2 className="text-gray-100 text-xl font-bold mb-1">
-            Common questions
-          </h2>
-          <p className="text-neutral-400 text-sm">
-            The things clients usually want to know before writing the first
-            email.
-          </p>
-        </div>
-        <FaqAccordion />
       </motion.div>
     </main>
   );

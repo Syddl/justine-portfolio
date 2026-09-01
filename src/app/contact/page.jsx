@@ -1,5 +1,4 @@
 import { pageMetadata } from "@/lib/seo";
-import { faqs } from "@/data/faq";
 import ContactView from "./ContactView";
 
 export const metadata = pageMetadata({
@@ -10,27 +9,6 @@ export const metadata = pageMetadata({
   absolute: true,
 });
 
-// FAQPage markup no longer earns a visual rich result for most sites, but
-// Google still parses it, and Q&A-formatted content is what AI answer
-// engines quote - the data comes from the same file the accordion renders.
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.q,
-    acceptedAnswer: { "@type": "Answer", text: faq.a },
-  })),
-};
-
 export default function ContactPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      <ContactView />
-    </>
-  );
+  return <ContactView />;
 }

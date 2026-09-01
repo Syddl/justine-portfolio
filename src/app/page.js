@@ -1,11 +1,9 @@
 import HeroSection from "@/component/HeroSection";
-import ServicesSection from "@/component/ServicesSection";
-import ProjectSection from "@/component/ProjectSection";
-import ProcessSection from "@/component/ProcessSection";
 import TestimonialsSection from "@/component/TestimonialsSection";
 import AboutMeSection from "@/component/AboutMeSection";
 import ExperienceSection from "@/component/ExperienceSection";
 import TechStackSection from "@/component/TechStackSection";
+import ProjectSection from "@/component/ProjectSection";
 import FinalCtaSection from "@/component/FinalCtaSection";
 import { pageMetadata } from "@/lib/seo";
 import { personId } from "@/lib/site";
@@ -13,7 +11,7 @@ import { personId } from "@/lib/site";
 // Server component on purpose: the hero (and the full name in it) must be in
 // the initial HTML, not gated behind hydration. The entrance animation is the
 // CSS `.page-enter` keyframe; framer-motion stays in below-fold sections.
-// Section order: outcome → offer → proof → process → human → ask.
+// Selected work sits last, right before the closing call to action.
 export const metadata = pageMetadata({
   title: "Justine Jude Cuevas | Freelance Full Stack Developer",
   description:
@@ -39,13 +37,11 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
       />
       <HeroSection />
-      <ServicesSection />
-      <ProjectSection />
-      <ProcessSection />
       <TestimonialsSection />
       <AboutMeSection />
       <ExperienceSection />
       <TechStackSection />
+      <ProjectSection />
       <FinalCtaSection />
     </main>
   );
