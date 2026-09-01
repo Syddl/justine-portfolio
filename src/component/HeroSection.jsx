@@ -4,15 +4,6 @@ import { inter, jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
 import { email, github, linkedin } from "@/lib/site";
 
-// True, verifiable facts only. This strip substitutes for the client-logo
-// bar the site doesn't have yet.
-const credibility = [
-  "production engineer at an AI video platform",
-  "payments & payroll systems (Stripe)",
-  "PropTech hackathon finalist",
-  "live products you can try today",
-];
-
 const HeroSection = () => {
   return (
     <section className="flex flex-col items-start text-[#A8ADB2] mb-20">
@@ -39,6 +30,16 @@ const HeroSection = () => {
         full-stack developer in the Philippines. I build web apps for startups
         and small businesses: payroll platforms, client dashboards, AI-powered
         tools. Scoped clearly, demoed weekly, shipped in weeks.
+      </p>
+
+      {/* The one fact the copy above doesn't carry: this is my full-time job,
+          not a side pursuit. Sits with the availability badge because both
+          describe current state. */}
+      <p
+        className={`${jetbrainsMono.className} text-xs mb-4 text-neutral-400`}
+      >
+        <span className="text-neutral-600">now</span> full-stack engineer on an
+        AI video platform
       </p>
 
       <div className="flex gap-2 items-center mb-6 flex-wrap">
@@ -99,17 +100,6 @@ const HeroSection = () => {
           </a>
         </div>
       </div>
-
-      <ul
-        className={`${jetbrainsMono.className} flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-neutral-500`}
-      >
-        {credibility.map((fact, i) => (
-          <li key={fact} className="flex items-center gap-x-3">
-            {i > 0 && <span aria-hidden="true">·</span>}
-            {fact}
-          </li>
-        ))}
-      </ul>
     </section>
   );
 };

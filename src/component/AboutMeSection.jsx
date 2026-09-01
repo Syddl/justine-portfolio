@@ -26,10 +26,10 @@ const AboutMeSection = () => {
         <div className="md:col-span-3">
           <div className={`${inter.className} text-[#A8ADB2] space-y-4 leading-relaxed`}>
             <p>
-              I&apos;m Justine. By day I&apos;m a full-stack engineer on an AI
-              video platform, where &quot;it works on my machine&quot; isn&apos;t
-              good enough. My job is payments, media pipelines, and the edge
-              cases that only show up in production.
+              I&apos;m Justine. My day job is an AI video platform, where
+              &quot;it works on my machine&quot; isn&apos;t good enough. I spend
+              my time on payments, media pipelines, and the edge cases that
+              only show up in production.
             </p>
             <p>
               That&apos;s the engineering I bring to client work: clear scope,
