@@ -1,7 +1,13 @@
 # Justine Jude Cuevas — Portfolio
 
 Personal portfolio site for a full stack developer, built with the Next.js App
-Router. Live at [devjustine.me](https://devjustine.me).
+Router. Live at [justinecuevas.me](https://justinecuevas.me).
+
+All content is data-driven: availability status, services, process steps,
+FAQ, testimonials, and project case studies live in `src/data/` — edit those
+files (not the components) to change what the site says. `src/lib/site.js`
+is the single source for the canonical URL, email, and social links.
+`docs/seo-checklist.md` tracks the off-site SEO actions.
 
 ## Tech stack
 
@@ -42,10 +48,12 @@ Copy `.env.example` to `.env.local` and fill in the values:
 
 ```
 src/
-  app/         routes, layout, metadata, sitemap/robots, OG image generator
-  component/   UI sections (Hero, About, Tech Stack, Projects, etc.)
-  data/        project + tech-stack content
-  lib/         shared Framer Motion variants
+  app/         routes (incl. /projects/[slug] case studies), layout, metadata,
+               sitemap/robots, OG image generator, 404
+  component/   UI sections (Hero, Services, Process, FAQ, Case Study, etc.)
+  data/        all site content: projects/case studies, services, process,
+               faq, availability, testimonials, experience, tech stack
+  lib/         site constants, SEO helper, shared Framer Motion variants
 public/        images and favicon
 ```
 
