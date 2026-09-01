@@ -14,10 +14,16 @@ const TechStackSection = () => {
       className="mb-16"
     >
       <h2
-        className={`${inter.className} text-gray-100 text-xl font-bold mb-8`}
+        className={`${inter.className} text-gray-100 text-xl font-bold mb-2`}
       >
         Tech Stack
       </h2>
+      <p
+        className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-xl mb-8`}
+      >
+        Everything here is in something I&apos;ve shipped, most of it in the AI
+        video platform I work on daily.
+      </p>
 
       <div className="space-y-6">
         {stackGroups.map((group) => (
