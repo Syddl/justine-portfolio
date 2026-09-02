@@ -2,47 +2,37 @@ import Link from "next/link";
 import { FiGithub, FiLinkedin, FiArrowRight } from "react-icons/fi";
 import { inter, jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
+import { heroPhrases } from "@/data/hero";
 import { email, github, linkedin } from "@/lib/site";
+import RequirementCycler from "@/component/RequirementCycler";
 
+// Server component on purpose: the name and the canonical headline land in the
+// initial HTML. The cycling quote is the only client island. Four rows, each
+// with one job: headline, who/what, status, action.
 const HeroSection = () => {
   return (
-    <section className="flex flex-col items-start text-[#A8ADB2] mb-20">
-      <p className={`${jetbrainsMono.className} mb-3 text-neutral-500`}>
-        {`// full-stack developer · philippines`}
-      </p>
-
-      <div className="mb-5">
-        <h1 className="text-4xl font-extrabold md:text-5xl flex flex-col gap-1 leading-tight">
-          <span className={inter.className}>I turn</span>
-          <span
-            className={`${jetbrainsMono.className} font-semibold text-amber-300 text-3xl md:text-4xl`}
-          >
-            &quot;we need a system for this&quot;
-          </span>
-          <span className={`${inter.className} text-gray-100`}>
-            into working software.
-          </span>
-        </h1>
-      </div>
+    <section className="flex flex-col items-start text-[#A8ADB2] mb-24">
+      <h1
+        className={`${inter.className} text-4xl font-extrabold md:text-5xl flex flex-col gap-1 leading-tight text-gray-100 mb-6`}
+        aria-label={`I turn "${heroPhrases[0]}" into working software.`}
+      >
+        <span>I turn</span>
+        <RequirementCycler
+          phrases={heroPhrases}
+          className={`${jetbrainsMono.className} font-semibold text-amber-300 text-3xl md:text-4xl`}
+        />
+        <span>into working software.</span>
+      </h1>
 
       <p className={`${inter.className} mb-6 max-w-xl leading-relaxed`}>
         I&apos;m <span className="text-gray-100">Justine Jude Cuevas</span>, a
-        full-stack developer in the Philippines. I build web apps for startups
-        and small businesses: payroll platforms, client dashboards, AI-powered
-        tools. Scoped clearly, demoed weekly, shipped in weeks.
+        full-stack developer in the Philippines. I build the software small
+        teams run on: payroll that checks itself before payday, a study tool
+        that turns PDF highlights into recall cards, video pipelines that catch
+        their own mistakes.
       </p>
 
-      {/* The one fact the copy above doesn't carry: this is my full-time job,
-          not a side pursuit. Sits with the availability badge because both
-          describe current state. */}
-      <p
-        className={`${jetbrainsMono.className} text-xs mb-4 text-neutral-400`}
-      >
-        <span className="text-neutral-600">now</span> full-stack engineer on an
-        AI video platform
-      </p>
-
-      <div className="flex gap-2 items-center mb-6 flex-wrap">
+      <div className="mb-6">
         {availability.open ? (
           <div className="flex items-center bg-green-600/20 rounded-2xl py-1 px-3 gap-1.5">
             <span className="relative flex h-2 w-2">
@@ -64,10 +54,9 @@ const HeroSection = () => {
             </span>
           </div>
         )}
-        <span className={`${jetbrainsMono.className}`}>🏠Philippines.</span>
       </div>
 
-      <div className="flex items-center gap-4 mb-10 flex-wrap">
+      <div className="flex items-center gap-4 flex-wrap">
         <Link
           href={availability.ctaHref}
           className={`${inter.className} group inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-neutral-100 text-neutral-900 font-medium text-sm hover:bg-white transition-colors duration-200`}
@@ -81,6 +70,7 @@ const HeroSection = () => {
         >
           or email me
         </a>
+        <span className="hidden sm:block h-4 w-px bg-neutral-800" aria-hidden="true" />
         <div className="flex items-center gap-3">
           <a
             href={github}
@@ -88,7 +78,7 @@ const HeroSection = () => {
             rel="noopener noreferrer"
             aria-label="GitHub profile"
           >
-            <FiGithub className="text-2xl hover:text-gray-100" />
+            <FiGithub className="text-xl text-neutral-500 hover:text-gray-100 transition-colors" />
           </a>
           <a
             href={linkedin}
@@ -96,7 +86,7 @@ const HeroSection = () => {
             rel="noopener noreferrer"
             aria-label="LinkedIn profile"
           >
-            <FiLinkedin className="text-2xl hover:text-gray-100" />
+            <FiLinkedin className="text-xl text-neutral-500 hover:text-gray-100 transition-colors" />
           </a>
         </div>
       </div>
