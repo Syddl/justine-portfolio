@@ -8,6 +8,9 @@ import { motion, useReducedMotion } from "framer-motion";
 // useReducedMotion() is null on the server and resolved on the first client
 // render, so it must never change the markup (hydration mismatch). It only
 // zeroes the transition: reduced-motion visitors get an instant reveal.
+// MotionProvider's reducedMotion="user" already makes the translate instant
+// site-wide; this local branch additionally skips the opacity fade, so a
+// section is simply there rather than fading in over 0.6s.
 const Reveal = ({
   as = "section",
   className = "",

@@ -3,14 +3,14 @@
 Personal portfolio site for a full stack developer, built with the Next.js App
 Router. Live at [justinecuevas.me](https://www.justinecuevas.me).
 
-All content is data-driven: availability status (and optional online hours
-for the contact page's timezone line), testimonials, work experience (with
-the current role's verifiable `metrics` that feed the About proof block),
-and a `usageLabel` naming each job for the stack cross-highlight, tech stack,
-hero phrases, and project case studies live in `src/data/`. Edit
-those files, not the components, to change what the site says. Tool names
-must match across `stackdata.js`, `projects.js`, and `experience.js`; the
-stack section's cross-highlight looks them up by exact name.
+All content is data-driven and lives in `src/data/`: availability status
+(plus optional online hours for the contact page's timezone line),
+testimonials, work experience, tech stack, hero phrases, and project case
+studies. Edit those files, not the components, to change what the site says.
+The current role's verifiable `metrics` feed the About proof block, and each
+job's `usageLabel` names it in the stack section's cross-highlight. Tool
+names must match across `stackdata.js`, `projects.js`, and `experience.js`;
+the cross-highlight looks them up by exact name.
 `src/lib/site.js` is the single source for the canonical URL, email, and
 social links. `docs/seo-checklist.md` tracks the off-site SEO actions.
 
@@ -59,7 +59,9 @@ src/
   component/   UI sections (Hero, About, Experience, Projects, Case Study, etc.)
   data/        all site content: projects/case studies, availability,
                testimonials, experience, tech stack, hero phrases
-  lib/         site constants, SEO helper, shared Framer Motion variants
+  lib/         site constants, SEO helper, shared Framer Motion variants,
+               the count-up hook, and the pure stack-usage and timezone
+               helpers (unit-tested with `npm test`)
 public/        images and favicon
 ```
 

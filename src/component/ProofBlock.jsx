@@ -42,7 +42,8 @@ const Figure = ({ metric, inView }) => {
 
 // Replaces the old code card, which repeated the hero. Same card chrome, but
 // the content is the four numbers that make the day job credible, pulled from
-// experience[0].metrics so they appear exactly once on the page.
+// the first experience entry with `metrics` so they appear exactly once on
+// the page.
 const ProofBlock = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -57,10 +58,10 @@ const ProofBlock = () => {
       animate={inView ? "show" : "hidden"}
       className="rounded-xl border border-neutral-700/60 bg-neutral-800/30 p-5"
     >
-      <p className={`${jetbrainsMono.className} text-xs text-neutral-500`}>
+      <p className={`${jetbrainsMono.className} text-xs text-neutral-400`}>
         {`// day job, in numbers`}
       </p>
-      <p className={`${inter.className} text-xs text-neutral-500 mt-1 mb-4`}>
+      <p className={`${inter.className} text-xs text-neutral-400 mt-1 mb-4`}>
         {role.usageLabel} · since {since}
       </p>
 

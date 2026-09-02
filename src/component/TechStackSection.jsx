@@ -35,7 +35,7 @@ const Caption = ({ active }) => {
   }
 
   return (
-    <span id="stack-caption" aria-live="polite" className="block min-h-[1.5em]">
+    <span aria-live="polite" className="block min-h-[1.5em]">
       <span
         key={active ?? "default"}
         className={`${active ? jetbrainsMono.className : inter.className} caption-in block`}
@@ -82,6 +82,13 @@ const TechStackSection = () => {
           lede={<Caption active={active} />}
         />
 
+        {/* Static description for the tool buttons. The live caption above
+            announces the answer on its own; describing buttons with the live
+            region itself would read every change twice. */}
+        <span id="stack-help" className="sr-only">
+          Select a tool to see which projects it was shipped in.
+        </span>
+
         <div className="space-y-4">
           {stackGroups.map((group) => (
             <div
@@ -108,7 +115,7 @@ const TechStackSection = () => {
                       <button
                         type="button"
                         aria-pressed={isActive}
-                        aria-describedby="stack-caption"
+                        aria-describedby="stack-help"
                         onPointerEnter={(e) => {
                           if (e.pointerType === "mouse") setActive(name);
                         }}
