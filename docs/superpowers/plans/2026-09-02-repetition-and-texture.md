@@ -16,7 +16,8 @@
 - No new fonts, no new palette, no new spacing scale. Only `amber-300` (accent), greens (live/current state), and the existing neutral greys. After this plan, `grep -rn "blue-\|violet-\|emerald-" src/` must return nothing.
 - New cards reuse `rounded-xl border border-neutral-700/60 bg-neutral-800/30`.
 - Hero stays a server component; `heroPhrases[0]` and the full name are in the initial HTML.
-- Every new interaction renders a useful static state on first paint, branches on `useReducedMotion()`, and works on touch or degrades to plain content.
+- Every new interaction renders a useful static state on first paint, respects reduced motion, and works on touch or degrades to plain content.
+- Hydration rule (found in review of Task 4): framer-motion's `useReducedMotion()` is `null` on the server and the real boolean on the first client render, so it must never change MARKUP. Use it only for transitions, effects, and motion values; hide decorative motion elements with CSS (`prefers-reduced-motion` / Tailwind `motion-reduce:*`). Tasks 1 and 4 were amended to follow this (`Reveal` zeroes its transition, `useCountUp` starts at `to`, the cycler cursor is hidden by CSS); Task 6's code below already follows it.
 - Copy is first person, anchored in real work, no invented numbers. Never turn "<1 frame" into a millisecond value.
 - Content belongs in `src/data/`; components render data.
 - Match existing style: 2-space indent, double quotes, trailing semicolons, `${inter.className}` / `${jetbrainsMono.className}` on text elements, short "why" comments above non-obvious blocks, no em-dashes in copy or comments (use `-`, `:` or `,`).
@@ -995,7 +996,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
 } from "framer-motion";
@@ -1025,11 +1025,11 @@ const useRailThreshold = (entryRef, railRef) => {
   return threshold;
 };
 
-const Entry = ({ job, railRef, progress, prefersReducedMotion }) => {
+const Entry = ({ job, railRef, progress }) => {
   const ref = useRef(null);
   const threshold = useRailThreshold(ref, railRef);
   const isCurrent = /present/i.test(job.dates);
-  const lit = !prefersReducedMotion && progress >= threshold;
+  const lit = progress >= threshold;
 
   return (
     <div ref={ref} className="relative pl-8">
@@ -1045,7 +1045,7 @@ const Entry = ({ job, railRef, progress, prefersReducedMotion }) => {
         </span>
       ) : (
         <span
-          className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full ring-4 ring-neutral-900 transition-colors duration-300 ${
+          className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full ring-4 ring-neutral-900 transition-colors duration-300 motion-reduce:bg-neutral-600 ${
             lit ? "bg-amber-300" : "bg-neutral-600"
           }`}
           aria-hidden="true"
@@ -1097,11 +1097,13 @@ const Entry = ({ job, railRef, progress, prefersReducedMotion }) => {
 
 const ExperienceSection = () => {
   const railRef = useRef(null);
-  const prefersReducedMotion = useReducedMotion();
   const [progress, setProgress] = useState(0);
 
   // The amber rail draws from the top as the list scrolls through the
   // viewport; a spring keeps it from snapping between scroll events.
+  // Reduced motion is handled in CSS (motion-reduce:*), never by branching
+  // the markup: useReducedMotion() is null on the server and resolved on the
+  // first client render, which would be a hydration mismatch.
   const { scrollYProgress } = useScroll({
     target: railRef,
     offset: ["start 80%", "end 60%"],
@@ -1122,13 +1124,11 @@ const ExperienceSection = () => {
           className="absolute left-[5px] top-2 bottom-2 w-px bg-neutral-800"
           aria-hidden="true"
         />
-        {!prefersReducedMotion && (
-          <motion.div
-            style={{ scaleY }}
-            className="absolute left-[5px] top-2 bottom-2 w-px bg-amber-300/70 origin-top"
-            aria-hidden="true"
-          />
-        )}
+        <motion.div
+          style={{ scaleY }}
+          className="absolute left-[5px] top-2 bottom-2 w-px bg-amber-300/70 origin-top motion-reduce:hidden"
+          aria-hidden="true"
+        />
 
         <div className="space-y-10">
           {experience.map((job) => (
@@ -1137,7 +1137,6 @@ const ExperienceSection = () => {
               job={job}
               railRef={railRef}
               progress={progress}
-              prefersReducedMotion={prefersReducedMotion}
             />
           ))}
         </div>
