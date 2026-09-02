@@ -11,6 +11,10 @@ const INTERVAL_MS = 3500;
 // Layout: every phrase is drawn invisibly in the same grid cell as the live
 // one, so the block is always as tall as the longest phrase and a wrapping
 // phrase on a phone never shifts the lines around it.
+//
+// The cursor is always in the markup; globals.css hides it under
+// prefers-reduced-motion. Branching on useReducedMotion() here would render
+// different HTML on the server and on the first client render.
 const Cursor = () => (
   <span
     aria-hidden="true"
@@ -56,7 +60,7 @@ const RequirementCycler = ({ phrases, className = "" }) => {
             className="block"
           >
             {`"${phrase}"`}
-            {!prefersReducedMotion && <Cursor />}
+            <Cursor />
           </motion.span>
         </AnimatePresence>
       </span>

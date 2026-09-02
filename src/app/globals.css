@@ -28,7 +28,8 @@
 }
 
 /* Block cursor after the cycling hero phrase. steps(1) gives a hard blink,
-   not a fade. */
+   not a fade. Hidden entirely under reduced motion (see below) so the
+   component never has to branch its markup on the user's preference. */
 @keyframes cursor-blink {
   0%,
   49% {
@@ -46,6 +47,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cursor-blink {
-    animation: none;
+    display: none;
   }
 }
