@@ -1,5 +1,6 @@
 // Each project doubles as a case study at /projects/[slug].
-// Card fields: name, summary, stack, image, gradientStyle, live, github
+// Card fields: name, summary, stack (exact names from src/data/stackdata.js),
+//   image, gradientStyle, live, github
 //   (omit `github` to hide the Code link - e.g. private repos).
 // Case-study fields: slug, tagline, problem, solution (paragraphs),
 //   outcomes (truthful, qualitative), results ({metric,label} - verifiable
@@ -44,7 +45,7 @@ export const projects = [
     techNotes:
       "Next.js + TypeScript frontend with Tailwind CSS; MongoDB for cards and progress data; deployed on Vercel with a DigitalOcean-hosted API.",
     date: "2026-09-01",
-    stack: ["NextJS", "TypeScript", "Tailwind", "MongoDB"],
+    stack: ["Next.js", "TypeScript", "Tailwind", "MongoDB"],
     live: "https://www.quizylite.app/",
     image: "/quizylite/quizylite.png",
     gradientStyle:
@@ -88,7 +89,7 @@ export const projects = [
     techNotes:
       "Next.js + TypeScript on Supabase (auth, role-based access, real-time data); Tailwind CSS with shadcn/ui; Framer Motion.",
     date: "2026-09-01",
-    stack: ["NextJS", "TypeScript", "Tailwind", "Supabase", "Shadcn", "Motion"],
+    stack: ["Next.js", "TypeScript", "Tailwind", "Supabase", "shadcn/ui", "Framer Motion"],
     github: "https://github.com/Syddl/StaffTrackr",
     live: "https://stafftrackr.vercel.app/",
     image: "/stafftrackr/st_landing.png",
