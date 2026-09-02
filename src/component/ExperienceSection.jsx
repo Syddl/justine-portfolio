@@ -12,32 +12,40 @@ import { experience } from "@/data/experience";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
 
-// Where an entry's dot sits as a fraction of the rail, re-measured on resize,
-// so the dot can light up the moment the drawn rail reaches it.
+// Where an entry's dot sits as a fraction of the rail. A ResizeObserver on
+// the rail re-measures whenever its height changes (font swap, viewport
+// resize, re-wrapped text), so the threshold never goes stale.
 const useRailThreshold = (entryRef, railRef) => {
   const [threshold, setThreshold] = useState(1);
 
   useEffect(() => {
+    const rail = railRef.current;
+    const entry = entryRef.current;
+    if (!rail || !entry) return undefined;
+
     const measure = () => {
-      const rail = railRef.current;
-      const entry = entryRef.current;
-      if (!rail || !entry) return;
       // The dot is drawn 6px below the entry's top edge.
       setThreshold((entry.offsetTop + 6) / rail.offsetHeight);
     };
     measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    const observer = new ResizeObserver(measure);
+    observer.observe(rail);
+    return () => observer.disconnect();
   }, [entryRef, railRef]);
 
   return threshold;
 };
 
-const Entry = ({ job, railRef, progress }) => {
+const Entry = ({ job, railRef, scaleY }) => {
   const ref = useRef(null);
   const threshold = useRailThreshold(ref, railRef);
   const isCurrent = /present/i.test(job.dates);
-  const lit = progress >= threshold;
+
+  // Each dot listens to the spring itself. setLit with an unchanged boolean
+  // is a no-op for React, so nothing re-renders per animation frame; only
+  // the entry being crossed re-renders, once.
+  const [lit, setLit] = useState(false);
+  useMotionValueEvent(scaleY, "change", (v) => setLit(v >= threshold));
 
   return (
     <div ref={ref} className="relative pl-8">
@@ -105,7 +113,6 @@ const Entry = ({ job, railRef, progress }) => {
 
 const ExperienceSection = () => {
   const railRef = useRef(null);
-  const [progress, setProgress] = useState(0);
 
   // The amber rail draws from the top as the list scrolls through the
   // viewport; a spring keeps it from snapping between scroll events.
@@ -121,7 +128,6 @@ const ExperienceSection = () => {
     damping: 30,
     mass: 0.4,
   });
-  useMotionValueEvent(scaleY, "change", (v) => setProgress(v));
 
   return (
     <Reveal className="mb-16">
@@ -144,7 +150,7 @@ const ExperienceSection = () => {
               key={`${job.company}-${job.title}-${job.dates}`}
               job={job}
               railRef={railRef}
-              progress={progress}
+              scaleY={scaleY}
             />
           ))}
         </div>
