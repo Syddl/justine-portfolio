@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 // The reveal-on-scroll wrapper that every home section used to copy-paste.
 // `as` picks the element so sections keep their semantics (<section>, <div>).
+// Under reduced motion the content is simply there: no fade, no slide.
 const Reveal = ({
   as = "section",
   className = "",
@@ -11,7 +12,12 @@ const Reveal = ({
   delay = 0,
   children,
 }) => {
+  const prefersReducedMotion = useReducedMotion();
   const Tag = motion[as];
+
+  if (prefersReducedMotion) {
+    return <Tag className={className}>{children}</Tag>;
+  }
 
   return (
     <Tag
