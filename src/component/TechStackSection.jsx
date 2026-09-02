@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { inter, jetbrainsMono } from "@/app/fonts";
 import { stackGroups } from "@/data/stackdata";
 import { projects } from "@/data/projects";
@@ -16,8 +15,10 @@ const DEFAULT_CAPTION =
   "Everything here is in something I've shipped. Hover a tool to see where.";
 
 // The caption under the heading doubles as the section lede and as the
-// answer to "where did you use this?". Swapped with a short fade so it never
-// jumps.
+// answer to "where did you use this?". The text swaps the instant `active`
+// changes (a keyed span remounts) and only the entrance is animated, by the
+// CSS `caption-in` keyframe: scrubbing across thirty tools never lags behind
+// the pointer, and reduced motion is handled in globals.css.
 const Caption = ({ active }) => {
   const contexts = active ? (usage.get(active) ?? []) : [];
 
@@ -35,18 +36,12 @@ const Caption = ({ active }) => {
 
   return (
     <span aria-live="polite" className="block min-h-[1.5em]">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={active ?? "default"}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
-          className={`${active ? jetbrainsMono.className : inter.className} block`}
-        >
-          {text}
-        </motion.span>
-      </AnimatePresence>
+      <span
+        key={active ?? "default"}
+        className={`${active ? jetbrainsMono.className : inter.className} caption-in block`}
+      >
+        {text}
+      </span>
     </span>
   );
 };

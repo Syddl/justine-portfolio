@@ -50,3 +50,25 @@
     display: none;
   }
 }
+
+/* Entrance for the stack section's caption: a keyed span remounts when the
+   hovered tool changes, so the new text is there immediately and only fades
+   in. No JavaScript animation, nothing to wait for. */
+@keyframes caption-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.caption-in {
+  animation: caption-in 0.15s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caption-in {
+    animation: none;
+  }
+}

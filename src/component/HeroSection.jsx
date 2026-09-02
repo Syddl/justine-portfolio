@@ -17,9 +17,12 @@ const HeroSection = () => {
         aria-label={`I turn "${heroPhrases[0]}" into working software.`}
       >
         <span>I turn</span>
+        {/* text-3xl at every width: the cycler reserves the height of its
+            longest phrase, and at text-4xl that phrase wraps inside the 720px
+            column, leaving a blank second line under the quote. */}
         <RequirementCycler
           phrases={heroPhrases}
-          className={`${jetbrainsMono.className} font-semibold text-amber-300 text-3xl md:text-4xl`}
+          className={`${jetbrainsMono.className} font-semibold text-amber-300 text-3xl`}
         />
         <span>into working software.</span>
       </h1>
