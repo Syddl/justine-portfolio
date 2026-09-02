@@ -11,21 +11,14 @@ import {
   FiCheck,
 } from "react-icons/fi";
 import { inter, jetbrainsMono } from "@/app/fonts";
-import { fadeInUp } from "@/lib/animations";
+import SharedReveal from "@/component/motion/Reveal";
 
-const sectionVariant = fadeInUp(24, 0.5);
-
-// Reveal-on-scroll wrapper matching the home sections' motion language.
+// Case-study sections are <div>s inside the <main>; the shared wrapper
+// defaults to <section>.
 const Reveal = ({ children, className = "" }) => (
-  <motion.div
-    variants={sectionVariant}
-    initial="hidden"
-    whileInView="show"
-    viewport={{ once: true, margin: "-60px" }}
-    className={className}
-  >
+  <SharedReveal as="div" y={24} className={className}>
     {children}
-  </motion.div>
+  </SharedReveal>
 );
 
 export default function CaseStudyView({ project }) {
@@ -210,30 +203,27 @@ export default function CaseStudyView({ project }) {
         </div>
       </Reveal>
 
-      {/* CTA */}
+      {/* CTA - its own wording, not the contact page intro repeated */}
       <Reveal>
-        <div className="rounded-2xl border border-white/[0.06] bg-[#111113] p-8 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-violet-500/5 pointer-events-none" />
-          <div className="relative z-10">
-            <h2
-              className={`${inter.className} text-gray-100 text-xl font-bold mb-2`}
-            >
-              Have a similar project in mind?
-            </h2>
-            <p
-              className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-md mx-auto mb-6`}
-            >
-              Tell me what you&apos;re trying to build or replace, and
-              you&apos;ll get an honest read on scope and cost.
-            </p>
-            <Link
-              href="/contact"
-              className={`${inter.className} group inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-neutral-100 text-neutral-900 font-medium text-sm hover:bg-white transition-colors duration-200`}
-            >
-              Let&apos;s talk
-              <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+        <div className="rounded-2xl border border-white/[0.06] bg-[#111113] p-8 text-center">
+          <h2
+            className={`${inter.className} text-gray-100 text-xl font-bold mb-2`}
+          >
+            Have a similar project in mind?
+          </h2>
+          <p
+            className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-md mx-auto mb-6`}
+          >
+            Tell me what you&apos;re replacing or building, and I&apos;ll tell
+            you what it would take.
+          </p>
+          <Link
+            href="/contact"
+            className={`${inter.className} group inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-neutral-100 text-neutral-900 font-medium text-sm hover:bg-white transition-colors duration-200`}
+          >
+            Let&apos;s talk
+            <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </Reveal>
     </main>

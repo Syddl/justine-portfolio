@@ -13,7 +13,8 @@ const MouseHoverEffect = () => {
         frame = 0;
         const el = ref.current;
         if (el) {
-          el.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(59, 130, 246, 0.15), transparent 40%)`;
+          // amber-300 at 6%: warm and dim, the one accent the page already uses
+          el.style.background = `radial-gradient(700px circle at ${e.clientX}px ${e.clientY}px, rgba(252, 211, 77, 0.06), transparent 40%)`;
         }
       });
     };
