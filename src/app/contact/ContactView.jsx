@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
 import { inter } from "@/app/fonts";
+import TimezoneLine from "@/component/TimezoneLine";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { email, github, linkedin } from "@/lib/site";
 
@@ -85,7 +86,9 @@ export default function ContactView() {
 
   return (
     <main className="flex-grow mx-auto max-w-3xl w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
-      {/* Intro - indexable copy, not just a form */}
+      {/* Intro - indexable copy, not just a form. The timezone line replaces
+          the old "my mornings overlap with US evenings" sentence with the
+          visitor's own numbers. */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -95,13 +98,13 @@ export default function ContactView() {
         <h1 className="text-gray-100 text-3xl font-bold mb-3">
           Let&apos;s build something for your business
         </h1>
-        <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl">
-          I&apos;m a freelance full-stack developer based in the Philippines
-          (GMT+8), working remotely with clients worldwide. My mornings overlap
-          with US evenings, my evenings with European mornings. Describe your
-          project in a couple of sentences and I&apos;ll reply within 24 hours
-          with an honest read on scope and cost.
+        <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl mb-4">
+          I&apos;m a freelance full-stack developer in the Philippines, working
+          remotely with clients worldwide. Describe your project in a couple of
+          sentences and I&apos;ll reply within 24 hours with an honest read on
+          scope and cost.
         </p>
+        <TimezoneLine />
       </motion.div>
 
       {/* Social links, laid out as an inverted triangle: email + LinkedIn on
