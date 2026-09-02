@@ -1,8 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { inter } from "@/app/fonts";
 import { testimonials } from "@/data/testimonials";
+import Reveal from "@/component/motion/Reveal";
+import SectionHeading from "@/component/SectionHeading";
 
 // Renders nothing until src/data/testimonials.js has at least one real
 // quote - then a single featured quote appears here. No grids of empty
@@ -13,16 +12,8 @@ const TestimonialsSection = () => {
   const featured = testimonials[0];
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="mb-16"
-    >
-      <h2 className={`${inter.className} text-gray-100 text-xl font-bold mb-8`}>
-        What clients say
-      </h2>
+    <Reveal className="mb-16">
+      <SectionHeading eyebrow="testimonials" title="What clients say" />
 
       <figure className="rounded-xl border border-neutral-700/60 bg-neutral-800/30 p-6">
         <blockquote
@@ -50,7 +41,7 @@ const TestimonialsSection = () => {
           )}
         </figcaption>
       </figure>
-    </motion.section>
+    </Reveal>
   );
 };
 
