@@ -3,9 +3,13 @@
 Personal portfolio site for a full stack developer, built with the Next.js App
 Router. Live at [justinecuevas.me](https://www.justinecuevas.me).
 
-All content is data-driven: availability status, testimonials, work
-experience, tech stack, and project case studies live in `src/data/`. Edit
-those files, not the components, to change what the site says.
+All content is data-driven: availability status (and optional online hours
+for the contact page's timezone line), testimonials, work experience (with
+the current role's verifiable `metrics` that feed the About proof block),
+tech stack, hero phrases, and project case studies live in `src/data/`. Edit
+those files, not the components, to change what the site says. Tool names
+must match across `stackdata.js`, `projects.js`, and `experience.js`; the
+stack section's cross-highlight looks them up by exact name.
 `src/lib/site.js` is the single source for the canonical URL, email, and
 social links. `docs/seo-checklist.md` tracks the off-site SEO actions.
 
@@ -43,6 +47,7 @@ Copy `.env.example` to `.env.local` and fill in the values:
 - `npm run build` — production build
 - `npm run start` — serve the production build
 - `npm run lint` — run ESLint
+- `npm test` — run the Node test suite
 
 ## Project structure
 
