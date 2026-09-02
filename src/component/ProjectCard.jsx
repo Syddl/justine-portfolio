@@ -8,7 +8,10 @@ import { inter } from "@/app/fonts";
 
 // The one project card, used by the home page and /projects. Case study is
 // the primary action; live demo and code are secondary.
-const ProjectCard = ({ project, variants }) => {
+// headingLevel: "h3" under a section h2 (home), "h2" directly under a page h1.
+const ProjectCard = ({ project, variants, headingLevel = "h3" }) => {
+  const Heading = headingLevel;
+
   return (
     <motion.div
       variants={variants}
@@ -22,7 +25,7 @@ const ProjectCard = ({ project, variants }) => {
             src={project.image}
             alt={`${project.name} landing page`}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 350px"
             className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#111113] via-transparent to-transparent opacity-40" />
@@ -46,11 +49,11 @@ const ProjectCard = ({ project, variants }) => {
       )}
 
       <div className="p-5">
-        <h3
+        <Heading
           className={`${inter.className} text-lg font-semibold text-neutral-100 mb-2`}
         >
           {project.name}
-        </h3>
+        </Heading>
 
         <p
           className={`${inter.className} text-sm text-neutral-400 leading-relaxed mb-4`}

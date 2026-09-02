@@ -5,6 +5,7 @@ import Script from "next/script";
 import { inter, jetbrainsMono } from "./fonts";
 import Logo from "@/component/Logo";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
+import MotionProvider from "@/component/motion/MotionProvider";
 import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -136,7 +137,7 @@ export default function RootLayout({ children }) {
             </nav>
           </div>
         </header>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <Toaster richColors />
         <footer className="border-t border-solid border-gray-800">
           <div className="mx-auto max-w-3xl w-full px-6 h-15 flex items-center justify-between gap-4">
@@ -147,7 +148,7 @@ export default function RootLayout({ children }) {
             </p>
             <nav
               aria-label="Elsewhere"
-              className={`${jetbrainsMono.className} flex items-center gap-4 text-xs text-neutral-500`}
+              className={`${jetbrainsMono.className} flex items-center gap-4 text-xs text-neutral-400`}
             >
               <a
                 href={github}

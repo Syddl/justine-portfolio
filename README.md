@@ -6,7 +6,8 @@ Router. Live at [justinecuevas.me](https://www.justinecuevas.me).
 All content is data-driven: availability status (and optional online hours
 for the contact page's timezone line), testimonials, work experience (with
 the current role's verifiable `metrics` that feed the About proof block),
-tech stack, hero phrases, and project case studies live in `src/data/`. Edit
+and a `usageLabel` naming each job for the stack cross-highlight, tech stack,
+hero phrases, and project case studies live in `src/data/`. Edit
 those files, not the components, to change what the site says. Tool names
 must match across `stackdata.js`, `projects.js`, and `experience.js`; the
 stack section's cross-highlight looks them up by exact name.
@@ -57,7 +58,7 @@ src/
                sitemap/robots, OG image generator, 404
   component/   UI sections (Hero, About, Experience, Projects, Case Study, etc.)
   data/        all site content: projects/case studies, availability,
-               testimonials, experience, tech stack
+               testimonials, experience, tech stack, hero phrases
   lib/         site constants, SEO helper, shared Framer Motion variants
 public/        images and favicon
 ```

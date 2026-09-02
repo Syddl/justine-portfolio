@@ -7,8 +7,10 @@ import { experience } from "@/data/experience";
 import { useCountUp } from "@/lib/useCountUp";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 
-const role = experience[0];
-const since = role.dates.split(" - ")[0];
+// The first role that carries verified metrics. A new job added to the top
+// of experience.js without a `metrics` block must not break the build.
+const role = experience.find((job) => job.metrics?.length) ?? null;
+const since = role ? role.dates.split(" - ")[0] : "";
 const container = staggerContainer(0.12);
 const row = fadeInUp(10, 0.4);
 
@@ -44,6 +46,8 @@ const Figure = ({ metric, inView }) => {
 const ProofBlock = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  if (!role) return null;
 
   return (
     <motion.div

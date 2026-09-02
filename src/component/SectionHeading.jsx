@@ -16,7 +16,7 @@ const SectionHeading = ({
       <div className="flex items-end justify-between gap-4">
         <div>
           <p
-            className={`${jetbrainsMono.className} text-xs text-neutral-500 mb-2`}
+            className={`${jetbrainsMono.className} text-xs text-neutral-400 mb-2`}
           >
             {`// ${eyebrow}`}
           </p>

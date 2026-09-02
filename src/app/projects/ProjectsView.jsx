@@ -42,6 +42,7 @@ export default function ProjectsView() {
             key={project.name}
             project={project}
             variants={cardVariant}
+            headingLevel="h2"
           />
         ))}
       </motion.div>

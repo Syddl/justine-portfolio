@@ -24,8 +24,10 @@ const useRailThreshold = (entryRef, railRef) => {
     if (!rail || !entry) return undefined;
 
     const measure = () => {
-      // The dot is drawn 6px below the entry's top edge.
-      setThreshold((entry.offsetTop + 6) / rail.offsetHeight);
+      // The overlay is inset 8px top and bottom (top-2 bottom-2) and the dot
+      // sits 6px below the entry's top edge, so measure against the drawn
+      // line, not the container.
+      setThreshold((entry.offsetTop + 6 - 8) / (rail.offsetHeight - 16));
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -70,7 +72,7 @@ const Entry = ({ job, railRef, scaleY }) => {
 
       {job.type && (
         <p
-          className={`${jetbrainsMono.className} text-[11px] uppercase tracking-wider text-neutral-500 mb-1`}
+          className={`${jetbrainsMono.className} text-[11px] uppercase tracking-wider text-neutral-400 mb-1`}
         >
           {job.type}
         </p>

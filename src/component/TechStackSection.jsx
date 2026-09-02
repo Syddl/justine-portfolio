@@ -35,7 +35,7 @@ const Caption = ({ active }) => {
   }
 
   return (
-    <span aria-live="polite" className="block min-h-[1.5em]">
+    <span id="stack-caption" aria-live="polite" className="block min-h-[1.5em]">
       <span
         key={active ?? "default"}
         className={`${active ? jetbrainsMono.className : inter.className} caption-in block`}
@@ -46,7 +46,7 @@ const Caption = ({ active }) => {
   );
 };
 
-// Thirty tools in plain rows instead of thirty bordered chips. Hover, focus,
+// Every tool in plain rows instead of a wall of bordered chips. Hover, focus,
 // or tap a tool and everything that was never shipped alongside it dims,
 // which turns the list into a claim the visitor can check.
 const TechStackSection = () => {
@@ -89,7 +89,7 @@ const TechStackSection = () => {
               className="grid gap-y-2 sm:grid-cols-[9rem_1fr] sm:gap-x-6"
             >
               <p
-                className={`${jetbrainsMono.className} text-[11px] uppercase tracking-wider text-neutral-500 pt-1`}
+                className={`${jetbrainsMono.className} text-[11px] uppercase tracking-wider text-neutral-400 pt-1`}
               >
                 {group.label}
               </p>
@@ -107,6 +107,8 @@ const TechStackSection = () => {
                     <li key={name}>
                       <button
                         type="button"
+                        aria-pressed={isActive}
+                        aria-describedby="stack-caption"
                         onPointerEnter={(e) => {
                           if (e.pointerType === "mouse") setActive(name);
                         }}
@@ -118,9 +120,10 @@ const TechStackSection = () => {
                             setActive((current) => (current === name ? null : name));
                           }
                         }}
+                        onPointerCancel={() => setActive(null)}
                         onFocus={() => setActive(name)}
                         onBlur={() => setActive(null)}
-                        className={`${inter.className} inline-flex items-center gap-1.5 text-sm cursor-default rounded-sm transition-[color,opacity] duration-200 focus-visible:outline-1 focus-visible:outline-neutral-500 ${
+                        className={`${inter.className} inline-flex items-center gap-1.5 text-sm cursor-default rounded-sm transition-[color,opacity] duration-200 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 ${
                           isActive
                             ? "text-amber-300"
                             : "text-neutral-300 hover:text-gray-100"
