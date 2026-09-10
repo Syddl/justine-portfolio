@@ -104,6 +104,25 @@ const Entry = ({ job, railRef, scaleY }) => {
         </p>
       )}
 
+      {job.metrics?.length > 0 && (
+        <ul
+          className={`${jetbrainsMono.className} text-xs text-neutral-400 mt-3 flex flex-wrap gap-x-3 gap-y-1`}
+        >
+          {job.metrics.map((metric, i) => (
+            <li key={metric.label}>
+              <span className="sr-only">{metric.sentence}</span>
+              <span aria-hidden="true">
+                {i > 0 && <span className="text-neutral-600 mr-3">·</span>}
+                <span className="text-neutral-200">
+                  {metric.before ? `${metric.before} → ${metric.after}` : metric.after}
+                </span>{" "}
+                {metric.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
       {job.tech?.length > 0 && (
         <p className={`${inter.className} text-xs text-neutral-500 mt-3`}>
           {job.tech.join("  ·  ")}

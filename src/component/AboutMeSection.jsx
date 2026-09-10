@@ -1,35 +1,42 @@
 import { inter } from "@/app/fonts";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
-import ProofBlock from "@/component/ProofBlock";
+import DeveloperCard from "@/component/DeveloperCard";
 
-// Copy here shares no phrase with the hero (who/what) or Experience (the job
-// itself): this is about how the work gets done.
+// About the person, not the CV: no employers, no school. Three short
+// paragraphs so the text column sits level with the card beside it. The
+// full name is in the first sentence so it is in the server HTML for search.
 const AboutMeSection = () => {
   return (
     <Reveal className="mb-20">
       <SectionHeading eyebrow="about" title="About me" />
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-start md:items-center">
         <div
-          className={`${inter.className} md:col-span-3 text-[#A8ADB2] space-y-4 leading-relaxed`}
+          className={`${inter.className} md:col-span-3 text-[#A8ADB2] leading-relaxed space-y-4`}
         >
           <p>
-            Most of my week goes into production software where &quot;works on
-            my machine&quot; isn&apos;t good enough: payments, media pipelines,
-            and the failures that only show up once real users arrive.
+            I&apos;m Justine Jude Cuevas, a full-stack developer. I like
+            taking an idea from a blank repo to something people actually use,
+            and I&apos;m happiest owning the whole thing, interface to
+            database.
           </p>
           <p>
-            That habit carries into client work. We agree on scope before I
-            write code, you see a working demo every week, and what ships is
-            built to survive real data. If something important in your
-            business still runs on a spreadsheet, or an idea needs to become a
-            product, tell me about it.
+            Right now that&apos;s QuizyLite, a study tool that turns PDF
+            highlights into flashcards. The rest of my learning goes into
+            being an engineer in the AI era: the job is moving from writing
+            every line yourself to working well with AI, knowing what to ask
+            for, and judging what comes back.
+          </p>
+          <p>
+            I sweat the details without letting them slow things down, and I
+            care how things look, not only whether they work. Want to talk
+            shop, or just say hi? The inbox is open.
           </p>
         </div>
 
         <div className="md:col-span-2">
-          <ProofBlock />
+          <DeveloperCard />
         </div>
       </div>
     </Reveal>

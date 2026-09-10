@@ -7,11 +7,10 @@
 // ("used in: AI video platform"); entries without one are left out of that
 // lookup. `tech` must use the exact names from src/data/stackdata.js.
 //
-// `metrics` (current role only) feed the proof block in the About section.
-// Each entry: `before`/`after` are the displayed strings; `count` animates the
-// `after` figure from `from` to `to` and formats it (omit `count` for a figure
-// that is not a number, like "<1 frame"); `sentence` is what screen readers
-// get. Only verifiable numbers belong here.
+// `metrics` (optional) render as one mono line under the description:
+// "93% → 3% false quality flags · 70+ zero-cost CI gates". `before`/`after`
+// are the displayed strings (omit `before` for a plain figure); `sentence` is
+// what screen readers get. Only verifiable numbers belong here.
 export const experience = [
   {
     type: "Full-time",
@@ -26,7 +25,6 @@ export const experience = [
       {
         before: "93%",
         after: "3%",
-        count: { from: 93, to: 3, format: (v) => `${Math.round(v)}%` },
         label: "false quality flags on generated clips",
         sentence:
           "False quality flags on generated clips cut from 93% to 3%",
@@ -40,13 +38,11 @@ export const experience = [
       },
       {
         after: "70+",
-        count: { from: 0, to: 70, format: (v) => `${Math.round(v)}+` },
         label: "zero-cost CI gates",
         sentence: "More than 70 zero-cost CI gates",
       },
       {
         after: "$0.70",
-        count: { from: 0, to: 0.7, format: (v) => `$${v.toFixed(2)}` },
         label: "per output minute, end to end",
         sentence: "About 70 cents per output minute, end to end",
       },
