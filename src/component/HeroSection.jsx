@@ -1,4 +1,4 @@
-import { FiGithub, FiLinkedin } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiMapPin } from "react-icons/fi";
 import { inter, jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
 import { github, linkedin } from "@/lib/site";
@@ -45,8 +45,11 @@ const HeroSection = () => {
             </span>
           </div>
         )}
-        <span className={jetbrainsMono.className}>
-          🏠 Philippines
+        <span
+          className={`${jetbrainsMono.className} inline-flex items-center gap-1.5 text-sm text-neutral-400`}
+        >
+          <FiMapPin className="w-3.5 h-3.5 text-neutral-500" aria-hidden="true" />
+          Philippines
         </span>
       </div>
 

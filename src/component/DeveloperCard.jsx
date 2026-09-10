@@ -13,7 +13,7 @@ import TiltCard from "@/component/motion/TiltCard";
 const fields = [
   { key: "name", value: "Justine" },
   { key: "role", value: "Full Stack Dev" },
-  { key: "location", value: "Philippines 🇵🇭" },
+  { key: "location", value: "Philippines" },
   { key: "openToWork", value: availability.open },
   { key: "currentlyBuilding", value: availability.currentlyBuilding },
   { key: "frontend", value: ["React", "Next.js", "TypeScript", "Tailwind"] },
