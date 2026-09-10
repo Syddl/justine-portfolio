@@ -2,10 +2,11 @@ import { pageMetadata } from "@/lib/seo";
 import ContactView from "./ContactView";
 
 export const metadata = pageMetadata({
-  title: "Contact",
+  title: "Hire a Freelance Full Stack Developer | Justine Jude Cuevas",
   description:
-    "Get in touch with Justine Jude Cuevas, a full stack developer from the Philippines available for freelance work and collaboration.",
+    "Hire Justine Jude Cuevas, a freelance full-stack developer from the Philippines, for web apps, dashboards, and AI tools. Remote worldwide, replies within 24 hours.",
   path: "/contact",
+  absolute: true,
 });
 
 export default function ContactPage() {

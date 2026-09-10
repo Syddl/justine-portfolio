@@ -3,3 +3,72 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* Server-rendered page entrance - replaces the framer-motion page wrapper so
+   the hero paints before hydration (LCP) while keeping the same feel. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.7s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
+/* Block cursor after the cycling hero phrase. steps(1) gives a hard blink,
+   not a fade. Hidden entirely under reduced motion (see below) so the
+   component never has to branch its markup on the user's preference. */
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink {
+    display: none;
+  }
+}
+
+/* Entrance for the stack section's caption: a keyed span remounts when the
+   hovered tool changes, so the new text is there immediately and only fades
+   in. No JavaScript animation, nothing to wait for. */
+@keyframes caption-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.caption-in {
+  animation: caption-in 0.15s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caption-in {
+    animation: none;
+  }
+}

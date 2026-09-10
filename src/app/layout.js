@@ -3,13 +3,15 @@ import Link from "next/link";
 import { Toaster } from "sonner";
 import Script from "next/script";
 import { inter, jetbrainsMono } from "./fonts";
+import Logo from "@/component/Logo";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
+import MotionProvider from "@/component/motion/MotionProvider";
+import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
-const siteUrl = "https://devjustine.me";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const description =
-  "Justine Jude Cuevas is a full stack developer from the Philippines building fast, clean, and user-friendly web apps with React, Next.js, Tailwind CSS, FastAPI, and Express.js.";
+  "Justine Jude Cuevas is a freelance full-stack developer in the Philippines building web apps, dashboards, and AI tools for startups and small businesses.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,9 +31,6 @@ export const metadata = {
   ],
   authors: [{ name: "Justine Jude Cuevas" }],
   creator: "Justine Jude Cuevas",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -50,20 +49,61 @@ export const metadata = {
   },
 };
 
+// Entity backbone for Google and AI answer engines: the @id lets every
+// other schema block (WebSite, ProfilePage, CreativeWork) reference this
+// one Person instead of redefining it.
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Justine Jude Cuevas",
+  "@id": personId,
+  name: siteName,
+  givenName: "Justine Jude",
+  familyName: "Cuevas",
   jobTitle: "Full Stack Developer",
+  description,
   url: siteUrl,
+  email: `mailto:${email}`,
+  image: `${siteUrl}/opengraph-image`,
   address: {
     "@type": "PostalAddress",
     addressCountry: "Philippines",
   },
-  sameAs: [
-    "https://github.com/Syddl",
-    "https://www.linkedin.com/in/justine-jude-cuevas-6b6235285/",
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Tailwind CSS",
+    "Node.js",
+    "Express.js",
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "MongoDB",
+    "Supabase",
+    "Firebase",
+    "Redis",
+    "Stripe",
+    "FFmpeg",
+    "Docker",
   ],
+  worksFor: {
+    "@type": "Organization",
+    name: "Interactive Content Digital s.r.o.",
+  },
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Full Stack Developer",
+  },
+  sameAs: [github, linkedin],
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteName,
+  url: siteUrl,
+  publisher: { "@id": personId },
 };
 
 export default function RootLayout({ children }) {
@@ -71,20 +111,22 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className="bg-neutral-900 w-full">
+      <body className="bg-neutral-900 w-full min-h-screen flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+        />
         <MouseHoverEffect />
-        <header className="lg:w-[50%] lg:relative lg:left-[25%] ">
-          <div className="text-[#A8ADB2] flex justify-between items-center py-5 px-6 md:justify-center md:gap-120">
-            <Link
-              href="/"
-              className={`${jetbrainsMono.className} font-semibold hover:text-gray-100 cursor-pointer text-lg`}
-            >
-              {`.justine`}
-            </Link>
+        {/* Header, main, and footer share one column so every left edge lines
+            up: the old half-width header only matched the content by accident
+            at ~1280px. */}
+        <header className="mx-auto max-w-3xl w-full px-6">
+          <div className="text-[#A8ADB2] flex justify-between items-center py-5">
+            <Logo />
             <nav className={`${inter.className} flex gap-8`}>
               <Link href="/projects" className="text-[16px] hover:text-gray-100">
                 Projects
@@ -95,15 +137,42 @@ export default function RootLayout({ children }) {
             </nav>
           </div>
         </header>
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <Toaster richColors />
-        <footer className="border-t-1 border-solid border-gray-800 ">
-          <div className="flex items-center h-15 flex-grow mx-auto max-w-3xl w-full px-6 md:px-8 gap-2">
+        <footer className="border-t border-solid border-gray-800">
+          <div className="mx-auto max-w-3xl w-full px-6 h-15 flex items-center justify-between gap-4">
             <p
               className={`${inter.className} text-sm font-semibold text-[#A8ADB2]`}
             >
               © {year} Justine Jude Cuevas
             </p>
+            <nav
+              aria-label="Elsewhere"
+              className={`${jetbrainsMono.className} flex items-center gap-4 text-xs text-neutral-400`}
+            >
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-100 transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-100 transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${email}`}
+                className="hover:text-gray-100 transition-colors"
+              >
+                email
+              </a>
+            </nav>
           </div>
         </footer>
         {gaId && (

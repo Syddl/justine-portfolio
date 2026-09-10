@@ -1,6 +1,10 @@
 import { ImageResponse } from "next/og";
+import { siteUrl } from "@/lib/site";
 
-export const alt = "Justine Jude Cuevas — Full Stack Developer";
+// Drop the "www." for display: the share card is branding, not a URL bar.
+const siteHost = new URL(siteUrl).host.replace(/^www\./, "");
+
+export const alt = "Justine Jude Cuevas | Full Stack Developer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,22 +25,22 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", color: "#7c8794", fontSize: 30, marginBottom: 18 }}>
-          Hello, my name is
+          {"// freelance full-stack developer"}
         </div>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            fontSize: 92,
+            fontSize: 76,
             fontWeight: 800,
             lineHeight: 1.05,
           }}
         >
-          <span style={{ color: "#fafafa" }}>Justine</span>
-          <span style={{ color: "#a8adb2" }}>Full Stack Developer</span>
+          <span style={{ color: "#fafafa" }}>Justine Jude Cuevas</span>
+          <span style={{ color: "#a8adb2" }}>Web apps, dashboards & AI tools</span>
         </div>
         <div style={{ display: "flex", color: "#7c8794", fontSize: 28, marginTop: 30 }}>
-          Building complete web applications from front to back
+          for startups and small businesses. Scoped clearly, shipped in weeks.
         </div>
         <div style={{ display: "flex", alignItems: "center", marginTop: 54 }}>
           <div
@@ -60,7 +64,7 @@ export default function Image() {
               }}
             />
             <span style={{ color: "#22c55e", fontSize: 24, fontWeight: 700 }}>
-              Open to work
+              Open for new projects
             </span>
           </div>
           <span style={{ color: "#a8adb2", fontSize: 26 }}>Philippines</span>
@@ -74,7 +78,7 @@ export default function Image() {
             fontWeight: 700,
           }}
         >
-          devjustine.me
+          {siteHost}
         </div>
       </div>
     ),
