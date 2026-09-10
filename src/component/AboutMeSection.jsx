@@ -23,9 +23,10 @@ const AboutMeSection = () => {
           </p>
           <p>
             Right now that&apos;s QuizyLite, a study tool that turns PDF
-            highlights into flashcards, plus a lot of learning in generative
-            AI: pipelines that turn a script into a finished video, and the
-            checks that catch a bad frame before anyone pays for it.
+            highlights into flashcards. The rest of my learning goes into
+            being an engineer in the AI era: the job is moving from writing
+            every line yourself to working well with AI, knowing what to ask
+            for, and judging what comes back.
           </p>
           <p>
             I sweat the details without letting them slow things down, and I
