@@ -24,14 +24,17 @@ const AboutMeSection = () => {
           </p>
           <p>
             Right now that&apos;s QuizyLite, a study tool that turns PDF
-            highlights into flashcards, and StaffTrackr, which replaced a
-            payroll spreadsheet that kept breaking. Both are live, and both
-            still get weekend commits.
+            highlights into flashcards, still getting weekend commits. Most of
+            my learning lately is generative AI: chaining script, voice, image,
+            video, and avatar models into one pipeline that ends in a finished
+            video, and the checks that catch a bad frame before anyone pays
+            for it.
           </p>
           <p>
-            I also care about how things look, not only whether they work,
-            which is why I lose hours to details most people never notice. If
-            you want to talk shop, or just say hi, the inbox is open.
+            I sweat the details without letting them slow things down:
+            I&apos;d rather ship this week and fix what breaks than polish for
+            a month. I also care about how things look, not only whether they
+            work. If you want to talk shop, or just say hi, the inbox is open.
           </p>
         </div>
 
