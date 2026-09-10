@@ -1,19 +1,22 @@
 import { FiArrowUpRight } from "react-icons/fi";
 import { jetbrainsMono } from "@/app/fonts";
 import { github, githubHandle } from "@/lib/site";
-import {
-  CELL,
-  calendarCells,
-  calendarSize,
-  describeDay,
-  fetchContributions,
-} from "@/lib/github";
+import { calendarRows, describeDay, fetchContributions } from "@/lib/github";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
 
-// Amber at four strengths for the four GitHub levels; level 0 is a plain
-// neutral cell. Index 0 is unused.
-const LEVEL_OPACITY = [1, 0.3, 0.55, 0.8, 1];
+// The contribution calendar as an ASCII ramp: one glyph per day, denser and
+// brighter with each GitHub level. Plain ASCII plus the middle dot so every
+// glyph comes from the loaded latin subset of JetBrains Mono and the grid
+// stays aligned.
+const GLYPHS = ["·", ":", "=", "*", "#"];
+const LEVEL_CLASS = [
+  "text-neutral-700",
+  "text-amber-300/40",
+  "text-amber-300/60",
+  "text-amber-300/80",
+  "text-amber-300",
+];
 
 // Async server component: the calendar is fetched at build time and
 // revalidated every six hours, so the section is static HTML with no client
@@ -22,8 +25,7 @@ export default async function GithubSection() {
   const data = await fetchContributions(githubHandle);
   if (!data) return null;
 
-  const cells = calendarCells(data.weeks);
-  const { width, height } = calendarSize(data.weeks);
+  const rows = calendarRows(data.weeks);
   const total = data.total.toLocaleString("en-US");
 
   return (
@@ -49,30 +51,33 @@ export default async function GithubSection() {
         last year
       </p>
 
-      {/* 53 columns need at least ~560px to stay legible; on a phone the
-          grid scrolls sideways inside this box instead of shrinking. */}
-      <div className="overflow-x-auto">
-        <svg
-          viewBox={`0 0 ${width} ${height}`}
-          className="w-full h-auto min-w-[560px]"
+      {/* Letter-spacing widens each column to roughly the line height, so
+          the cells read as squares. 53 columns need ~700px; on a phone the
+          grid scrolls sideways inside this box instead of wrapping. */}
+      <div className="overflow-x-auto overflow-y-hidden pb-1">
+        <pre
           role="img"
           aria-label={`GitHub contribution calendar: ${total} contributions in the last year`}
+          className={`${jetbrainsMono.className} w-max text-sm leading-none tracking-[0.35em]`}
         >
-          {cells.map((cell) => (
-            <rect
-              key={cell.date}
-              x={cell.x}
-              y={cell.y}
-              width={CELL}
-              height={CELL}
-              rx="2"
-              className={cell.level ? "fill-amber-300" : "fill-neutral-800"}
-              opacity={LEVEL_OPACITY[cell.level]}
-            >
-              <title>{describeDay(cell)}</title>
-            </rect>
+          {rows.map((row, weekday) => (
+            <span key={weekday} className="block">
+              {row.map((day, week) =>
+                day ? (
+                  <span
+                    key={day.date}
+                    title={describeDay(day)}
+                    className={LEVEL_CLASS[day.level]}
+                  >
+                    {GLYPHS[day.level]}
+                  </span>
+                ) : (
+                  <span key={`blank-${week}`}> </span>
+                ),
+              )}
+            </span>
           ))}
-        </svg>
+        </pre>
       </div>
     </Reveal>
   );

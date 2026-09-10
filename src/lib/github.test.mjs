@@ -1,14 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import {
-  CELL,
-  GAP,
-  STEP,
-  calendarCells,
-  calendarSize,
-  describeDay,
-  normalizeCalendar,
-} from "./github.js";
+import { calendarRows, describeDay, normalizeCalendar } from "./github.js";
 
 const graphql = {
   totalContributions: 7,
@@ -47,27 +39,19 @@ test("normalizeCalendar tolerates a missing calendar", () => {
   assert.deepEqual(normalizeCalendar(null), { total: 0, weeks: [] });
 });
 
-test("calendarCells places columns by week and rows by weekday from the date", () => {
-  const cells = calendarCells(normalizeCalendar(graphql).weeks);
-  // 2026-09-04 is a Friday, 2026-09-06 a Sunday, 2026-09-07 a Monday.
-  assert.deepEqual(
-    cells.map(({ date, x, y }) => ({ date, x, y })),
-    [
-      { date: "2026-09-04", x: 0, y: 5 * STEP },
-      { date: "2026-09-05", x: 0, y: 6 * STEP },
-      { date: "2026-09-06", x: STEP, y: 0 },
-      { date: "2026-09-07", x: STEP, y: STEP },
-    ],
-  );
-});
-
-test("calendarSize fits 53 weeks by 7 days with no trailing gap", () => {
-  const weeks = Array.from({ length: 53 }, () => []);
-  assert.deepEqual(calendarSize(weeks), {
-    width: 53 * STEP - GAP,
-    height: 7 * STEP - GAP,
-  });
-  assert.equal(STEP, CELL + GAP);
+test("calendarRows gives seven weekday rows, one column per week, blanks where a week has no such day", () => {
+  const rows = calendarRows(normalizeCalendar(graphql).weeks);
+  assert.equal(rows.length, 7);
+  // 2026-09-04 is a Friday, 09-05 Saturday, 09-06 Sunday, 09-07 Monday.
+  assert.deepEqual(rows.map((row) => row.map((day) => day?.date ?? null)), [
+    [null, "2026-09-06"],
+    [null, "2026-09-07"],
+    [null, null],
+    [null, null],
+    [null, null],
+    ["2026-09-04", null],
+    ["2026-09-05", null],
+  ]);
 });
 
 test("describeDay reads as a tooltip sentence", () => {

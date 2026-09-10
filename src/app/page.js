@@ -12,7 +12,7 @@ import { personId } from "@/lib/site";
 // Server component on purpose: the hero (and the full name in it) must be in
 // the initial HTML, not gated behind hydration. The entrance animation is the
 // CSS `.page-enter` keyframe; framer-motion stays in below-fold sections.
-// Selected work closes the page.
+// The GitHub calendar closes the page, after Selected work.
 export const metadata = pageMetadata({
   title: "Justine Jude Cuevas | Freelance Full Stack Developer",
   description:
@@ -43,8 +43,8 @@ export default function Home() {
       <ExperienceSection />
       <HackathonSection />
       <TechStackSection />
-      <GithubSection />
       <ProjectSection />
+      <GithubSection />
     </main>
   );
 }

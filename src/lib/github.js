@@ -22,27 +22,14 @@ export function normalizeCalendar(calendar) {
   return { total: calendar?.totalContributions ?? 0, weeks };
 }
 
-// SVG geometry, in viewBox units.
-export const CELL = 11;
-export const GAP = 3;
-export const STEP = CELL + GAP;
-
-// One entry per day with its grid position. GitHub's first week starts on
-// whatever weekday it was a year ago, so the row comes from the date, not
-// from the day's index in the week.
-export function calendarCells(weeks) {
-  const cells = [];
-  weeks.forEach((week, w) => {
-    week.forEach((day) => {
-      const weekday = new Date(`${day.date}T00:00:00Z`).getUTCDay();
-      cells.push({ ...day, x: w * STEP, y: weekday * STEP });
-    });
-  });
-  return cells;
-}
-
-export function calendarSize(weeks) {
-  return { width: weeks.length * STEP - GAP, height: 7 * STEP - GAP };
+// Seven weekday rows (Sunday first), one column per week, for the ASCII
+// grid. GitHub's first and last weeks are partial, so a week without a given
+// weekday yields null and the row keeps its column count.
+export function calendarRows(weeks) {
+  const weekdayOf = (day) => new Date(`${day.date}T00:00:00Z`).getUTCDay();
+  return Array.from({ length: 7 }, (_, weekday) =>
+    weeks.map((week) => week.find((day) => weekdayOf(day) === weekday) ?? null),
+  );
 }
 
 // "5 contributions on 6 Sept": the native tooltip on each cell.
