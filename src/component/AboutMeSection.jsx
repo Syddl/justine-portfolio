@@ -18,23 +18,19 @@ const AboutMeSection = () => {
           <p>
             I&apos;m Justine Jude Cuevas, a full-stack developer from the
             Philippines. I like taking an idea from a blank repo to something
-            people actually open, and I&apos;m happiest when I own the whole
-            thing: the interface, the API, the database, and the unglamorous
-            parts in between that decide whether it holds up.
+            people actually use, and I&apos;m happiest owning the whole thing,
+            interface to database.
           </p>
           <p>
             Right now that&apos;s QuizyLite, a study tool that turns PDF
-            highlights into flashcards, still getting weekend commits. Most of
-            my learning lately is generative AI: chaining script, voice, image,
-            video, and avatar models into one pipeline that ends in a finished
-            video, and the checks that catch a bad frame before anyone pays
-            for it.
+            highlights into flashcards, plus a lot of learning in generative
+            AI: pipelines that turn a script into a finished video, and the
+            checks that catch a bad frame before anyone pays for it.
           </p>
           <p>
-            I sweat the details without letting them slow things down:
-            I&apos;d rather ship this week and fix what breaks than polish for
-            a month. I also care about how things look, not only whether they
-            work. If you want to talk shop, or just say hi, the inbox is open.
+            I sweat the details without letting them slow things down, and I
+            care how things look, not only whether they work. Want to talk
+            shop, or just say hi? The inbox is open.
           </p>
         </div>
 
