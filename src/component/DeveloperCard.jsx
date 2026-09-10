@@ -1,10 +1,12 @@
 import { jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
+import TiltCard from "@/component/motion/TiltCard";
 
 // The floating `const developer = {...}` card from the original About. It
 // says who, not what: the fields are the ones you would put on a name tag.
 // Server-safe: the float is a CSS keyframe (see .float-card in globals.css)
-// with a reduced-motion override, so no client JS and no hydration branch.
+// on the outer div; the pointer tilt is TiltCard, a small client island on
+// the inner one, so the two transforms never fight.
 //
 // Colours stay inside the site's palette: strings amber, everything else
 // grey, so the card reads like the wordmark rather than an editor theme.
@@ -66,7 +68,8 @@ const Value = ({ value }) => {
 
 const DeveloperCard = () => {
   return (
-    <div className="float-card rounded-xl border border-neutral-700/60 bg-neutral-900/80 backdrop-blur-sm p-5 shadow-2xl shadow-black/40">
+    <div className="float-card">
+      <TiltCard className="rounded-xl border border-neutral-700/60 bg-neutral-900/80 backdrop-blur-sm p-5 shadow-2xl shadow-black/40">
       <div className="flex items-center gap-1.5 mb-4" aria-hidden="true">
         <span className="w-3 h-3 rounded-full bg-red-500/80" />
         <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -95,6 +98,7 @@ const DeveloperCard = () => {
           <Punct>{"};"}</Punct>
         </code>
       </pre>
+      </TiltCard>
     </div>
   );
 };

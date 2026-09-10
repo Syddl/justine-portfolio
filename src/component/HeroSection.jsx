@@ -46,7 +46,7 @@ const HeroSection = () => {
           </div>
         )}
         <span className={jetbrainsMono.className}>
-          🏠 General Santos City, Philippines
+          🏠 Philippines
         </span>
       </div>
 
