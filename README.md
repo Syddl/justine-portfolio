@@ -41,6 +41,7 @@ Copy `.env.example` to `.env.local` and fill in the values:
 | ---------------------------- | -------------------- | ------------------------------------------------------------------ |
 | `NEXT_PUBLIC_WEB3FORMS_KEY`  | Yes (contact form)   | Web3Forms access key used by the contact form.                     |
 | `NEXT_PUBLIC_GA_ID`          | No                   | Google Analytics measurement ID. Analytics is skipped when unset. |
+| `GITHUB_TOKEN`               | No                   | Classic token with `read:user` only; feeds the contribution calendar. The GitHub section is hidden when unset. |
 
 ## Scripts
 
@@ -56,11 +57,11 @@ Copy `.env.example` to `.env.local` and fill in the values:
 src/
   app/         routes (incl. /projects/[slug] case studies), layout, metadata,
                sitemap/robots, OG image generator, 404
-  component/   UI sections (Hero, About, Experience, Projects, Case Study, etc.)
+  component/   UI sections (Hero, About, Experience, GitHub, Projects, Case Study, etc.)
   data/        all site content: projects/case studies, availability,
                testimonials, experience, tech stack
   lib/         site constants, SEO helper, shared Framer Motion variants,
-               and the pure stack-usage and timezone
+               and the pure stack-usage, timezone, and GitHub-calendar
                helpers (unit-tested with `npm test`)
 public/        images and favicon
 ```

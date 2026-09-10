@@ -4,6 +4,7 @@ import AboutMeSection from "@/component/AboutMeSection";
 import ExperienceSection from "@/component/ExperienceSection";
 import HackathonSection from "@/component/HackathonSection";
 import TechStackSection from "@/component/TechStackSection";
+import GithubSection from "@/component/GithubSection";
 import ProjectSection from "@/component/ProjectSection";
 import { pageMetadata } from "@/lib/seo";
 import { personId } from "@/lib/site";
@@ -42,6 +43,7 @@ export default function Home() {
       <ExperienceSection />
       <HackathonSection />
       <TechStackSection />
+      <GithubSection />
       <ProjectSection />
     </main>
   );

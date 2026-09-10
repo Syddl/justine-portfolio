@@ -8,6 +8,7 @@
 export const siteUrl = "https://www.justinecuevas.me";
 export const siteName = "Justine Jude Cuevas";
 export const email = "justinecuevas19@gmail.com";
-export const github = "https://github.com/Syddl";
+export const githubHandle = "Syddl";
+export const github = `https://github.com/${githubHandle}`;
 export const linkedin = "https://www.linkedin.com/in/justinejudecuevas";
 export const personId = `${siteUrl}/#person`;
