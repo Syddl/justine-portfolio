@@ -16,10 +16,10 @@ const AboutMeSection = () => {
           className={`${inter.className} md:col-span-3 text-[#A8ADB2] leading-relaxed space-y-4`}
         >
           <p>
-            I&apos;m Justine Jude Cuevas, a full-stack developer from the
-            Philippines. I like taking an idea from a blank repo to something
-            people actually use, and I&apos;m happiest owning the whole thing,
-            interface to database.
+            I&apos;m Justine Jude Cuevas, a full-stack developer. I like
+            taking an idea from a blank repo to something people actually use,
+            and I&apos;m happiest owning the whole thing, interface to
+            database.
           </p>
           <p>
             Right now that&apos;s QuizyLite, a study tool that turns PDF
