@@ -53,9 +53,12 @@ export default async function GithubSection() {
 
       {/* Letter-spacing widens each column to roughly the line height, so
           the cells read as squares. 53 columns need ~700px; on a phone the
-          grid scrolls sideways inside this box instead of wrapping. */}
-      <div className="overflow-x-auto overflow-y-hidden pb-1">
+          grid scrolls sideways inside this box instead of wrapping. The box
+          is dir="rtl" so it starts scrolled to the right, on the most recent
+          weeks; the grid itself is dir="ltr" so the glyphs stay in order. */}
+      <div dir="rtl" className="overflow-x-auto overflow-y-hidden pb-1">
         <pre
+          dir="ltr"
           role="img"
           aria-label={`GitHub contribution calendar: ${total} contributions in the last year`}
           className={`${jetbrainsMono.className} w-max text-sm leading-none tracking-[0.35em]`}

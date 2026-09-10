@@ -140,9 +140,9 @@ export default function RootLayout({ children }) {
         <MotionProvider>{children}</MotionProvider>
         <Toaster richColors />
         <footer className="border-t border-solid border-gray-800">
-          <div className="mx-auto max-w-3xl w-full px-6 h-15 flex items-center justify-between gap-4">
+          <div className="mx-auto max-w-3xl w-full px-6 min-h-15 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <p
-              className={`${inter.className} text-sm font-semibold text-[#A8ADB2]`}
+              className={`${inter.className} text-sm font-semibold text-[#A8ADB2] whitespace-nowrap`}
             >
               © {year} Justine Jude Cuevas
             </p>
