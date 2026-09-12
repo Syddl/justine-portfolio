@@ -121,6 +121,9 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
         <MouseHoverEffect />
+        {/* Grain sits above the page so the texture reaches the cards and
+            screenshots, not just the background. See .grain in globals.css. */}
+        <div className="grain" aria-hidden="true" />
         {/* Header, main, and footer share one column so every left edge lines
             up: the old half-width header only matched the content by accident
             at ~1280px. */}
