@@ -15,11 +15,6 @@ const SectionHeading = ({
     <div className={className}>
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p
-            className={`${jetbrainsMono.className} text-xs text-neutral-400 mb-2`}
-          >
-            {`// ${eyebrow}`}
-          </p>
           <h2
             className={`${inter.className} text-gray-100 text-2xl font-bold leading-tight`}
           >
