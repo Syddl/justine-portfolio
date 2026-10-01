@@ -21,7 +21,7 @@ const ProjectSection = () => {
         <SectionHeading
           eyebrow="selected work"
           title="Selected work"
-          lede="Real products with live demos, plus a case study on how each one was scoped, built, and shipped."
+          lede="AI tooling and full products, each with a case study on how it was scoped, built, and shipped."
           action={
             // Only worth a link when /projects has more than the cards below.
             projects.length > featured.length ? (

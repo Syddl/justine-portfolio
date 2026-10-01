@@ -1,5 +1,5 @@
 // Work experience entries - most recent first.
-// `type` renders as a small mono tag, e.g. "Full-time" | "Internship" | "Freelance".
+// `type` renders as a small mono tag, e.g. "Full-time" | "Contract" | "Freelance".
 // A green "current" pulse shows automatically when `dates` ends in "Present".
 // `location`, `description`, and `tech` are all optional per entry.
 //
@@ -8,48 +8,51 @@
 // lookup. `tech` must use the exact names from src/data/stackdata.js.
 //
 // `metrics` (optional) render as one mono line under the description:
-// "93% → 3% false quality flags · 70+ zero-cost CI gates". `before`/`after`
-// are the displayed strings (omit `before` for a plain figure); `sentence` is
-// what screen readers get. Only verifiable numbers belong here.
+// "57 → 5 flagged clips · 90+ zero-cost CI gates". `before`/`after` are the
+// displayed strings (omit `before` for a plain figure); `sentence` is what
+// screen readers get. Only verifiable numbers belong here: each one below is
+// traced in the job-hunt facts file.
 export const experience = [
   {
-    type: "Full-time",
-    title: "Full Stack Developer",
+    type: "Contract",
+    title: "AI Full-Stack Engineer",
     company: "Interactive Content Digital s.r.o.",
     usageLabel: "AI video platform",
-    dates: "June 2026 - Present",
+    dates: "June 2026 - Sep 2026",
     location: "Remote",
     description:
-      "I build and maintain an AI video platform that turns a script into a 1080p narrated video with a lip-synced avatar. I own the pipeline's quality guards (LLM vision checks, checkpoint resume, pre-spend cost guards, a zero-cost CI suite) and the SaaS layer around it: a Next.js console, Supabase Auth with RLS, role-based team seats, a Stripe-backed credit ledger, an admin dashboard, and a Dockerized deploy.",
+      "I took an AI video platform from an early prototype to a pipeline that turns a script into a 1080p narrated video with a lip-synced avatar. I wrote the Claude prompts for script and scene direction, built Claude vision guards that re-roll bad images, an A/B eval tool with blind scoring, checkpoint resume and pre-spend cost guards, and, with a second developer, the SaaS layer: a Next.js console, Supabase Auth with RLS, team seats and a Stripe credit ledger.",
     metrics: [
       {
-        before: "93%",
-        after: "3%",
-        label: "false quality flags on generated clips",
-        sentence:
-          "False quality flags on generated clips cut from 93% to 3%",
+        after: "<$0.90",
+        label: "per output minute across 47 real jobs",
+        sentence: "Under 90 cents per output minute across 47 real jobs",
       },
       {
-        before: "~430 ms",
-        after: "<1 frame",
-        label: "audio/video drift",
+        before: "57",
+        after: "5",
+        label: "flagged clips on a 60-clip render, all real defects",
         sentence:
-          "Audio and video drift cut from about 430 milliseconds to under one frame",
+          "Flagged clips on a 60-clip render cut from 57 to 5, all real defects",
       },
       {
-        after: "70+",
+        before: "430 ms",
+        after: "<½ frame",
+        label: "scene-cut drift on 20-minute videos",
+        sentence:
+          "Scene-cut drift on 20-minute videos cut from 430 milliseconds to under half a frame",
+      },
+      {
+        after: "90+",
         label: "zero-cost CI gates",
-        sentence: "More than 70 zero-cost CI gates",
-      },
-      {
-        after: "$0.70",
-        label: "per output minute, end to end",
-        sentence: "About 70 cents per output minute, end to end",
+        sentence: "More than 90 zero-cost CI gates",
       },
     ],
     tech: [
+      "Claude API",
+      "OpenAI API",
       "Node.js",
-      "TypeScript",
+      "Next.js",
       "Python",
       "FastAPI",
       "FFmpeg",
@@ -59,15 +62,5 @@ export const experience = [
       "Stripe",
       "Docker",
     ],
-  },
-  {
-    type: "Full-time",
-    title: "Graphic Designer",
-    company: "MicroPets",
-    dates: "June 2024 - Jan 2025",
-    location: "General Santos City",
-    description:
-      "Promotional graphics for MicroPets' marketing campaigns: social posts, banners, and launch visuals. It's also why projects with me don't need a second hire for mockups and launch assets.",
-    tech: ["Photoshop", "Canva"],
   },
 ];

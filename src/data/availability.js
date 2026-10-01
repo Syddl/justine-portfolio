@@ -9,6 +9,6 @@
 // `currentlyBuilding`: the side project named in the About code card.
 export const availability = {
   open: true,
-  note: "Open for new projects",
+  note: "Available now for remote work",
   currentlyBuilding: "QuizyLite",
 };

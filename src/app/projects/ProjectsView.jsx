@@ -26,8 +26,8 @@ export default function ProjectsView() {
         <p
           className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-2xl`}
         >
-          Every project here is live. Click the demo, poke around, then read
-          the case study for what problem it solves and how it was built.
+          Each case study covers the problem, what I built and how it went.
+          Where a project is live, the demo link is on its card.
         </p>
       </motion.div>
 

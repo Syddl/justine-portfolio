@@ -1,18 +1,106 @@
 // Each project doubles as a case study at /projects/[slug].
 // Card fields: name, summary, stack (exact names from src/data/stackdata.js),
 //   image, gradientStyle, live, github
-//   (omit `github` to hide the Code link - e.g. private repos).
+//   (omit `live` or `github` to hide that link - e.g. private repos).
 // Case-study fields: slug, tagline, problem, solution (paragraphs),
 //   outcomes (truthful, qualitative), results ({metric,label} - verifiable
 //   numbers only, [] until you have them), screenshots, role, timeline,
 //   techNotes, date (feeds sitemap lastModified - bump when content changes).
+// The first two entries are the home page's "Selected work".
 export const projects = [
+  {
+    name: "Agent Harness",
+    slug: "agent-harness",
+    seoTitle: "Agent Harness: A Claude Code Plugin for Safer Agentic Development",
+    seoDescription:
+      "Case study: an agent harness for Claude Code, Codex and Gemini CLI with agent skills and evals, a guard hook, session hooks and a reviewer subagent, built by Justine Jude Cuevas.",
+    tagline:
+      "A Claude Code plugin that gives coding agents project facts, safe defaults and an independent reviewer.",
+    summary:
+      "Skills, hooks and a reviewer agent that keep Claude Code, Codex and Gemini CLI fast without letting them wreck the repo.",
+    description:
+      "A reusable harness for coding agents: agent skills with evals, a guard hook, session hooks and an independent reviewer subagent, shared across Claude Code, Codex and Gemini CLI.",
+    problem:
+      "Coding agents are fast, but every session starts cold. They forget the project's checks and conventions, call work done before the tests have run, and one bad shell command, a force-push or a hard reset, can throw away a day of work. On a client project I ran agents all day and kept re-teaching them the same things.",
+    solution: [
+      "The harness is a Claude Code plugin. Ten agent skills cover the moments agents get wrong: fixing a red check without weakening it, adding a check that fails before the fix, stress-testing a plan, triaging a failed run, and gating anything that spends money. Nine of them ship with evals.",
+      "Hooks do what prompts can't guarantee. A guard hook reads every shell command before it runs and blocks destructive ones, with quote-aware parsing for Bash and PowerShell so a quoted argument can't hide a forbidden flag. A session-start hook loads the project's facts, and a subagent-stop hook checks what a subagent leaves behind.",
+      "An independent reviewer subagent gives a verdict on finished work: it runs the project's declared checks, looks for the same defect in sibling code, and reports what it could not verify. Adapters bring the same policy to Codex CLI and Gemini CLI.",
+    ],
+    outcomes: [
+      "Extracted from a real client project, then adopted in two more: a 4-package thesis system and a solo web app",
+      "Destructive commands such as force-push and hard reset are blocked before they run",
+      "One policy core shared by Claude Code, Codex CLI and Gemini CLI",
+    ],
+    results: [
+      { metric: "10", label: "agent skills, 9 with evals" },
+      { metric: "283", label: "automated tests" },
+      { metric: "3", label: "coding agents supported" },
+    ],
+    screenshots: [],
+    role: "Solo: design, build, evals",
+    timeline: "Sep 2026 - present",
+    techNotes:
+      "Node.js with no runtime dependencies. It loads as a Claude Code plugin from the user skills directory; each project gets a zero-dependency guard hook, a config file of project facts and a short CLAUDE.md. CI runs the tests on Ubuntu and Windows.",
+    date: "2026-10-01",
+    stack: ["Claude Code", "Node.js", "GitHub Actions"],
+    gradientStyle:
+      "linear-gradient(135deg, rgba(217,119,6,0.25), rgba(180,83,9,0.1), rgba(17,17,19,1))",
+  },
+  {
+    name: "CooPilot",
+    slug: "coopilot",
+    seoTitle: "CooPilot: IoT Poultry Monitoring with FastAPI, React, Expo and Raspberry Pi",
+    seoDescription:
+      "Case study: CooPilot, a thesis system that monitors free-range poultry coops with Raspberry Pi sensors, alerts farmers on their phones and serves an LSTM egg forecast.",
+    tagline:
+      "Coop sensors, farmer alerts and an egg forecast, from a Raspberry Pi to a farmer's phone.",
+    summary:
+      "Monitors poultry coops with Raspberry Pi sensors and alerts farmers on their phones, with an LSTM egg forecast.",
+    description:
+      "An IoT system for free-range poultry farms: a Raspberry Pi reads coop conditions, a FastAPI backend raises alerts and serves an egg-production forecast, and farmers follow it on the web and on their phones.",
+    problem:
+      "Small free-range poultry farms run on what the farmer sees during the day. Heat, ammonia and poor ventilation build up unnoticed, especially at night, and egg production drops before anyone connects the cause. Our thesis set out to give a small cooperative's farmers live coop conditions, timely alerts and a forecast of their eggs.",
+    solution: [
+      "A Raspberry Pi in the coop reads temperature, humidity, CO2, ammonia and light, buffers readings while the internet is down, and uploads them over HTTPS to a FastAPI backend on Supabase Postgres.",
+      "The backend turns readings into daily values on the farm's local day, raises warnings and critical alerts against limits each cooperative sets for itself, and pushes them to the farmer's phone. Cooperative admins and farmers use a role-based React web app; farmers log eggs in an Expo app that keeps working offline and syncs later.",
+      "The team's LSTM egg-production forecast runs in the backend. I moved its inference from TensorFlow to a small NumPy runtime, which dropped a 590 MB dependency from the API image and matches the Keras output to within 7e-8.",
+    ],
+    outcomes: [
+      "Coop conditions reach the farmer's phone, with alerts when a limit is crossed",
+      "Egg logs survive no-signal days and sync when the phone is back online",
+      "Built by two developers with up to five Claude Code agents working in parallel",
+    ],
+    results: [
+      { metric: "590 MB", label: "TensorFlow removed from the API image" },
+      { metric: "93", label: "merged pull requests" },
+      { metric: "680+", label: "backend tests" },
+    ],
+    screenshots: [],
+    role: "One of two developers on a team of 4: the web app and mobile app, plus shared work on the backend and the edge device",
+    timeline: "Jan 2026 - present, thesis defense November 2026",
+    techNotes:
+      "FastAPI and SQLAlchemy on Supabase Postgres with Alembic migrations; a FastAPI edge API on the Raspberry Pi with SCD41, MQ-137 and BH1750 sensors; a React + Vite web app; an Expo React Native app with push notifications. Built with Claude Code and the agent harness.",
+    date: "2026-10-01",
+    stack: [
+      "Python",
+      "FastAPI",
+      "React",
+      "React Native",
+      "Supabase",
+      "PostgreSQL",
+      "Raspberry Pi",
+      "Claude Code",
+    ],
+    gradientStyle:
+      "linear-gradient(135deg, rgba(22,163,74,0.25), rgba(21,128,61,0.1), rgba(17,17,19,1))",
+  },
   {
     name: "QuizyLite",
     slug: "quizylite",
-    seoTitle: "QuizyLite: PDF Study Tool Built with Next.js & MongoDB",
+    seoTitle: "QuizyLite: PDF Study Tool Built with Next.js, Express & MongoDB",
     seoDescription:
-      "Case study: how I built QuizyLite, a PDF study tool that turns highlights into source-linked recall cards, using Next.js, TypeScript, Tailwind CSS, and MongoDB.",
+      "Case study: how I built QuizyLite, a PDF study tool that turns highlights into source-linked recall cards, using Next.js, TypeScript, Express, MongoDB and Firebase Auth.",
     tagline:
       "A study tool that turns PDF highlights into recall cards linked back to the exact page.",
     summary:
@@ -29,7 +117,7 @@ export const projects = [
     outcomes: [
       "Highlighting while reading replaces the manual flashcard step entirely",
       "Wrong answers jump back to the exact source page, turning mistakes into review",
-      "Live in production at quizylite.app",
+      "Live at quizylite.app, in private beta",
     ],
     results: [],
     screenshots: [
@@ -41,59 +129,14 @@ export const projects = [
       },
     ],
     role: "Solo: design, frontend, backend, deployment",
-    timeline: "Personal product, actively developed",
+    timeline: "Nov 2025 - present, in private beta",
     techNotes:
-      "Next.js + TypeScript frontend with Tailwind CSS; MongoDB for cards and progress data; deployed on Vercel with a DigitalOcean-hosted API.",
-    date: "2026-09-01",
-    stack: ["Next.js", "TypeScript", "Tailwind", "MongoDB"],
+      "Next.js + TypeScript frontend with Tailwind CSS and TanStack Query; an Express + MongoDB API with Zod validation and rate limiting; Firebase Auth; pdf.js for reading. Built with Claude Code and the agent harness.",
+    date: "2026-10-01",
+    stack: ["Next.js", "TypeScript", "Tailwind", "Express", "MongoDB", "Firebase"],
     live: "https://www.quizylite.app/",
     image: "/quizylite/quizylite.png",
     gradientStyle:
       "linear-gradient(135deg, rgba(124,58,237,0.25), rgba(109,40,217,0.1), rgba(17,17,19,1))",
-  },
-  {
-    name: "StaffTrackr",
-    slug: "stafftrackr",
-    seoTitle: "StaffTrackr: Workforce & Payroll App with Next.js & Supabase",
-    seoDescription:
-      "Case study: StaffTrackr, a workforce app with real-time attendance, employee records, and automated, validated payroll runs, built with Next.js, TypeScript, and Supabase.",
-    tagline:
-      "A payroll and attendance platform that replaces the spreadsheet stack.",
-    summary:
-      "Attendance, employee records, and automated payroll runs, validated before anyone gets paid wrong.",
-    description:
-      "A workforce management app for onboarding, attendance, roles, and automated payroll, with role-based access and real-time data handling.",
-    problem:
-      "Small teams usually run attendance and payroll across a stack of spreadsheets: hours copied by hand, tax and deduction math redone every cycle, and no safety net before payday. One typo and someone gets paid wrong, and nobody notices until they complain.",
-    solution: [
-      "StaffTrackr puts the whole flow in one place. Attendance is tracked in real time, employee records live behind role-based access, and payroll runs are computed automatically on weekly, semi-monthly, or monthly schedules with tax and deduction handling built in.",
-      "The part spreadsheets can never give you: pre-run validation. Before a payroll run executes, the app checks the data behind it and surfaces anything missing or inconsistent, so problems are caught before money moves, not after.",
-      "Workforce reports turn the same data into answers: who worked when, what a payroll cycle actually cost, and how it changes over time.",
-    ],
-    outcomes: [
-      "Payroll computed automatically on weekly, semi-monthly, or monthly schedules",
-      "Pre-run validation catches missing or inconsistent data before anyone is paid wrong",
-      "Role-based access keeps records visible only to the people who should see them",
-    ],
-    results: [],
-    screenshots: [
-      {
-        src: "/stafftrackr/st_landing.png",
-        alt: "StaffTrackr dashboard showing attendance tracking and payroll overview",
-        caption:
-          "One dashboard for attendance, employee records, and upcoming payroll runs.",
-      },
-    ],
-    role: "Solo: design, frontend, backend, deployment",
-    timeline: "Personal product",
-    techNotes:
-      "Next.js + TypeScript on Supabase (auth, role-based access, real-time data); Tailwind CSS with shadcn/ui; Framer Motion.",
-    date: "2026-09-01",
-    stack: ["Next.js", "TypeScript", "Tailwind", "Supabase", "shadcn/ui", "Framer Motion"],
-    github: "https://github.com/Syddl/StaffTrackr",
-    live: "https://stafftrackr.vercel.app/",
-    image: "/stafftrackr/st_landing.png",
-    gradientStyle:
-      "linear-gradient(135deg, rgba(37,99,235,0.25), rgba(79,70,229,0.1), rgba(17,17,19,1))",
   },
 ];

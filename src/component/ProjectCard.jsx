@@ -80,15 +80,17 @@ const ProjectCard = ({ project, variants, headingLevel = "h3" }) => {
             Read case study
             <FiArrowRight className="w-3.5 h-3.5 group-hover/case:translate-x-1 transition-transform" />
           </Link>
-          <Link
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
-          >
-            <FiExternalLink className="w-3.5 h-3.5" />
-            Live Demo
-          </Link>
+          {project.live && (
+            <Link
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
+            >
+              <FiExternalLink className="w-3.5 h-3.5" />
+              Live Demo
+            </Link>
+          )}
           {project.github && (
             <Link
               href={project.github}

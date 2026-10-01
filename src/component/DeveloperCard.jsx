@@ -12,10 +12,11 @@ import TiltCard from "@/component/motion/TiltCard";
 // grey, so the card reads like the wordmark rather than an editor theme.
 const fields = [
   { key: "name", value: "Justine" },
-  { key: "role", value: "Full Stack Dev" },
+  { key: "role", value: "AI Full-Stack Engineer" },
   { key: "location", value: "Philippines" },
   { key: "openToWork", value: availability.open },
   { key: "currentlyBuilding", value: availability.currentlyBuilding },
+  { key: "ai", value: ["Claude Code", "Claude API", "OpenAI API", "Evals"] },
   { key: "frontend", value: ["React", "Next.js", "TypeScript", "Tailwind"] },
   { key: "backend", value: ["FastAPI", "Express.js"] },
 ];

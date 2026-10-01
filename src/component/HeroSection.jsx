@@ -15,12 +15,12 @@ const HeroSection = () => {
         className={`${inter.className} text-5xl font-extrabold md:text-6xl flex flex-col mb-5`}
       >
         <span className="text-gray-100">Justine</span>
-        <span>Full Stack</span>
-        <span>Developer</span>
+        <span>AI Full-Stack</span>
+        <span>Engineer</span>
       </h1>
 
       <p className={`${jetbrainsMono.className} mb-5`}>
-        I build web apps, front to back, and ship my own on the side.
+        I build LLM-powered products end to end, and the agent tooling I build them with.
       </p>
 
       <div className="flex gap-3 items-center mb-5 flex-wrap">

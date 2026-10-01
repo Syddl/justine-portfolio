@@ -11,23 +11,27 @@ import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const description =
-  "Justine Jude Cuevas is a freelance full-stack developer in the Philippines building web apps, dashboards, and AI tools for startups and small businesses.";
+  "Justine Jude Cuevas is an AI full-stack engineer in the Philippines who builds LLM-powered products, AI automation and agent tooling with Claude Code, plus the full-stack apps around them.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Justine Jude Cuevas | Full Stack Developer",
+    default: "Justine Jude Cuevas | AI Full-Stack Engineer",
     template: "%s | Justine Jude Cuevas",
   },
   description,
   keywords: [
     "Justine Jude Cuevas",
+    "AI engineer",
+    "AI full-stack engineer",
+    "AI automation engineer",
+    "Claude Code",
+    "agentic development",
+    "LLM",
     "full stack developer",
-    "frontend developer",
-    "React developer",
     "Next.js",
-    "Tailwind CSS",
-    "web developer Philippines",
+    "FastAPI",
+    "AI engineer Philippines",
   ],
   authors: [{ name: "Justine Jude Cuevas" }],
   creator: "Justine Jude Cuevas",
@@ -36,12 +40,12 @@ export const metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Justine Jude Cuevas",
-    title: "Justine Jude Cuevas | Full Stack Developer",
+    title: "Justine Jude Cuevas | AI Full-Stack Engineer",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Justine Jude Cuevas | Full Stack Developer",
+    title: "Justine Jude Cuevas | AI Full-Stack Engineer",
     description,
   },
   icons: {
@@ -59,7 +63,7 @@ const personJsonLd = {
   name: siteName,
   givenName: "Justine Jude",
   familyName: "Cuevas",
-  jobTitle: "Full Stack Developer",
+  jobTitle: "AI Full-Stack Engineer",
   description,
   url: siteUrl,
   email: `mailto:${email}`,
@@ -69,6 +73,13 @@ const personJsonLd = {
     addressCountry: "Philippines",
   },
   knowsAbout: [
+    "Large language models",
+    "Claude Code",
+    "Agentic software development",
+    "Prompt engineering",
+    "LLM evals",
+    "Claude API",
+    "OpenAI API",
     "React",
     "Next.js",
     "TypeScript",
@@ -86,14 +97,11 @@ const personJsonLd = {
     "Stripe",
     "FFmpeg",
     "Docker",
+    "Raspberry Pi",
   ],
-  worksFor: {
-    "@type": "Organization",
-    name: "Interactive Content Digital s.r.o.",
-  },
   hasOccupation: {
     "@type": "Occupation",
-    name: "Full Stack Developer",
+    name: "AI Full-Stack Engineer",
   },
   sameAs: [github, linkedin],
 };

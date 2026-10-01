@@ -16,17 +16,18 @@ const AboutMeSection = () => {
           className={`${inter.className} md:col-span-3 text-[#A8ADB2] leading-relaxed space-y-4`}
         >
           <p>
-            I&apos;m Justine Jude Cuevas, a full-stack developer. I like
-            taking an idea from a blank repo to something people actually use,
-            and I&apos;m happiest owning the whole thing, interface to
-            database.
+            I&apos;m Justine Jude Cuevas, an AI full-stack engineer. I build
+            products with LLMs inside them, and I&apos;m happiest owning the
+            whole thing: the AI pipeline, the API, the database and the
+            interface people use.
           </p>
           <p>
-            Right now that&apos;s QuizyLite, a study tool that turns PDF
-            highlights into flashcards. The rest of my learning goes into
-            being an engineer in the AI era: the job is moving from writing
-            every line yourself to working well with AI, knowing what to ask
-            for, and judging what comes back.
+            Most recently I took an AI video platform from prototype to a
+            pipeline that turned scripts into narrated avatar videos for real
+            client jobs, with Claude vision checks and evals keeping the output
+            right. I work agentic-first: Claude Code with my own skills, hooks
+            and reviewer agent, and several agents in parallel when the work
+            splits cleanly.
           </p>
           <p>
             I sweat the details without letting them slow things down, and I

@@ -4,7 +4,7 @@ import { siteUrl } from "@/lib/site";
 // Drop the "www." for display: the share card is branding, not a URL bar.
 const siteHost = new URL(siteUrl).host.replace(/^www\./, "");
 
-export const alt = "Justine Jude Cuevas | Full Stack Developer";
+export const alt = "Justine Jude Cuevas | AI Full-Stack Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,7 +25,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", color: "#7c8794", fontSize: 30, marginBottom: 18 }}>
-          {"// full-stack developer · philippines"}
+          {"// ai full-stack engineer · philippines"}
         </div>
         <div
           style={{
@@ -37,10 +37,10 @@ export default function Image() {
           }}
         >
           <span style={{ color: "#fafafa" }}>Justine Jude Cuevas</span>
-          <span style={{ color: "#a8adb2" }}>Full Stack Developer</span>
+          <span style={{ color: "#a8adb2" }}>AI Full-Stack Engineer</span>
         </div>
         <div style={{ display: "flex", color: "#7c8794", fontSize: 28, marginTop: 30 }}>
-          I build web apps, front to back, and ship my own on the side.
+          I build LLM-powered products end to end, and the agent tooling I build them with.
         </div>
         <div style={{ display: "flex", alignItems: "center", marginTop: 54 }}>
           <div
@@ -64,7 +64,7 @@ export default function Image() {
               }}
             />
             <span style={{ color: "#22c55e", fontSize: 24, fontWeight: 700 }}>
-              Open for new projects
+              Available now for remote work
             </span>
           </div>
           <span style={{ color: "#a8adb2", fontSize: 26 }}>Philippines</span>

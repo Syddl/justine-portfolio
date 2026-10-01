@@ -55,8 +55,10 @@ export default async function CaseStudyPage({ params }) {
     "@type": "CreativeWork",
     name: project.name,
     description: project.tagline,
-    url: project.live,
-    image: `${siteUrl}${project.image}`,
+    // Private projects have no live site or screenshot: fall back to the
+    // case study page and leave `image` undefined so JSON.stringify drops it.
+    url: project.live ?? `${siteUrl}/projects/${project.slug}`,
+    image: project.image && `${siteUrl}${project.image}`,
     author: { "@id": personId },
   };
 

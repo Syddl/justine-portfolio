@@ -99,8 +99,8 @@ export default function ContactView() {
           Let&apos;s build something for your business
         </h1>
         <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl mb-4">
-          I&apos;m a freelance full-stack developer in the Philippines, working
-          remotely with clients worldwide. Describe your project in a couple of
+          I&apos;m an AI full-stack engineer in the Philippines, available for
+          full-time remote roles and freelance projects worldwide. Describe your project in a couple of
           sentences and I&apos;ll reply within 24 hours with an honest read on
           scope and cost.
         </p>

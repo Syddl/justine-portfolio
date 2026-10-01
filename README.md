@@ -1,6 +1,6 @@
 # Justine Jude Cuevas Portfolio
 
-Personal portfolio site for a full stack developer, built with the Next.js App
+Personal portfolio site for an AI full-stack engineer, built with the Next.js App
 Router. Live at [justinecuevas.me](https://www.justinecuevas.me).
 
 All content is data-driven and lives in `src/data/`: availability status

@@ -8,7 +8,7 @@ import { siteUrl, siteName } from "@/lib/site";
 export function pageMetadata({ title, description, path = "/", absolute = false }) {
   const url = `${siteUrl}${path}`;
   const fullTitle = absolute ? title : `${title} | ${siteName}`;
-  const imageAlt = "Justine Jude Cuevas - Full Stack Developer";
+  const imageAlt = "Justine Jude Cuevas - AI Full-Stack Engineer";
 
   return {
     title: absolute ? { absolute: title } : title,

@@ -179,15 +179,17 @@ export default function CaseStudyView({ project }) {
             {project.techNotes}
           </p>
           <div className="flex items-center gap-4 mt-4">
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
-            >
-              <FiExternalLink className="w-3.5 h-3.5" />
-              Live Demo
-            </a>
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
+              >
+                <FiExternalLink className="w-3.5 h-3.5" />
+                Live Demo
+              </a>
+            )}
             {project.github && (
               <a
                 href={project.github}

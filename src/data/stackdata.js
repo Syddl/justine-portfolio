@@ -8,6 +8,7 @@ import {
 import { BiLogoTypescript } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import { FiLayers, FiCheckCircle } from "react-icons/fi";
+import { TbBrandReactNative } from "react-icons/tb";
 import {
   SiExpress,
   SiFastapi,
@@ -27,17 +28,31 @@ import {
   SiFfmpeg,
   SiOpenai,
   SiAnthropic,
+  SiClaude,
   SiElevenlabs,
+  SiRaspberrypi,
 } from "react-icons/si";
 
 // Only things used in shipped work belong here. BullMQ and Playwright have no
 // brand icon in react-icons, so they borrow a neutral Feather one.
 export const stackGroups = [
   {
-    label: "Frontend",
+    label: "AI & agents",
+    items: [
+      { icon: SiClaude, name: "Claude Code" },
+      { icon: SiAnthropic, name: "Claude API" },
+      { icon: SiOpenai, name: "OpenAI API" },
+      { icon: SiElevenlabs, name: "ElevenLabs" },
+      { icon: SiFfmpeg, name: "FFmpeg" },
+      { icon: FiCheckCircle, name: "Playwright" },
+    ],
+  },
+  {
+    label: "Frontend & mobile",
     items: [
       { icon: FaReact, name: "React" },
       { icon: RiNextjsFill, name: "Next.js" },
+      { icon: TbBrandReactNative, name: "React Native" },
       { icon: BiLogoTypescript, name: "TypeScript" },
       { icon: RiJavascriptFill, name: "JavaScript" },
       { icon: RiTailwindCssFill, name: "Tailwind" },
@@ -69,18 +84,9 @@ export const stackGroups = [
     ],
   },
   {
-    label: "AI & media",
-    items: [
-      { icon: SiAnthropic, name: "Claude API" },
-      { icon: SiOpenai, name: "OpenAI API" },
-      { icon: SiElevenlabs, name: "ElevenLabs" },
-      { icon: SiFfmpeg, name: "FFmpeg" },
-      { icon: FiCheckCircle, name: "Playwright" },
-    ],
-  },
-  {
     label: "Infrastructure & tooling",
     items: [
+      { icon: SiRaspberrypi, name: "Raspberry Pi" },
       { icon: SiDocker, name: "Docker" },
       { icon: SiGithubactions, name: "GitHub Actions" },
       { icon: FaGitAlt, name: "Git" },

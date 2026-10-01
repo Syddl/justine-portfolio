@@ -14,9 +14,9 @@ import { personId } from "@/lib/site";
 // CSS `.page-enter` keyframe; framer-motion stays in below-fold sections.
 // The GitHub calendar closes the page, after Selected work.
 export const metadata = pageMetadata({
-  title: "Justine Jude Cuevas | Freelance Full Stack Developer",
+  title: "Justine Jude Cuevas | AI Full-Stack Engineer",
   description:
-    "Justine Jude Cuevas is a freelance full-stack developer in the Philippines building web apps, dashboards, and AI tools for startups and small businesses.",
+    "Justine Jude Cuevas is an AI full-stack engineer in the Philippines who builds LLM-powered products, AI automation and agent tooling with Claude Code, plus the full-stack apps around them.",
   path: "/",
   absolute: true,
 });
@@ -27,7 +27,7 @@ const profilePageJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   mainEntity: { "@id": personId },
-  dateModified: "2026-09-01",
+  dateModified: "2026-10-01",
 };
 
 export default function Home() {
