@@ -9,45 +9,6 @@
 // The first two entries are the home page's "Selected work".
 export const projects = [
   {
-    name: "Agent Harness",
-    slug: "agent-harness",
-    seoTitle: "Agent Harness: A Claude Code Plugin for Safer Agentic Development",
-    seoDescription:
-      "Case study: an agent harness for Claude Code, Codex and Gemini CLI with agent skills and evals, a guard hook, session hooks and a reviewer subagent, built by Justine Jude Cuevas.",
-    tagline:
-      "A Claude Code plugin that gives coding agents project facts, safe defaults and an independent reviewer.",
-    summary:
-      "Skills, hooks and a reviewer agent that keep Claude Code, Codex and Gemini CLI fast without letting them wreck the repo.",
-    description:
-      "A reusable harness for coding agents: agent skills with evals, a guard hook, session hooks and an independent reviewer subagent, shared across Claude Code, Codex and Gemini CLI.",
-    problem:
-      "Coding agents are fast, but every session starts cold. They forget the project's checks and conventions, call work done before the tests have run, and one bad shell command, a force-push or a hard reset, can throw away a day of work. On a client project I ran agents all day and kept re-teaching them the same things.",
-    solution: [
-      "The harness is a Claude Code plugin. Ten agent skills cover the moments agents get wrong: fixing a red check without weakening it, adding a check that fails before the fix, stress-testing a plan, triaging a failed run, and gating anything that spends money. Nine of them ship with evals.",
-      "Hooks do what prompts can't guarantee. A guard hook reads every shell command before it runs and blocks destructive ones, with quote-aware parsing for Bash and PowerShell so a quoted argument can't hide a forbidden flag. A session-start hook loads the project's facts, and a subagent-stop hook checks what a subagent leaves behind.",
-      "An independent reviewer subagent gives a verdict on finished work: it runs the project's declared checks, looks for the same defect in sibling code, and reports what it could not verify. Adapters bring the same policy to Codex CLI and Gemini CLI.",
-    ],
-    outcomes: [
-      "Extracted from a real client project, then adopted in two more: a 4-package thesis system and a solo web app",
-      "Destructive commands such as force-push and hard reset are blocked before they run",
-      "One policy core shared by Claude Code, Codex CLI and Gemini CLI",
-    ],
-    results: [
-      { metric: "10", label: "agent skills, 9 with evals" },
-      { metric: "283", label: "automated tests" },
-      { metric: "3", label: "coding agents supported" },
-    ],
-    screenshots: [],
-    role: "Solo: design, build, evals",
-    timeline: "Sep 2026 - present",
-    techNotes:
-      "Node.js with no runtime dependencies. It loads as a Claude Code plugin from the user skills directory; each project gets a zero-dependency guard hook, a config file of project facts and a short CLAUDE.md. CI runs the tests on Ubuntu and Windows.",
-    date: "2026-10-01",
-    stack: ["Claude Code", "Node.js", "GitHub Actions"],
-    gradientStyle:
-      "linear-gradient(135deg, rgba(217,119,6,0.25), rgba(180,83,9,0.1), rgba(17,17,19,1))",
-  },
-  {
     name: "CooPilot",
     slug: "coopilot",
     seoTitle: "CooPilot: IoT Poultry Monitoring with FastAPI, React, Expo and Raspberry Pi",
@@ -76,7 +37,14 @@ export const projects = [
       { metric: "93", label: "merged pull requests" },
       { metric: "680+", label: "backend tests" },
     ],
-    screenshots: [],
+    screenshots: [
+      {
+        src: "/coopilot/coopilot.jpg",
+        alt: "CooPilot landing page beside the mobile app showing tomorrow's egg forecast and live coop conditions",
+        caption:
+          "The CooPilot landing page, with the farmer's mobile app: tomorrow's egg forecast, coop conditions and what to fix first.",
+      },
+    ],
     role: "One of two developers on a team of 4: the web app and mobile app, plus shared work on the backend and the edge device",
     timeline: "Jan 2026 - present, thesis defense November 2026",
     techNotes:
@@ -92,6 +60,7 @@ export const projects = [
       "Raspberry Pi",
       "Claude Code",
     ],
+    image: "/coopilot/coopilot.jpg",
     gradientStyle:
       "linear-gradient(135deg, rgba(22,163,74,0.25), rgba(21,128,61,0.1), rgba(17,17,19,1))",
   },
