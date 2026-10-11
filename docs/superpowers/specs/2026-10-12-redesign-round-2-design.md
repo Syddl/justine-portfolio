@@ -15,23 +15,25 @@ items, a /projects page and site-wide pages built from the same parts, no
 
 ## 1. About section
 
-Text (Justine's own third version, 2026-10-12, with one grammar fix in the
-third paragraph; the full name stays in the first sentence for search):
+Text (Justine's own wording, 2026-10-12, trimmed so the text column is about
+the card's height: 435px of text beside a 421px card at desktop; the full
+name stays in the first sentence for search):
 
 > I'm Justine Jude Cuevas. Before I started coding, I was into video games
-> and technology. I also explored graphic design, video editing,
-> photography, and other creative fields.
+> and technology, and I explored graphic design, video editing and
+> photography.
 >
-> Gaming sparked my curiosity about how software works, and coding became a
-> way to turn my ideas into reality. With AI, I can build those ideas faster
-> than ever.
+> Gaming sparked my curiosity about how software works, and coding became my
+> way to turn ideas into reality. With AI, I can build them faster than
+> ever.
 >
-> These days, most of my time goes to school and learning, and lately that
-> means a deep dive into AI. I can be lazy about things that don't grab me,
-> but when one does, I lock in until it's done.
+> These days it's school and a deep dive into AI. I can be lazy about things
+> that don't grab me, but when one does, I lock in until it's done.
 >
-> Looking ahead, I want to work as an AI engineer, building products people
-> actually use. Want to talk shop, or just say hi? The inbox is open.
+> Next, I want to work as an AI engineer. Want to talk shop? The inbox is
+> open.
+
+If the text grows again, it will outrun the card; keep it around 90 words.
 
 Rules: nothing about recent work (no employer, no day-job project); no SQL
 competition; "AI", not "RAG". This supersedes the Sept 11 rule "About

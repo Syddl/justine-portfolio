@@ -17,24 +17,22 @@ const AboutMeSection = () => {
         <div className="text-[17px] text-body leading-relaxed space-y-4">
           <p>
             I&apos;m Justine Jude Cuevas. Before I started coding, I was into
-            video games and technology. I also explored graphic design, video
-            editing, photography, and other creative fields.
+            video games and technology, and I explored graphic design, video
+            editing and photography.
           </p>
           <p>
             Gaming sparked my curiosity about how software works, and coding
-            became a way to turn my ideas into reality. With AI, I can build
-            those ideas faster than ever.
+            became my way to turn ideas into reality. With AI, I can build them
+            faster than ever.
           </p>
           <p>
-            These days, most of my time goes to school and learning, and lately
-            that means a deep dive into AI. I can be lazy about things that
-            don&apos;t grab me, but when one does, I lock in until it&apos;s
-            done.
+            These days it&apos;s school and a deep dive into AI. I can be lazy
+            about things that don&apos;t grab me, but when one does, I lock in
+            until it&apos;s done.
           </p>
           <p>
-            Looking ahead, I want to work as an AI engineer, building products
-            people actually use. Want to talk shop, or just say hi? The inbox is
-            open.
+            Next, I want to work as an AI engineer. Want to talk shop? The inbox
+            is open.
           </p>
         </div>
 
