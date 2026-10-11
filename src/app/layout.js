@@ -1,11 +1,11 @@
 import "./globals.css";
-import Link from "next/link";
 import { Toaster } from "sonner";
 import Script from "next/script";
 import { figtree, inter, jetbrainsMono, newsreader } from "./fonts";
-import Logo from "@/component/Logo";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
 import MotionProvider from "@/component/motion/MotionProvider";
+import SiteHeader from "@/component/SiteHeader";
+import { themeScript } from "@/lib/theme";
 import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -121,7 +121,12 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${figtree.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Applies a saved theme before first paint. See src/lib/theme.js. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="bg-bg text-body font-sans antialiased w-full min-h-screen flex flex-col">
         <script
           type="application/ld+json"
@@ -135,22 +140,7 @@ export default function RootLayout({ children }) {
         {/* Grain sits above the page so the texture reaches the cards and
             screenshots, not just the background. See .grain in globals.css. */}
         <div className="grain" aria-hidden="true" />
-        {/* Header, main, and footer share one column so every left edge lines
-            up: the old half-width header only matched the content by accident
-            at ~1280px. */}
-        <header className="mx-auto max-w-3xl w-full px-6">
-          <div className="text-[#A8ADB2] flex justify-between items-center py-5">
-            <Logo />
-            <nav className={`${inter.className} flex gap-8`}>
-              <Link href="/projects" className="text-[16px] hover:text-gray-100">
-                Projects
-              </Link>
-              <Link href="/contact" className="text-[16px] hover:text-gray-100">
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader />
         <MotionProvider>{children}</MotionProvider>
         <Toaster richColors />
         <footer className="border-t border-solid border-gray-800">

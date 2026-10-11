@@ -187,3 +187,38 @@
   opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 }
+
+/* Header backdrop. Always on as the fallback; where scroll-driven
+   animations exist it starts transparent and fades in over the first 64px
+   of scroll, so text never sits on a bare background in any browser. */
+.site-header {
+  background-color: color-mix(in oklab, var(--surface) 80%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+@supports (animation-timeline: scroll()) {
+  @keyframes header-at-top {
+    from {
+      background-color: transparent;
+      border-bottom-color: transparent;
+      -webkit-backdrop-filter: blur(0);
+      backdrop-filter: blur(0);
+    }
+  }
+
+  .site-header {
+    animation: header-at-top linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 64px;
+  }
+}
+
+/* Theme switch: ThemeToggle reveals the new snapshot through an animated
+   dither mask, so the default cross-fade is switched off. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
