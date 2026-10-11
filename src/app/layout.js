@@ -2,7 +2,8 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import Script from "next/script";
 import { figtree, inter, jetbrainsMono, newsreader } from "./fonts";
-import MouseHoverEffect from "@/component/MouseHoverEffect";
+import SmoothScroll from "@/component/motion/SmoothScroll";
+import ClickBurst from "@/component/motion/ClickBurst";
 import MotionProvider from "@/component/motion/MotionProvider";
 import SiteHeader from "@/component/SiteHeader";
 import { themeScript } from "@/lib/theme";
@@ -141,7 +142,8 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
-        <MouseHoverEffect />
+        <SmoothScroll />
+        <ClickBurst />
         {/* Grain sits above the page so the texture reaches the cards and
             screenshots, not just the background. See .grain in globals.css. */}
         <div className="grain" aria-hidden="true" />

@@ -243,3 +243,39 @@
     animation: none;
   }
 }
+
+/* ClickBurst.jsx: five 1px lines from the click point, gone in 0.42s. */
+.click-burst {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.click-burst span {
+  position: absolute;
+  left: -0.5px;
+  top: 0;
+  width: 1px;
+  height: 6px;
+  background: var(--ink-2);
+  transform-origin: 50% 0;
+  animation: click-burst 0.42s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+@keyframes click-burst {
+  from {
+    transform: rotate(var(--a)) translateY(4px) scaleY(1);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(var(--a)) translateY(13px) scaleY(0.3);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-burst {
+    display: none;
+  }
+}
+
