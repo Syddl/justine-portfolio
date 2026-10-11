@@ -31,7 +31,7 @@ const HackathonSection = () => {
           <motion.li
             key={item.event}
             variants={rowVariant}
-            className="py-5 grid gap-1.5 sm:grid-cols-[7.5rem_1fr] sm:gap-6"
+            className="py-5 grid gap-1.5 sm:grid-cols-[11rem_1fr] sm:gap-6"
           >
             <span
               className={`font-mono uppercase tracking-wider pt-0.5 ${

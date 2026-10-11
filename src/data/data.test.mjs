@@ -19,3 +19,12 @@ test("project slugs are unique", () => {
   const slugs = projects.map((project) => project.slug);
   assert.equal(new Set(slugs).size, slugs.length);
 });
+
+// The project row shows `kind` on the right ("Personal product"), so every
+// project needs a short one.
+test("every project has a short kind for its row", () => {
+  for (const project of projects) {
+    assert.equal(typeof project.kind, "string", `${project.slug} has no kind`);
+    assert.ok(project.kind.length > 0 && project.kind.length <= 24, `${project.slug}: "${project.kind}"`);
+  }
+});

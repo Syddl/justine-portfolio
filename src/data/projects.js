@@ -11,6 +11,7 @@ export const projects = [
   {
     name: "CooPilot",
     slug: "coopilot",
+    kind: "Thesis · team of 4",
     seoTitle: "CooPilot: IoT Poultry Monitoring with FastAPI, React, Expo and Raspberry Pi",
     seoDescription:
       "Case study: CooPilot, a thesis system that monitors free-range poultry coops with Raspberry Pi sensors, alerts farmers on their phones and serves an LSTM egg forecast.",
@@ -67,6 +68,7 @@ export const projects = [
   {
     name: "QuizyLite",
     slug: "quizylite",
+    kind: "Personal product",
     seoTitle: "QuizyLite: PDF Study Tool Built with Next.js, Express & MongoDB",
     seoDescription:
       "Case study: how I built QuizyLite, a PDF study tool that turns highlights into source-linked recall cards, using Next.js, TypeScript, Express, MongoDB and Firebase Auth.",

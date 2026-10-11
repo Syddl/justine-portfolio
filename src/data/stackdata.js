@@ -8,11 +8,13 @@ import {
 import { BiLogoTypescript } from "react-icons/bi";
 import { IoLogoFirebase } from "react-icons/io5";
 import { FiLayers, FiCheckCircle } from "react-icons/fi";
-import { TbBrandReactNative } from "react-icons/tb";
+import { TbBrandReactNative, TbDatabaseSearch } from "react-icons/tb";
+import { PiVectorThree } from "react-icons/pi";
 import {
   SiExpress,
   SiFastapi,
   SiMongodb,
+  SiMysql,
   SiPostgresql,
   SiRedis,
   SiStripe,
@@ -34,7 +36,8 @@ import {
 } from "react-icons/si";
 
 // Only things used in shipped work belong here. BullMQ and Playwright have no
-// brand icon in react-icons, so they borrow a neutral Feather one.
+// brand icon in react-icons, so they borrow a neutral Feather one; Embeddings
+// and pgvector use generic vector and database-search icons.
 export const stackGroups = [
   {
     label: "AI & agents",
@@ -42,6 +45,7 @@ export const stackGroups = [
       { icon: SiClaude, name: "Claude Code" },
       { icon: SiAnthropic, name: "Claude API" },
       { icon: SiOpenai, name: "OpenAI API" },
+      { icon: PiVectorThree, name: "Embeddings" },
       { icon: SiElevenlabs, name: "ElevenLabs" },
       { icon: SiFfmpeg, name: "FFmpeg" },
       { icon: FiCheckCircle, name: "Playwright" },
@@ -77,6 +81,8 @@ export const stackGroups = [
     label: "Data & storage",
     items: [
       { icon: SiPostgresql, name: "PostgreSQL" },
+      { icon: TbDatabaseSearch, name: "pgvector" },
+      { icon: SiMysql, name: "MySQL" },
       { icon: RiSupabaseFill, name: "Supabase" },
       { icon: SiMongodb, name: "MongoDB" },
       { icon: IoLogoFirebase, name: "Firebase" },
