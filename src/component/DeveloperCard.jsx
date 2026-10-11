@@ -28,7 +28,7 @@ const Str = ({ children }) => (
 );
 
 // Arrays print two items per line, as the original card did, so the block
-// never needs to scroll sideways inside the 2/5 column.
+// never needs to scroll sideways inside its 18rem column.
 const rowsOf = (items, size) =>
   items.reduce((rows, item, i) => {
     if (i % size === 0) rows.push([]);

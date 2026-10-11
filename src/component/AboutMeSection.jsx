@@ -10,9 +10,9 @@ const AboutMeSection = () => {
     <Reveal className="mb-20">
       <SectionHeading title="About me" />
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-start md:items-center">
+      <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_18rem] gap-8 md:gap-10 items-start md:items-center">
         <div
-          className="md:col-span-3 text-[17px] text-body leading-relaxed space-y-4"
+          className="text-[17px] text-body leading-relaxed space-y-4"
         >
           <p>
             I&apos;m Justine Jude Cuevas, an AI full-stack engineer. I build
@@ -35,7 +35,7 @@ const AboutMeSection = () => {
           </p>
         </div>
 
-        <div className="md:col-span-2">
+        <div>
           <DeveloperCard />
         </div>
       </div>

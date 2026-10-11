@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { ditherCut, ditherThresholds, introScript } from "./dither.js";
+import { INTRO_MS, ditherCut, ditherThresholds, introScript } from "./dither.js";
 
 test("thresholds stay inside [0, 1), even at the noise extremes", () => {
   for (const random of [() => 0, () => 0.9999999]) {
@@ -31,6 +31,45 @@ test("ditherCut eases from 0 to past every threshold, and clamps", () => {
   assert.ok(ditherCut(0.75) > 0.75, "finishes fast, then settles");
 });
 
-test("the inline intro script is valid JavaScript", () => {
-  assert.doesNotThrow(() => new Function(introScript));
+// Runs the real inline script against a stubbed canvas and window.
+const runIntro = ({ reducedMotion = false } = {}) => {
+  const canvas = { style: {} };
+  let image;
+  canvas.getContext = () => ({
+    createImageData: (w, h) => (image = { data: new Uint8ClampedArray(w * h * 4) }),
+    putImageData: () => {},
+  });
+  const frames = [];
+  const env = {
+    document: { currentScript: { previousElementSibling: canvas }, body: {} },
+    matchMedia: () => ({ matches: reducedMotion }),
+    innerWidth: 300,
+    innerHeight: 150,
+    getComputedStyle: () => ({ backgroundColor: "rgb(252, 252, 251)" }),
+    requestAnimationFrame: (cb) => frames.push(cb),
+  };
+  new Function(...Object.keys(env), introScript)(...Object.values(env));
+  return { canvas, frames, image: () => image };
+};
+
+test("the inline intro script sizes, paints, then clears the cover", () => {
+  const { canvas, frames, image } = runIntro();
+  assert.equal(canvas.width, 100);
+  assert.equal(canvas.height, 50);
+  assert.deepEqual([...image().data.slice(0, 4)], [252, 252, 251, 255]);
+
+  frames.shift()(0); // first frame records the start time
+  frames.shift()(INTRO_MS); // last frame
+  assert.equal(frames.length, 0, "no frame after the end");
+  assert.equal(canvas.style.display, "none");
+  assert.ok(
+    image().data.every((v, i) => i % 4 !== 3 || v === 0),
+    "every pixel is clear",
+  );
+});
+
+test("the inline intro script hides the cover at once under reduced motion", () => {
+  const { canvas, frames } = runIntro({ reducedMotion: true });
+  assert.equal(canvas.style.display, "none");
+  assert.equal(frames.length, 0);
 });

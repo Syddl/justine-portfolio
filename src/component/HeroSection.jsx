@@ -18,7 +18,7 @@ const HeroSection = () => {
       >
         <Image
           src="/justine.jpg"
-          alt="Justine Jude Cuevas"
+          alt=""
           width={80}
           height={80}
           loading="eager"

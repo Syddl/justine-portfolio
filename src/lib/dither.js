@@ -34,7 +34,7 @@ export const ditherCut = (progress) => {
 // parsing, before first paint and before React loads. It paints the canvas
 // in the page background, then clears it pixel by pixel, top first.
 // Reduced motion: hidden at once. If anything goes wrong, the CSS failsafe
-// on .dither-cover (globals.css) hides it after 2s. ES5 on purpose: this is
+// on .dither-cover (globals.css) hides it after 2s. No imports or outside references: it is
 // inlined as text, not bundled.
 function runIntro(thresholds, cut, px, ms) {
   var canvas = document.currentScript.previousElementSibling;

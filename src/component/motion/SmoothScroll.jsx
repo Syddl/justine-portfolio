@@ -12,7 +12,13 @@ import "lenis/dist/lenis.css";
 const SmoothScroll = () => {
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
-    const lenis = new Lenis({ autoRaf: true, anchors: true });
+    // stopInertiaOnNavigate: a link clicked mid-glide must not drag the next
+    // page down with the old scroll target.
+    const lenis = new Lenis({
+      autoRaf: true,
+      anchors: true,
+      stopInertiaOnNavigate: true,
+    });
     return () => lenis.destroy();
   }, []);
 

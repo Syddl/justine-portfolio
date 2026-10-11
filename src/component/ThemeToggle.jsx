@@ -44,6 +44,18 @@ const maskFrames = () => {
 // reduced motion, it switches at once. Which icon shows is decided in CSS
 // (the dark: variant), so the server and client markup are identical.
 const ThemeToggle = () => {
+  // Build the mask frames when the pointer or focus arrives, so the first
+  // click does not pay for 30 PNG encodes. Skipped where the switch is
+  // instant anyway.
+  const warm = () => {
+    if (
+      document.startViewTransition &&
+      !matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      maskFrames();
+    }
+  };
+
   const toggle = () => {
     const root = document.documentElement;
     const next = nextTheme(
@@ -82,6 +94,8 @@ const ThemeToggle = () => {
     <button
       type="button"
       onClick={toggle}
+      onPointerEnter={warm}
+      onFocus={warm}
       aria-label="Toggle dark mode"
       className="grid size-8 place-items-center rounded-full text-muted transition-colors hover:bg-hover hover:text-ink active:scale-[0.97]"
     >
