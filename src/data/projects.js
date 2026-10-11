@@ -14,7 +14,7 @@ export const projects = [
   {
     name: "CooPilot",
     slug: "coopilot",
-    kind: "Thesis · team of 4",
+    kind: "ML thesis · team of 4",
     seoTitle: "CooPilot: IoT Poultry Monitoring with FastAPI, React, Expo and Raspberry Pi",
     seoDescription:
       "Case study: CooPilot, a thesis system that monitors free-range poultry coops with Raspberry Pi sensors, alerts farmers on their phones and serves an LSTM egg forecast.",

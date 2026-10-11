@@ -79,7 +79,9 @@ one-line summary, a short `kind` tag on the right (under the summary on
 phones), and an arrow. Live and code links move off the row; they remain
 in the case study's Tech notes.
 
-New data field `kind`: CooPilot **Thesis · team of 4**, QuizyLite
+New data field `kind`: CooPilot **ML thesis · team of 4** (was "Thesis ·
+team of 4"; Justine asked on 2026-10-12 to say it is a machine learning
+project), QuizyLite
 **Personal product**.
 
 ### /projects
