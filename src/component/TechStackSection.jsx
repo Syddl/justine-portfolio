@@ -128,7 +128,7 @@ const TechStackSection = () => {
                         onPointerCancel={() => setActive(null)}
                         onFocus={() => setActive(name)}
                         onBlur={() => setActive(null)}
-                        className={`inline-flex items-center gap-1.5 text-sm cursor-default rounded-sm transition-[color,opacity] duration-200 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-muted ${
+                        className={`inline-flex items-center gap-1.5 text-sm cursor-arrow rounded-sm transition-[color,opacity] duration-200 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-muted ${
                           isActive
                             ? "text-accent"
                             : "text-ink-2 hover:text-ink"

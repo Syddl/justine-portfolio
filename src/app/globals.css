@@ -279,3 +279,42 @@
   }
 }
 
+/* macOS-style cursor: a black arrow with a white outline everywhere, a
+   white pointing hand with a black outline on things you can click. Same
+   in both themes, as on macOS. Pure CSS, so nothing trails the pointer and
+   there is nothing to switch off for reduced motion; touch screens never
+   show it. In @layer base so utilities (cursor-arrow, disabled pills) can
+   still override it. The hand is Phosphor Icons' HandPointing (MIT).
+   Ceiling: browsers rasterise SVG cursors at 1x, so edges are slightly soft
+   on 2x screens; image-set() with 2x PNGs is the upgrade if it matters. */
+:root {
+  --cursor-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cfilter id='s' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeDropShadow dx='0' dy='1' stdDeviation='0.7' flood-opacity='0.35'/%3E%3C/filter%3E%3Cpath d='M3 2L3 18.5L7.1 14.7L9.7 20.6L12.4 19.4L9.9 13.6L15.4 13.6Z' fill='%23000' stroke='%23fff' stroke-width='1.6' stroke-linejoin='round' paint-order='stroke' filter='url(%23s)'/%3E%3C/svg%3E") 3 2;
+  --cursor-hand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 256 256'%3E%3Cfilter id='s' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeDropShadow dx='0' dy='8' stdDeviation='7' flood-opacity='0.3'/%3E%3C/filter%3E%3Cg filter='url(%23s)'%3E%3Cpath d='M196,88a27.86,27.86,0,0,0-13.35,3.39A28,28,0,0,0,144,74.7V44a28,28,0,0,0-56,0v80l-3.82-6.13A28,28,0,0,0,35.73,146l4.67,8.23C74.81,214.89,89.05,240,136,240a88.1,88.1,0,0,0,88-88V116A28,28,0,0,0,196,88Z' fill='%23fff'/%3E%3Cpath d='M196,88a27.86,27.86,0,0,0-13.35,3.39A28,28,0,0,0,144,74.7V44a28,28,0,0,0-56,0v80l-3.82-6.13A28,28,0,0,0,35.73,146l4.67,8.23C74.81,214.89,89.05,240,136,240a88.1,88.1,0,0,0,88-88V116A28,28,0,0,0,196,88Zm12,64a72.08,72.08,0,0,1-72,72c-37.63,0-47.84-18-81.68-77.68l-4.69-8.27,0-.05A12,12,0,0,1,54,121.61a11.88,11.88,0,0,1,6-1.6,12,12,0,0,1,10.41,6,1.76,1.76,0,0,0,.14.23l18.67,30A8,8,0,0,0,104,152V44a12,12,0,0,1,24,0v68a8,8,0,0,0,16,0V100a12,12,0,0,1,24,0v20a8,8,0,0,0,16,0v-4a12,12,0,0,1,24,0Z' fill='%23000'/%3E%3C/g%3E%3C/svg%3E") 11 2;
+}
+
+@layer base {
+  html {
+    cursor: var(--cursor-arrow), auto;
+  }
+
+  a,
+  button,
+  summary,
+  select,
+  label[for],
+  [role="button"] {
+    cursor: var(--cursor-hand), pointer;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
+  }
+}
+
+/* The arrow on something that is technically a button but should not look
+   clickable (the stack section's tool chips). */
+@utility cursor-arrow {
+  cursor: var(--cursor-arrow), auto;
+}
