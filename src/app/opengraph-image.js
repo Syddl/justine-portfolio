@@ -25,7 +25,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", color: "#7c8794", fontSize: 30, marginBottom: 18 }}>
-          {"// ai full-stack engineer · philippines"}
+          {"ai full-stack engineer · philippines"}
         </div>
         <div
           style={{
