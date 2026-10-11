@@ -27,35 +27,21 @@ const Str = ({ children }) => (
   <span className="text-accent">&quot;{children}&quot;</span>
 );
 
-// Arrays print two items per line, as the original card did, so the block
-// never needs to scroll sideways inside its 18rem column.
-const rowsOf = (items, size) =>
-  items.reduce((rows, item, i) => {
-    if (i % size === 0) rows.push([]);
-    rows[rows.length - 1].push(item);
-    return rows;
-  }, []);
+// Arrays print on one line. The card spans the 640px column, where the
+// longest line fits; on phones the <pre> wraps instead of scrolling, so the
+// card never slides sideways under a trackpad.
 
 const Value = ({ value }) => {
   if (Array.isArray(value)) {
-    const last = value.length - 1;
     return (
       <>
         <Punct>[</Punct>
-        {"\n"}
-        {rowsOf(value, 2).map((row, r) => (
-          <span key={row.join()}>
-            {"    "}
-            {row.map((item, i) => (
-              <span key={item}>
-                <Str>{item}</Str>
-                {r * 2 + i < last && <Punct>, </Punct>}
-              </span>
-            ))}
-            {"\n"}
+        {value.map((item, i) => (
+          <span key={item}>
+            <Str>{item}</Str>
+            {i < value.length - 1 && <Punct>, </Punct>}
           </span>
         ))}
-        {"  "}
         <Punct>]</Punct>
       </>
     );
@@ -77,7 +63,7 @@ const DeveloperCard = () => {
       </div>
 
       <pre
-        className="font-mono text-xs leading-relaxed overflow-x-auto"
+        className="font-mono text-xs leading-relaxed whitespace-pre-wrap sm:whitespace-pre"
       >
         <code>
           <span className="text-muted">const</span>{" "}
