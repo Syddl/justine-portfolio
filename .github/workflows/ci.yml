@@ -29,6 +29,9 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Guard fixture checks
+        run: npm run check:hooks
+
       - name: Build
         run: npm run build
         env:
