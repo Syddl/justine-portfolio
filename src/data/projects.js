@@ -1,7 +1,10 @@
 // Each project doubles as a case study at /projects/[slug].
-// Card fields: name, summary, stack (exact names from src/data/stackdata.js),
-//   image, gradientStyle, live, github
-//   (omit `live` or `github` to hide that link - e.g. private repos).
+// Row fields (home "Selected work" and /projects): name, summary, kind
+//   (short tag on the right, required, at most 24 characters), image,
+//   gradientStyle (used when there is no image).
+// Case-study fields also include stack (exact names from
+//   src/data/stackdata.js), live and github (omit either to hide that link,
+//   e.g. private repos).
 // Case-study fields: slug, tagline, problem, solution (paragraphs),
 //   outcomes (truthful, qualitative), results ({metric,label} - verifiable
 //   numbers only, [] until you have them), screenshots, role, timeline,

@@ -97,14 +97,14 @@ export default function ContactView() {
   };
 
   return (
-    <main className="flex-grow mx-auto max-w-col w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
+    <main className="flex-grow mx-auto max-w-col w-full px-6 pt-8 pb-24 lg:pt-12">
       {/* Intro - indexable copy, not just a form. The timezone line replaces
           the old "my mornings overlap with US evenings" sentence with the
           visitor's own numbers. */}
       <motion.div
-        initial={{ y: 20, opacity: 0 }}
+        initial={{ y: 14, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
         className="mb-10"
       >
         <h1 className="text-[2.125rem] font-medium tracking-[-0.02em] leading-tight text-ink mb-3">
@@ -132,7 +132,6 @@ export default function ContactView() {
           <button
             type="button"
             onClick={copyEmail}
-            aria-label="Copy email address"
             className={rowClass}
           >
             <span className={iconTile}>

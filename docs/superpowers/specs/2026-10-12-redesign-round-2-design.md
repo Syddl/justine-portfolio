@@ -1,7 +1,7 @@
 # Redesign round 2: Design Spec
 
 **Date:** 2026-10-12
-**Status:** Approved by Justine in chat (About text, cursor A, layout and page changes)
+**Status:** Approved by Justine in chat (About text, macOS-style cursor, layout and page changes)
 **Branch:** `feat/redesign-feel` (same branch as round 1, not yet pushed)
 **Builds on:** `2026-10-11-redesign-feel-design.md`. Everything there stands
 unless changed below. The mascot is still a separate, later spec.
@@ -11,7 +11,7 @@ unless changed below. The mascot is still a separate, later spec.
 Six follow-ups after Justine looked at round 1: a personal About with a
 better-proportioned code card, real hackathon placements, three more stack
 items, a /projects page and site-wide pages built from the same parts, no
-`//` eyebrows, and a pixel cursor.
+`//` eyebrows, and a macOS-style cursor.
 
 ## 1. About section
 

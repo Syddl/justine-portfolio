@@ -9,10 +9,8 @@ import Image from "next/image";
 // small cover, the name and summary, and the project's kind on the right
 // (under the summary on phones). The whole row opens the case study; the
 // live demo and code links live there.
-// headingLevel: "h3" under a section h2.
-const ProjectCard = ({ project, variants, headingLevel = "h3" }) => {
-  const Heading = headingLevel;
-
+// The name is an h3: every list of rows sits under a section h2.
+const ProjectCard = ({ project, variants }) => {
   return (
     <motion.div variants={variants}>
       <Link
@@ -35,7 +33,7 @@ const ProjectCard = ({ project, variants, headingLevel = "h3" }) => {
         </div>
 
         <div className="min-w-0 flex-1">
-          <Heading className="font-medium text-ink">{project.name}</Heading>
+          <h3 className="font-medium text-ink">{project.name}</h3>
           <p className="text-sm leading-snug text-muted">{project.summary}</p>
           <p className="mt-1 text-xs text-muted sm:hidden">{project.kind}</p>
         </div>
