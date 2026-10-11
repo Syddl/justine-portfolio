@@ -11,4 +11,6 @@ export const email = "justinecuevas19@gmail.com";
 export const githubHandle = "Syddl";
 export const github = `https://github.com/${githubHandle}`;
 export const linkedin = "https://www.linkedin.com/in/justinejudecuevas";
+// Served from public/. Replace the file to update the resume; the name stays.
+export const resumeUrl = "/Justine_Jude_Cuevas_Resume.pdf";
 export const personId = `${siteUrl}/#person`;
