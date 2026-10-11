@@ -39,13 +39,18 @@ competition; "AI", not "RAG". This supersedes the Sept 11 rule "About
 mentions no past job or school": graphic design and school are now in, at
 Justine's request.
 
-Layout: the side-by-side grid goes. Paragraphs take the full 640px column;
-the `const developer = {...}` card sits below at full width.
+Layout (revised 2026-10-12 after Justine saw the stacked version: "the side
+is better"): the card stays beside the text on md and up, under it on
+phones.
 
-- Arrays print on one line (`ai: ["Claude Code", "Claude API", ...]`). At
-  sm and up the longest line fits; below sm the `<pre>` wraps
-  (`whitespace-pre-wrap sm:whitespace-pre`) instead of scrolling, so the
-  card never slides sideways on a trackpad. `overflow-x-auto` is removed.
+- Grid `md:grid-cols-[minmax(0,1fr)_18rem]`, `items-start`: a fixed 18rem
+  card track so the code never clips.
+- The card is `md:sticky md:top-24`, so it stays in view beside the longer
+  text column instead of floating loose in the middle of it.
+- Arrays print two items per line (they fit 18rem). The `<pre>` is
+  `whitespace-pre-wrap` with no `overflow-x-auto`: on a very narrow phone a
+  long line wraps instead of scrolling, so the card never slides sideways
+  under a trackpad.
 - The idle float keeps its vertical bob (8px) but loses its rotation; the
   pointer tilt drops from 9 to 3 degrees.
 
