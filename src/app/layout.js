@@ -6,6 +6,7 @@ import MouseHoverEffect from "@/component/MouseHoverEffect";
 import MotionProvider from "@/component/motion/MotionProvider";
 import SiteHeader from "@/component/SiteHeader";
 import { themeScript } from "@/lib/theme";
+import { introScript } from "@/lib/dither";
 import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -128,6 +129,10 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="bg-bg text-body font-sans antialiased w-full min-h-screen flex flex-col">
+        {/* First-load pixel dissolve: the script right after the canvas paints
+            and dissolves it while the HTML is still parsing, before React. */}
+        <canvas className="dither-cover" aria-hidden="true" suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

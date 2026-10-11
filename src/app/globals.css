@@ -102,29 +102,6 @@
   }
 }
 
-/* Server-rendered page entrance - replaces the framer-motion page wrapper so
-   the hero paints before hydration (LCP) while keeping the same feel. */
-@keyframes page-enter {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page-enter {
-  animation: page-enter 0.7s ease-out both;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-enter {
-    animation: none;
-  }
-}
-
 /* Entrance for the stack section's caption: a keyed span remounts when the
    hovered tool changes, so the new text is there immediately and only fades
    in. No JavaScript animation, nothing to wait for. */
@@ -221,4 +198,48 @@
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+/* First-load cover (layout.js runs introScript from src/lib/dither.js right
+   after it). The script sizes, paints and dissolves the canvas; this rule
+   places it and, as a failsafe, hides it after 2s whatever the script did. */
+.dither-cover {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+  pointer-events: none;
+  image-rendering: pixelated;
+  animation: dither-failsafe 0s linear 2s forwards;
+}
+
+@keyframes dither-failsafe {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Above-the-fold entrance: blocks rise 14px and settle. Stagger them with
+   style={{ "--i": n }}. Below the fold, Reveal does the same on scroll. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.56s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dither-cover {
+    display: none;
+  }
+
+  .rise-in {
+    animation: none;
+  }
 }
