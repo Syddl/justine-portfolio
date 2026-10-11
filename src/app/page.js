@@ -10,8 +10,8 @@ import { pageMetadata } from "@/lib/seo";
 import { personId } from "@/lib/site";
 
 // Server component on purpose: the hero (and the full name in it) must be in
-// the initial HTML, not gated behind hydration. The entrance animation is the
-// CSS `.page-enter` keyframe; framer-motion stays in below-fold sections.
+// the initial HTML, not gated behind hydration. The hero's entrance is the
+// CSS `.rise-in` keyframe; framer-motion stays in below-fold sections.
 // The GitHub calendar closes the page, after Selected work.
 export const metadata = pageMetadata({
   title: "Justine Jude Cuevas | AI Full-Stack Engineer",
@@ -32,7 +32,7 @@ const profilePageJsonLd = {
 
 export default function Home() {
   return (
-    <main className="page-enter flex-grow mx-auto max-w-3xl w-full p-6 pb-6 pt-5 sm:px-6 lg:pt-15 mb-10">
+    <main className="flex-grow mx-auto max-w-col w-full px-6 pt-10 pb-6 lg:pt-16 mb-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}

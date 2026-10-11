@@ -1,19 +1,31 @@
 "use client";
 
-import { BiLogoGmail } from "react-icons/bi";
-import { FaSquareGithub } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FiSend, FiCheck } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiCheck,
+  FiCopy,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiSend,
+} from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
-import { inter } from "@/app/fonts";
 import TimezoneLine from "@/component/TimezoneLine";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
-import { email, github, linkedin } from "@/lib/site";
+import { email, github, githubHandle, linkedin } from "@/lib/site";
+import SectionHeading from "@/component/SectionHeading";
 
 const container = staggerContainer(0.1, 0.1);
 const cardItem = fadeInUp(20, 0.4);
+
+// One row style for every contact link, matching the project rows.
+const rowClass =
+  "group -mx-3 flex w-full items-center gap-4 rounded-card px-3 py-3.5 text-left transition-colors duration-150 hover:bg-hover";
+const iconTile =
+  "grid size-9 shrink-0 place-items-center rounded-card border border-line-strong bg-surface text-ink-2";
+const linkedinHandle = linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\//, "");
 
 export default function ContactView() {
   const [formData, setFormData] = useState({
@@ -85,20 +97,20 @@ export default function ContactView() {
   };
 
   return (
-    <main className="flex-grow mx-auto max-w-3xl w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
+    <main className="flex-grow mx-auto max-w-col w-full px-6 pt-8 pb-24 lg:pt-12">
       {/* Intro - indexable copy, not just a form. The timezone line replaces
           the old "my mornings overlap with US evenings" sentence with the
           visitor's own numbers. */}
       <motion.div
-        initial={{ y: 20, opacity: 0 }}
+        initial={{ y: 14, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`${inter.className} mb-10`}
+        transition={{ duration: 0.56, ease: [0.22, 1, 0.36, 1] }}
+        className="mb-10"
       >
-        <h1 className="text-gray-100 text-3xl font-bold mb-3">
+        <h1 className="text-[2.125rem] font-medium tracking-[-0.02em] leading-tight text-ink mb-3">
           Let&apos;s build something for your business
         </h1>
-        <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl mb-4">
+        <p className="text-body text-[15px] leading-relaxed max-w-xl mb-4">
           I&apos;m an AI full-stack engineer in the Philippines, available for
           full-time remote roles and freelance projects worldwide. Describe your project in a couple of
           sentences and I&apos;ll reply within 24 hours with an honest read on
@@ -107,79 +119,73 @@ export default function ContactView() {
         <TimezoneLine />
       </motion.div>
 
-      {/* Social links, laid out as an inverted triangle: email + LinkedIn on
-          top, GitHub centered beneath them at the same card width. */}
-      <motion.div
+      {/* Where to reach me, as rows like the rest of the site. The email row
+          copies the address (falling back to the mail app); the others open
+          in a new tab. */}
+      <motion.ul
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-2 gap-3 mb-12"
+        className="mb-14 border-t border-line divide-y divide-line"
       >
-        <motion.button
-          type="button"
-          variants={cardItem}
-          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          onClick={copyEmail}
-          aria-label="Copy email address"
-          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
-            border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer"
-        >
-          {copied ? (
-            <FiCheck className="text-5xl text-green-500" />
-          ) : (
-            <BiLogoGmail className="text-5xl text-neutral-200" />
-          )}
-          <span
-            className={`${inter.className} flex flex-col items-center gap-1`}
+        <motion.li variants={cardItem}>
+          <button
+            type="button"
+            onClick={copyEmail}
+            className={rowClass}
           >
-            <span className="text-xs text-neutral-400 break-all px-2">
-              {email}
+            <span className={iconTile}>
+              <FiMail className="size-4" aria-hidden="true" />
             </span>
-            <span className="text-[11px] text-neutral-600">
-              {copied ? "Copied" : "Click to copy"}
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-ink">Email</span>
+              <span className="block truncate text-sm text-muted">{email}</span>
             </span>
-          </span>
-        </motion.button>
+            <span className="text-sm text-muted">{copied ? "Copied" : "Copy"}</span>
+            {copied ? (
+              <FiCheck className="size-4 text-accent" aria-hidden="true" />
+            ) : (
+              <FiCopy className="size-4 text-faint group-hover:text-ink" aria-hidden="true" />
+            )}
+          </button>
+        </motion.li>
 
-        <motion.a
-          variants={cardItem}
-          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit LinkedIn profile"
-          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
-            border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer"
-        >
-          <FaLinkedin className="text-5xl text-neutral-200" />
-          <span className={`${inter.className} text-xs text-neutral-400`}>
-            LinkedIn
-          </span>
-        </motion.a>
+        <motion.li variants={cardItem}>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={rowClass}
+          >
+            <span className={iconTile}>
+              <FiLinkedin className="size-4" aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-ink">LinkedIn</span>
+              <span className="block truncate text-sm text-muted">{linkedinHandle}</span>
+            </span>
+            <FiArrowUpRight className="size-4 text-faint group-hover:text-ink" aria-hidden="true" />
+          </a>
+        </motion.li>
 
-        <motion.a
-          variants={cardItem}
-          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit GitHub profile"
-          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
-            border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer
-            col-span-2 justify-self-center w-[calc(50%-0.375rem)]"
-        >
-          <FaSquareGithub className="text-5xl text-neutral-200" />
-          <span className={`${inter.className} text-xs text-neutral-400`}>
-            @Syddl
-          </span>
-        </motion.a>
-      </motion.div>
+        <motion.li variants={cardItem}>
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={rowClass}
+          >
+            <span className={iconTile}>
+              <FiGithub className="size-4" aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-ink">GitHub</span>
+              <span className="block truncate text-sm text-muted">@{githubHandle}</span>
+            </span>
+            <FiArrowUpRight className="size-4 text-faint group-hover:text-ink" aria-hidden="true" />
+          </a>
+        </motion.li>
+      </motion.ul>
 
       {/* Contact form */}
       <motion.div
@@ -187,25 +193,25 @@ export default function ContactView() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className={`${inter.className} mb-6`}>
-          <h2 className="text-gray-100 text-xl font-bold mb-1">
-            Send a message
-          </h2>
-          <p className="text-neutral-400 text-sm">
-            A rough idea is enough. &quot;We track this in a spreadsheet and
-            it&apos;s breaking&quot; is a perfectly good first message.
-          </p>
-        </div>
+        <SectionHeading
+          title="Send a message"
+          lede={
+            <>
+              A rough idea is enough. &quot;We track this in a spreadsheet and
+              it&apos;s breaking&quot; is a perfectly good first message.
+            </>
+          }
+        />
 
         <form
           onSubmit={handleSubmit}
-          className={`${inter.className} text-gray-100`}
+          className="text-ink"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="flex flex-col gap-1.5">
               <label
                 htmlFor="name"
-                className="text-sm font-medium text-neutral-300"
+                className="text-sm font-medium text-ink-2"
               >
                 Name
               </label>
@@ -216,9 +222,9 @@ export default function ContactView() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your name"
-                className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
-                  text-neutral-100 placeholder-neutral-500
-                  focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                className="bg-surface border border-line-strong rounded-card px-4 py-2.5 text-sm
+                  text-ink placeholder:text-muted
+                  focus:outline-none focus:border-muted focus:ring-1 focus:ring-muted/30
                   transition-all duration-200"
                 required
               />
@@ -226,7 +232,7 @@ export default function ContactView() {
             <div className="flex flex-col gap-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-neutral-300"
+                className="text-sm font-medium text-ink-2"
               >
                 Email
               </label>
@@ -237,9 +243,9 @@ export default function ContactView() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your email"
-                className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
-                  text-neutral-100 placeholder-neutral-500
-                  focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                className="bg-surface border border-line-strong rounded-card px-4 py-2.5 text-sm
+                  text-ink placeholder:text-muted
+                  focus:outline-none focus:border-muted focus:ring-1 focus:ring-muted/30
                   transition-all duration-200"
                 required
               />
@@ -249,7 +255,7 @@ export default function ContactView() {
           <div className="flex flex-col gap-1.5 mb-6">
             <label
               htmlFor="message"
-              className="text-sm font-medium text-neutral-300"
+              className="text-sm font-medium text-ink-2"
             >
               Message
             </label>
@@ -260,27 +266,18 @@ export default function ContactView() {
               onChange={handleChange}
               placeholder="What are you trying to build or replace?"
               rows={5}
-              className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
-                text-neutral-100 placeholder-neutral-500 resize-none
-                focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+              className="bg-surface border border-line-strong rounded-card px-4 py-2.5 text-sm
+                text-ink placeholder:text-muted resize-none
+                focus:outline-none focus:border-muted focus:ring-1 focus:ring-muted/30
                 transition-all duration-200"
               required
             />
           </div>
 
-          <motion.button
-            type="submit"
-            disabled={loading}
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg
-              bg-neutral-100 text-neutral-900 font-medium text-sm
-              hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed
-              transition-colors duration-200"
-          >
+          <button type="submit" disabled={loading} className="pill">
             <FiSend className="w-4 h-4" />
             {loading ? "Sending..." : "Send Message"}
-          </motion.button>
+          </button>
         </form>
       </motion.div>
     </main>

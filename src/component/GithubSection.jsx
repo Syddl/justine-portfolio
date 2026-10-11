@@ -1,5 +1,4 @@
 import { FiArrowUpRight } from "react-icons/fi";
-import { jetbrainsMono } from "@/app/fonts";
 import { github, githubHandle } from "@/lib/site";
 import { calendarRows, describeDay, fetchContributions } from "@/lib/github";
 import Reveal from "@/component/motion/Reveal";
@@ -11,11 +10,11 @@ import SectionHeading from "@/component/SectionHeading";
 // stays aligned.
 const GLYPHS = ["·", ":", "=", "*", "#"];
 const LEVEL_CLASS = [
-  "text-neutral-700",
-  "text-amber-300/40",
-  "text-amber-300/60",
-  "text-amber-300/80",
-  "text-amber-300",
+  "text-faint",
+  "text-accent/40",
+  "text-accent/60",
+  "text-accent/80",
+  "text-accent",
 ];
 
 // Async server component: the calendar is fetched at build time and
@@ -31,14 +30,13 @@ export default async function GithubSection() {
   return (
     <Reveal className="mb-16">
       <SectionHeading
-        eyebrow="github"
         title="GitHub"
         action={
           <a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${jetbrainsMono.className} inline-flex items-center gap-1 text-sm text-neutral-400 hover:text-gray-100 transition-colors whitespace-nowrap`}
+            className="font-mono inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors whitespace-nowrap"
           >
             @{githubHandle}
             <FiArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -46,8 +44,8 @@ export default async function GithubSection() {
         }
       />
 
-      <p className={`${jetbrainsMono.className} text-sm text-neutral-400 mb-4`}>
-        <span className="text-gray-100">{total}</span> contributions in the
+      <p className="font-mono text-sm text-muted mb-4">
+        <span className="text-ink">{total}</span> contributions in the
         last year
       </p>
 
@@ -61,7 +59,7 @@ export default async function GithubSection() {
           dir="ltr"
           role="img"
           aria-label={`GitHub contribution calendar: ${total} contributions in the last year`}
-          className={`${jetbrainsMono.className} w-max text-sm leading-none tracking-[0.35em]`}
+          className="font-mono w-max text-sm leading-none tracking-[0.35em]"
         >
           {rows.map((row, weekday) => (
             <span key={weekday} className="block">

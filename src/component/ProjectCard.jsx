@@ -1,109 +1,81 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
-import { inter } from "@/app/fonts";
 
-// The one project card, used by the home page and /projects. Case study is
-// the primary action; live demo and code are secondary.
-// headingLevel: "h3" under a section h2 (home), "h2" directly under a page h1.
-const ProjectCard = ({ project, variants, headingLevel = "h3" }) => {
-  const Heading = headingLevel;
+const ROW = "group -mx-3 flex items-center gap-4 rounded-card px-3 py-4";
+const LINK_ROW = `${ROW} transition-colors duration-150 hover:bg-hover`;
+const THUMB = "relative h-10 w-14 shrink-0 overflow-hidden rounded-md border bg-hover";
+const SHIPPED_THUMB = `${THUMB} border-line`;
+const UPCOMING_THUMB = `${THUMB} grid place-items-center border-dashed border-line-strong`;
 
-  return (
-    <motion.div
-      variants={variants}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="group relative rounded-2xl border border-white/[0.06] hover:border-white/[0.12] bg-[#111113] overflow-hidden transition-colors duration-300"
-    >
-      {project.image ? (
-        <div className="relative h-44 overflow-hidden border-b border-white/[0.04]">
+// One project as a row, used by the home page and /projects: a small cover,
+// the name and summary, and the project's kind on the right (under the
+// summary on phones). A shipped project's whole row opens its case study,
+// where the live demo and code links live. An upcoming project (no slug, see
+// upcomingProjects in src/data/projects.js) is the same row without a link
+// or arrow: a dashed cover with its initial and a "Coming soon" pill.
+// The name is an h3: every list of rows sits under a section h2.
+const ProjectCard = ({ project, variants }) => {
+  const upcoming = !project.slug;
+
+  const content = (
+    <>
+      <div
+        className={upcoming ? UPCOMING_THUMB : SHIPPED_THUMB}
+        style={project.image ? undefined : { background: project.gradientStyle }}
+      >
+        {project.image && (
           <Image
             src={project.image}
-            alt={`${project.name} landing page`}
+            alt=""
             fill
-            sizes="(max-width: 768px) 100vw, 350px"
-            className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+            sizes="56px"
+            className="object-cover object-top"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111113] via-transparent to-transparent opacity-40" />
-        </div>
-      ) : (
-        <div
-          className="h-44 relative overflow-hidden border-b border-white/[0.04]"
-          style={{ background: project.gradientStyle }}
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
-              backgroundSize: "20px 20px",
-              opacity: 0.04,
-            }}
-          />
-          <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-white/[0.03] blur-2xl" />
-        </div>
-      )}
-
-      <div className="p-5">
-        <Heading
-          className={`${inter.className} text-lg font-semibold text-neutral-100 mb-2`}
-        >
-          {project.name}
-        </Heading>
-
-        <p
-          className={`${inter.className} text-sm text-neutral-400 leading-relaxed mb-4`}
-        >
-          {project.summary}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.stack.map((tech) => (
-            <span
-              key={tech}
-              className={`${inter.className} text-xs px-2.5 py-1 rounded-full border border-white/[0.08] bg-white/[0.04] text-neutral-400`}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-4 flex-wrap">
-          <Link
-            href={`/projects/${project.slug}`}
-            className={`${inter.className} group/case inline-flex items-center gap-1.5 text-sm text-neutral-200 hover:text-white transition-colors`}
-          >
-            Read case study
-            <FiArrowRight className="w-3.5 h-3.5 group-hover/case:translate-x-1 transition-transform" />
-          </Link>
-          {project.live && (
-            <Link
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
-            >
-              <FiExternalLink className="w-3.5 h-3.5" />
-              Live Demo
-            </Link>
-          )}
-          {project.github && (
-            <Link
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${inter.className} inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-neutral-100 transition-colors`}
-            >
-              <FiGithub className="w-3.5 h-3.5" />
-              Code
-            </Link>
-          )}
-        </div>
+        )}
+        {upcoming && (
+          <span className="font-mono text-xs text-muted" aria-hidden="true">
+            {project.name.charAt(0)}
+          </span>
+        )}
       </div>
+
+      <div className="min-w-0 flex-1">
+        <h3 className="font-medium text-ink">{project.name}</h3>
+        <p className="text-sm leading-snug text-muted">{project.summary}</p>
+        <p className="mt-1 text-xs text-muted sm:hidden">{project.kind}</p>
+      </div>
+
+      {upcoming ? (
+        <span className="hidden shrink-0 rounded-full border border-line-strong px-2.5 py-0.5 text-xs text-muted sm:block">
+          {project.kind}
+        </span>
+      ) : (
+        <>
+          <span className="hidden shrink-0 text-sm text-muted sm:block">
+            {project.kind}
+          </span>
+          <FiArrowRight
+            className="size-4 shrink-0 text-faint transition-[color,transform] duration-150 group-hover:translate-x-0.5 group-hover:text-ink"
+            aria-hidden="true"
+          />
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <motion.div variants={variants}>
+      {upcoming ? (
+        <div className={ROW}>{content}</div>
+      ) : (
+        <Link href={`/projects/${project.slug}`} className={LINK_ROW}>
+          {content}
+        </Link>
+      )}
     </motion.div>
   );
 };

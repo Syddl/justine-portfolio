@@ -6,7 +6,7 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-moti
 // pointer is from it, the more the card leans away, like a plate balanced on
 // a finger. The spring is deliberately under-damped so it settles with a
 // little weight instead of snapping.
-const MAX_TILT = 9;
+const MAX_TILT = 3;
 const SPRING = { stiffness: 140, damping: 16, mass: 0.9 };
 
 // Pointer-driven 3D tilt for a card. Only the transform changes, so the

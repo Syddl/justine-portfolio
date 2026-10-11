@@ -1,75 +1,96 @@
-import { FiGithub, FiLinkedin, FiMapPin } from "react-icons/fi";
-import { inter, jetbrainsMono } from "@/app/fonts";
+import Image from "next/image";
+import { FiFileText, FiGithub, FiLinkedin, FiMapPin } from "react-icons/fi";
 import { availability } from "@/data/availability";
-import { github, linkedin } from "@/lib/site";
+import { github, linkedin, resumeUrl } from "@/lib/site";
 
-// Server component on purpose: the name lands in the initial HTML. This is
-// the personal version of the hero: who, what, where. The pitch lives in the
-// projects and case studies, not here.
+// Server component on purpose: the name lands in the initial HTML. Who,
+// what, where: photo, name and role with the resume beside them, then the
+// tagline as the headline. The three blocks rise in 60ms apart (.rise-in in
+// globals.css) while the first-load dissolve clears.
 const HeroSection = () => {
   return (
-    <section className="flex flex-col items-start text-[#A8ADB2] mb-20">
-      <p className={`${jetbrainsMono.className} mb-3`}>Hello, my name is</p>
-
-      <h1
-        className={`${inter.className} text-5xl font-extrabold md:text-6xl flex flex-col mb-5`}
+    <section className="mb-20">
+      {/* Phones: photo on the left of name and role, resume pill under
+          them. sm and up: one row, pill on the right. */}
+      <div
+        className="rise-in grid grid-cols-[auto_1fr] items-center gap-x-4 gap-y-3 sm:grid-cols-[auto_1fr_auto]"
+        style={{ "--i": 0 }}
       >
-        <span className="text-gray-100">Justine</span>
-        <span>AI Full-Stack</span>
-        <span>Engineer</span>
-      </h1>
-
-      <p className={`${jetbrainsMono.className} mb-5`}>
-        I build LLM-powered products end to end, and the agent tooling I build them with.
-      </p>
-
-      <div className="flex gap-3 items-center mb-5 flex-wrap">
-        {availability.open ? (
-          <div className="flex items-center bg-green-600/20 rounded-2xl py-1 px-3 gap-1.5">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-            </span>
-            <span
-              className={`${inter.className} text-green-600 font-bold text-sm`}
-            >
-              {availability.note}
-            </span>
-          </div>
-        ) : (
-          <div className="flex items-center bg-neutral-700/30 rounded-2xl py-1 px-3">
-            <span
-              className={`${inter.className} text-neutral-400 font-bold text-sm`}
-            >
-              Currently booked
-            </span>
-          </div>
-        )}
-        <span
-          className={`${jetbrainsMono.className} inline-flex items-center gap-1.5 text-sm text-neutral-400`}
+        <Image
+          src="/justine.jpg"
+          alt=""
+          width={80}
+          height={80}
+          loading="eager"
+          className="row-span-2 size-16 rounded-full object-cover sm:row-span-1 sm:size-20"
+        />
+        <div>
+          <h1 className="text-[22px] font-semibold leading-tight text-ink">
+            Justine Jude Cuevas
+          </h1>
+          <p className="text-[17px] text-muted">AI Full-Stack Engineer</p>
+        </div>
+        <a
+          href={resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pill col-start-2 justify-self-start sm:col-start-3"
         >
-          <FiMapPin className="w-3.5 h-3.5 text-neutral-500" aria-hidden="true" />
-          Philippines
-        </span>
+          <FiFileText className="size-4" aria-hidden="true" />
+          Resume
+        </a>
       </div>
 
-      <div className="flex items-center gap-3">
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub profile"
-        >
-          <FiGithub className="text-2xl hover:text-gray-100 transition-colors" />
-        </a>
-        <a
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn profile"
-        >
-          <FiLinkedin className="text-2xl hover:text-gray-100 transition-colors" />
-        </a>
+      <p
+        className="rise-in mt-8 text-[1.75rem] font-medium leading-[1.25] tracking-[-0.02em] text-ink sm:text-[2.125rem]"
+        style={{ "--i": 1 }}
+      >
+        I build LLM-powered products end to end, and the{" "}
+        <em className="font-serif font-normal italic">agent tooling</em> I
+        build them with.
+      </p>
+
+      <div
+        className="rise-in mt-8 flex flex-wrap items-center gap-x-4 gap-y-3"
+        style={{ "--i": 2 }}
+      >
+        {availability.open ? (
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-accent" />
+            </span>
+            {availability.note}
+          </span>
+        ) : (
+          <span className="inline-flex items-center rounded-full bg-hover px-3 py-1 text-sm font-medium text-muted">
+            Currently booked
+          </span>
+        )}
+        <span className="inline-flex items-center gap-1.5 text-sm text-muted">
+          <FiMapPin className="size-3.5" aria-hidden="true" />
+          Philippines
+        </span>
+        <span className="flex items-center gap-3 text-muted">
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            className="transition-colors hover:text-ink"
+          >
+            <FiGithub className="size-5" />
+          </a>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            className="transition-colors hover:text-ink"
+          >
+            <FiLinkedin className="size-5" />
+          </a>
+        </span>
       </div>
     </section>
   );

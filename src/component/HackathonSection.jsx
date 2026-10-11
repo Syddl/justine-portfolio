@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { inter, jetbrainsMono } from "@/app/fonts";
 import { hackathons } from "@/data/hackathons";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import Reveal from "@/component/motion/Reveal";
@@ -17,7 +16,6 @@ const HackathonSection = () => {
   return (
     <Reveal className="mb-16">
       <SectionHeading
-        eyebrow="hackathons"
         title="Hackathons & competitions"
         lede="Where I find out how much of a working product I can get to under a deadline."
       />
@@ -27,31 +25,31 @@ const HackathonSection = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-60px" }}
-        className="border-t border-neutral-800 divide-y divide-neutral-800"
+        className="divide-y divide-line"
       >
         {hackathons.map((item) => (
           <motion.li
             key={item.event}
             variants={rowVariant}
-            className="py-5 grid gap-1.5 sm:grid-cols-[7.5rem_1fr] sm:gap-6"
+            className="py-5 grid gap-1.5 sm:grid-cols-[11rem_1fr] sm:gap-6"
           >
             <span
-              className={`${jetbrainsMono.className} uppercase tracking-wider pt-0.5 ${
+              className={`font-mono uppercase tracking-wider pt-0.5 ${
                 item.highlight
-                  ? "text-xs font-semibold text-amber-300"
-                  : "text-[11px] text-neutral-500"
+                  ? "text-xs font-semibold text-accent"
+                  : "text-[11px] text-muted"
               }`}
             >
               {item.tag}
             </span>
 
             <div>
-              <h3 className={`${inter.className} text-gray-100 font-medium`}>
+              <h3 className="text-ink font-medium">
                 {item.event}
-                <span className="text-neutral-500 font-normal"> · {item.org}</span>
+                <span className="text-muted font-normal"> · {item.org}</span>
               </h3>
               <p
-                className={`${inter.className} text-sm text-neutral-400 leading-relaxed mt-1.5`}
+                className="text-sm text-body leading-relaxed mt-1.5"
               >
                 {item.description}
               </p>

@@ -3,10 +3,10 @@
 // `tag` is the one scannable fact about each entry: a placement where there
 // was one, otherwise the format of the event. It never implies a placement
 // that wasn't earned. Set `highlight: true` only for an actual result, which
-// is what turns the tag amber.
+// is what turns the tag green.
 export const hackathons = [
   {
-    tag: "Finalist",
+    tag: "Top 5 finalist",
     highlight: true,
     event: "PropTech Hackathon",
     org: "Filipino Homes",
@@ -14,7 +14,8 @@ export const hackathons = [
       "Built a web-based real-estate management prototype, designed around accessibility and getting agents through their work faster.",
   },
   {
-    tag: "24h build",
+    tag: "Top 10 · Mindanao leg",
+    highlight: true,
     event: "Byte Forward Hackathon",
     org: "Converge ICT",
     description:

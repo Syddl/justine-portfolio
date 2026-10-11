@@ -1,7 +1,10 @@
 // Each project doubles as a case study at /projects/[slug].
-// Card fields: name, summary, stack (exact names from src/data/stackdata.js),
-//   image, gradientStyle, live, github
-//   (omit `live` or `github` to hide that link - e.g. private repos).
+// Row fields (home "Selected work" and /projects): name, summary, kind
+//   (short tag on the right, required, at most 24 characters), image,
+//   gradientStyle (used when there is no image).
+// Case-study fields also include stack (exact names from
+//   src/data/stackdata.js), live and github (omit either to hide that link,
+//   e.g. private repos).
 // Case-study fields: slug, tagline, problem, solution (paragraphs),
 //   outcomes (truthful, qualitative), results ({metric,label} - verifiable
 //   numbers only, [] until you have them), screenshots, role, timeline,
@@ -11,6 +14,7 @@ export const projects = [
   {
     name: "CooPilot",
     slug: "coopilot",
+    kind: "ML thesis · team of 4",
     seoTitle: "CooPilot: IoT Poultry Monitoring with FastAPI, React, Expo and Raspberry Pi",
     seoDescription:
       "Case study: CooPilot, a thesis system that monitors free-range poultry coops with Raspberry Pi sensors, alerts farmers on their phones and serves an LSTM egg forecast.",
@@ -67,6 +71,7 @@ export const projects = [
   {
     name: "QuizyLite",
     slug: "quizylite",
+    kind: "Personal product",
     seoTitle: "QuizyLite: PDF Study Tool Built with Next.js, Express & MongoDB",
     seoDescription:
       "Case study: how I built QuizyLite, a PDF study tool that turns highlights into source-linked recall cards, using Next.js, TypeScript, Express, MongoDB and Firebase Auth.",
@@ -107,5 +112,18 @@ export const projects = [
     image: "/quizylite/quizylite.png",
     gradientStyle:
       "linear-gradient(135deg, rgba(124,58,237,0.25), rgba(109,40,217,0.1), rgba(17,17,19,1))",
+  },
+];
+
+// Work in progress, listed after the shipped projects as a "Coming soon" row
+// with no link: no slug (there is no case study yet) and no stack (the stack
+// section only credits shipped work). Move an entry into `projects`, with its
+// case-study fields, once it ships. LoreOS's repo is private, so no link.
+export const upcomingProjects = [
+  {
+    name: "LoreOS",
+    kind: "Coming soon",
+    summary:
+      "Self-hostable document Q&A that answers from your own files and cites the passage each answer came from.",
   },
 ];

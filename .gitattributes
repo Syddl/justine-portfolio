@@ -1,3 +1,6 @@
+# globals.test.mjs parses this file; keep it LF on every checkout.
+src/app/globals.css text eol=lf
+
 # The harness lint compares these byte for byte with the library template.
 .claude/hooks/guard.mjs text eol=lf
 scripts/check-hooks.mjs text eol=lf

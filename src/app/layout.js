@@ -1,11 +1,13 @@
 import "./globals.css";
-import Link from "next/link";
 import { Toaster } from "sonner";
 import Script from "next/script";
-import { inter, jetbrainsMono } from "./fonts";
-import Logo from "@/component/Logo";
-import MouseHoverEffect from "@/component/MouseHoverEffect";
+import { figtree, jetbrainsMono, newsreader } from "./fonts";
+import SmoothScroll from "@/component/motion/SmoothScroll";
+import ClickBurst from "@/component/motion/ClickBurst";
 import MotionProvider from "@/component/motion/MotionProvider";
+import SiteHeader from "@/component/SiteHeader";
+import { themeScript } from "@/lib/theme";
+import { introScript } from "@/lib/dither";
 import { siteUrl, siteName, github, linkedin, email, personId } from "@/lib/site";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -118,8 +120,20 @@ export default function RootLayout({ children }) {
   const year = new Date().getFullYear();
 
   return (
-    <html lang="en">
-      <body className="bg-neutral-900 w-full min-h-screen flex flex-col">
+    <html
+      lang="en"
+      className={`${figtree.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        {/* Applies a saved theme before first paint. See src/lib/theme.js. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-bg text-body font-sans antialiased w-full min-h-screen flex flex-col">
+        {/* First-load pixel dissolve: the script right after the canvas paints
+            and dissolves it while the HTML is still parsing, before React. */}
+        <canvas className="dither-cover" aria-hidden="true" suppressHydrationWarning />
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -128,44 +142,30 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
-        <MouseHoverEffect />
+        <SmoothScroll />
+        <ClickBurst />
         {/* Grain sits above the page so the texture reaches the cards and
             screenshots, not just the background. See .grain in globals.css. */}
         <div className="grain" aria-hidden="true" />
-        {/* Header, main, and footer share one column so every left edge lines
-            up: the old half-width header only matched the content by accident
-            at ~1280px. */}
-        <header className="mx-auto max-w-3xl w-full px-6">
-          <div className="text-[#A8ADB2] flex justify-between items-center py-5">
-            <Logo />
-            <nav className={`${inter.className} flex gap-8`}>
-              <Link href="/projects" className="text-[16px] hover:text-gray-100">
-                Projects
-              </Link>
-              <Link href="/contact" className="text-[16px] hover:text-gray-100">
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader />
         <MotionProvider>{children}</MotionProvider>
         <Toaster richColors />
-        <footer className="border-t border-solid border-gray-800">
-          <div className="mx-auto max-w-3xl w-full px-6 min-h-15 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <footer className="border-t border-line">
+          <div className="mx-auto max-w-col w-full px-6 min-h-15 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <p
-              className={`${inter.className} text-sm font-semibold text-[#A8ADB2] whitespace-nowrap`}
+              className="text-sm font-medium text-muted whitespace-nowrap"
             >
               © {year} Justine Jude Cuevas
             </p>
             <nav
               aria-label="Elsewhere"
-              className={`${jetbrainsMono.className} flex items-center gap-4 text-xs text-neutral-400`}
+              className="font-mono flex items-center gap-4 text-xs text-muted"
             >
               <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-100 transition-colors"
+                className="hover:text-ink transition-colors"
               >
                 GitHub
               </a>
@@ -173,13 +173,13 @@ export default function RootLayout({ children }) {
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-100 transition-colors"
+                className="hover:text-ink transition-colors"
               >
                 LinkedIn
               </a>
               <a
                 href={`mailto:${email}`}
-                className="hover:text-gray-100 transition-colors"
+                className="hover:text-ink transition-colors"
               >
                 email
               </a>

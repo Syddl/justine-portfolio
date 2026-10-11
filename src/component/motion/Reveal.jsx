@@ -10,11 +10,11 @@ import { motion, useReducedMotion } from "framer-motion";
 // zeroes the transition: reduced-motion visitors get an instant reveal.
 // MotionProvider's reducedMotion="user" already makes the translate instant
 // site-wide; this local branch additionally skips the opacity fade, so a
-// section is simply there rather than fading in over 0.6s.
+// section is simply there rather than fading in over 0.56s.
 const Reveal = ({
   as = "section",
   className = "",
-  y = 30,
+  y = 14,
   delay = 0,
   children,
 }) => {
@@ -29,7 +29,7 @@ const Reveal = ({
       transition={
         prefersReducedMotion
           ? { duration: 0 }
-          : { duration: 0.6, ease: "easeOut", delay }
+          : { duration: 0.56, ease: [0.22, 1, 0.36, 1], delay }
       }
       className={className}
     >

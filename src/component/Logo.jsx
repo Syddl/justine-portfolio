@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { jetbrainsMono } from "@/app/fonts";
 
 // Wordmark: the "i" in ".justine" is replaced by a backslash carrying its own
 // tittle, so the letter still reads as an i while the stem slants. The
 // backslash is the escape character, and it leaves "\n" sitting inside the
 // name: a quiet joke for the developers who notice, invisible to everyone
-// else. Amber matches the string-literal accent in the hero.
+// else. Green: the site's one accent colour.
 //
 // Drawn as SVG rather than the "\" character so the stem and tittle stay
 // locked together at any size. The viewBox is 100 units per em, matching
@@ -17,13 +16,13 @@ const Logo = () => {
     <Link
       href="/"
       aria-label="Justine Jude Cuevas, home"
-      className={`${jetbrainsMono.className} group font-semibold text-lg tracking-tight text-[#A8ADB2] hover:text-gray-100 transition-colors duration-200`}
+      className="font-mono group font-semibold text-lg tracking-tight text-ink-2 hover:text-ink transition-colors duration-200"
     >
       <span aria-hidden="true">.just</span>
       <svg
         aria-hidden="true"
         viewBox="0 0 60 132"
-        className="inline-block h-[1.32em] w-[0.6em] text-amber-300 group-hover:text-amber-200 transition-colors duration-200"
+        className="inline-block h-[1.32em] w-[0.6em] text-accent"
         style={{ verticalAlign: "-0.3em" }}
         fill="none"
       >
