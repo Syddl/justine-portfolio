@@ -15,20 +15,23 @@ items, a /projects page and site-wide pages built from the same parts, no
 
 ## 1. About section
 
-Text (approved verbatim on 2026-10-12, a shortened second version so the
-text ends about level with the card; the full name stays in the first
-sentence for search):
+Text (Justine's own third version, 2026-10-12, with one grammar fix in the
+third paragraph; the full name stays in the first sentence for search):
 
-> I'm Justine Jude Cuevas. I was into video games and anything tech long
-> before I wrote code: my first job was graphic design, and on the side I
-> edited videos and made YouTube content.
+> I'm Justine Jude Cuevas. Before I started coding, I was into video games
+> and technology. I also explored graphic design, video editing,
+> photography, and other creative fields.
 >
-> Curiosity about how games and apps work behind the scenes pulled me into
-> programming, and I fell for it. These days it's school and AI, and when
-> something grabs me, I lock in until it's done.
+> Gaming sparked my curiosity about how software works, and coding became a
+> way to turn my ideas into reality. With AI, I can build those ideas faster
+> than ever.
 >
-> Next, I want to work as an AI engineer. Want to talk shop? The inbox is
-> open.
+> These days, most of my time goes to school and learning, and lately that
+> means a deep dive into AI. I can be lazy about things that don't grab me,
+> but when one does, I lock in until it's done.
+>
+> Looking ahead, I want to work as an AI engineer, building products people
+> actually use. Want to talk shop, or just say hi? The inbox is open.
 
 Rules: nothing about recent work (no employer, no day-job project); no SQL
 competition; "AI", not "RAG". This supersedes the Sept 11 rule "About
