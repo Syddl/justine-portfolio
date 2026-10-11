@@ -14,8 +14,8 @@ Personal portfolio site at www.justinecuevas.me: Next.js 16 App Router, React 19
 - Site content is data: copy, projects, experience, stack and availability live in `src/data/`; components
   only render it. Tool names match exactly across `stackdata.js`, `projects.js` and `experience.js`. See README.md.
 - `src/lib/site.js` is the one owner of the canonical URL, email and social links. See docs/seo-checklist.md.
-- The visual language is frozen: amber-300 is the only chromatic accent; no new palette, fonts or motion
-  styles. See the repetition-and-texture spec in docs/superpowers/specs/.
+- Colours come from the light/dark tokens in `src/app/globals.css`; green is the only chromatic accent;
+  fonts are Figtree, Newsreader italic and JetBrains Mono. See docs/decisions/0002-redesign-visual-language.md.
 - No fabricated proof: no invented testimonials, logos or metrics. See the client-first-portfolio spec in docs/superpowers/specs/.
 - `useReducedMotion` may change transitions only, never markup (it hydrates differently); hide decorative
   motion with CSS. Mount-only state uses `useSyncExternalStore`, as in `src/component/TimezoneLine.jsx`.
