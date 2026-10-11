@@ -1,4 +1,3 @@
-import { inter } from "@/app/fonts";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
 import DeveloperCard from "@/component/DeveloperCard";
@@ -9,11 +8,11 @@ import DeveloperCard from "@/component/DeveloperCard";
 const AboutMeSection = () => {
   return (
     <Reveal className="mb-20">
-      <SectionHeading eyebrow="about" title="About me" />
+      <SectionHeading title="About me" />
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-start md:items-center">
         <div
-          className={`${inter.className} md:col-span-3 text-[#A8ADB2] leading-relaxed space-y-4`}
+          className="md:col-span-3 text-[17px] text-body leading-relaxed space-y-4"
         >
           <p>
             I&apos;m Justine Jude Cuevas, an AI full-stack engineer. I build

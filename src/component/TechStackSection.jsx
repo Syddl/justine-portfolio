@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { inter, jetbrainsMono } from "@/app/fonts";
 import { stackGroups } from "@/data/stackdata";
 import { projects } from "@/data/projects";
 import { experience } from "@/data/experience";
@@ -27,7 +26,7 @@ const Caption = ({ active }) => {
     text = (
       <>
         used in:{" "}
-        <span className="text-amber-300">{contexts.join(" · ")}</span>
+        <span className="text-accent">{contexts.join(" · ")}</span>
       </>
     );
   } else if (active) {
@@ -38,7 +37,7 @@ const Caption = ({ active }) => {
     <span aria-live="polite" className="block min-h-[1.5em]">
       <span
         key={active ?? "default"}
-        className={`${active ? jetbrainsMono.className : inter.className} caption-in block`}
+        className={`${active ? "font-mono " : ""}caption-in block`}
       >
         {text}
       </span>
@@ -77,7 +76,6 @@ const TechStackSection = () => {
     <Reveal className="mb-16">
       <div ref={sectionRef}>
         <SectionHeading
-          eyebrow="stack"
           title="Tech stack"
           lede={<Caption active={active} />}
         />
@@ -96,7 +94,7 @@ const TechStackSection = () => {
               className="grid gap-y-2 sm:grid-cols-[9rem_1fr] sm:gap-x-6"
             >
               <p
-                className={`${jetbrainsMono.className} text-[11px] uppercase tracking-wider text-neutral-400 pt-1`}
+                className="font-mono text-[11px] uppercase tracking-wider text-muted pt-1"
               >
                 {group.label}
               </p>
@@ -130,10 +128,10 @@ const TechStackSection = () => {
                         onPointerCancel={() => setActive(null)}
                         onFocus={() => setActive(name)}
                         onBlur={() => setActive(null)}
-                        className={`${inter.className} inline-flex items-center gap-1.5 text-sm cursor-default rounded-sm transition-[color,opacity] duration-200 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-neutral-500 ${
+                        className={`inline-flex items-center gap-1.5 text-sm cursor-default rounded-sm transition-[color,opacity] duration-200 focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-muted ${
                           isActive
-                            ? "text-amber-300"
-                            : "text-neutral-300 hover:text-gray-100"
+                            ? "text-accent"
+                            : "text-ink-2 hover:text-ink"
                         } ${dim ? "opacity-40" : "opacity-100"}`}
                       >
                         <Icon className="w-4 h-4" aria-hidden="true" />

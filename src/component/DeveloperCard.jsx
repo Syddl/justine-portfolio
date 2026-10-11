@@ -1,4 +1,3 @@
-import { jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
 import TiltCard from "@/component/motion/TiltCard";
 
@@ -8,7 +7,7 @@ import TiltCard from "@/component/motion/TiltCard";
 // on the outer div; the pointer tilt is TiltCard, a small client island on
 // the inner one, so the two transforms never fight.
 //
-// Colours stay inside the site's palette: strings amber, everything else
+// Colours stay inside the site's palette: strings green, everything else
 // grey, so the card reads like the wordmark rather than an editor theme.
 const fields = [
   { key: "name", value: "Justine" },
@@ -22,10 +21,10 @@ const fields = [
 ];
 
 const Punct = ({ children }) => (
-  <span className="text-neutral-500">{children}</span>
+  <span className="text-faint">{children}</span>
 );
 const Str = ({ children }) => (
-  <span className="text-amber-300">&quot;{children}&quot;</span>
+  <span className="text-accent">&quot;{children}&quot;</span>
 );
 
 // Arrays print two items per line, as the original card did, so the block
@@ -62,7 +61,7 @@ const Value = ({ value }) => {
     );
   }
   if (typeof value === "boolean") {
-    return <span className="text-neutral-200">{String(value)}</span>;
+    return <span className="text-ink-2">{String(value)}</span>;
   }
   return <Str>{value}</Str>;
 };
@@ -70,7 +69,7 @@ const Value = ({ value }) => {
 const DeveloperCard = () => {
   return (
     <div className="float-card">
-      <TiltCard className="rounded-xl border border-neutral-700/60 bg-neutral-900/80 backdrop-blur-sm p-5 shadow-2xl shadow-black/40">
+      <TiltCard className="rounded-card border border-line-strong bg-surface/80 backdrop-blur-sm p-5 shadow-xl shadow-black/5 dark:shadow-black/40">
       <div className="flex items-center gap-1.5 mb-4" aria-hidden="true">
         <span className="w-3 h-3 rounded-full bg-red-500/80" />
         <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -78,18 +77,18 @@ const DeveloperCard = () => {
       </div>
 
       <pre
-        className={`${jetbrainsMono.className} text-xs leading-relaxed overflow-x-auto`}
+        className="font-mono text-xs leading-relaxed overflow-x-auto"
       >
         <code>
-          <span className="text-neutral-400">const</span>{" "}
-          <span className="text-gray-100">developer</span> <Punct>= {"{"}</Punct>
+          <span className="text-muted">const</span>{" "}
+          <span className="text-ink">developer</span> <Punct>= {"{"}</Punct>
           {"\n"}
           {fields
             .filter(({ value }) => value !== undefined)
             .map(({ key, value }) => (
               <span key={key}>
                 {"  "}
-                <span className="text-neutral-300">{key}</span>
+                <span className="text-ink-2">{key}</span>
                 <Punct>: </Punct>
                 <Value value={value} />
                 <Punct>,</Punct>

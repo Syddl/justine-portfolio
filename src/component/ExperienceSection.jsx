@@ -7,7 +7,6 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
-import { inter, jetbrainsMono } from "@/app/fonts";
 import { experience } from "@/data/experience";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
@@ -52,82 +51,74 @@ const Entry = ({ job, railRef, scaleY }) => {
   return (
     <div ref={ref} className="relative pl-8">
       {/* Timeline dot: pulses green for the current role, otherwise turns
-          amber as the rail is drawn past it. */}
+          green as the rail is drawn past it. */}
       {isCurrent ? (
         <span
           className="absolute left-0 top-1.5 flex h-[11px] w-[11px]"
           aria-hidden="true"
         >
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-          <span className="relative inline-flex h-[11px] w-[11px] rounded-full bg-green-500" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75 motion-reduce:hidden" />
+          <span className="relative inline-flex h-[11px] w-[11px] rounded-full bg-accent" />
         </span>
       ) : (
         <span
-          className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full ring-4 ring-neutral-900 transition-colors duration-300 motion-reduce:bg-neutral-600 ${
-            lit ? "bg-amber-300" : "bg-neutral-600"
+          className={`absolute left-0 top-1.5 h-[11px] w-[11px] rounded-full ring-4 ring-bg transition-colors duration-300 motion-reduce:bg-faint ${
+            lit ? "bg-accent" : "bg-faint"
           }`}
           aria-hidden="true"
         />
       )}
 
-      {job.type && (
-        <p
-          className={`${jetbrainsMono.className} text-[11px] uppercase tracking-wider text-neutral-400 mb-1`}
-        >
-          {job.type}
-        </p>
-      )}
+      {/* Hover fill on the text only, so the dot and rail stay put. The
+          negative margins keep the layout identical to the unpadded box. */}
+      <div className="-mx-3 -my-2 rounded-card px-3 py-2 transition-colors duration-150 hover:bg-hover">
+        {job.type && (
+          <p className="font-mono text-[11px] uppercase tracking-wider text-muted mb-1">
+            {job.type}
+          </p>
+        )}
 
-      <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
-        <h3 className={`${inter.className} text-gray-100 font-semibold`}>
-          {job.title}
-          <span className="text-neutral-400 font-normal"> · {job.company}</span>
-        </h3>
-        <span
-          className={`${inter.className} text-xs text-neutral-500 whitespace-nowrap`}
-        >
-          {job.dates}
-        </span>
+        <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+          <h3 className="text-ink font-semibold">
+            {job.title}
+            <span className="text-muted font-normal"> · {job.company}</span>
+          </h3>
+          <span className="text-xs text-muted whitespace-nowrap">
+            {job.dates}
+          </span>
+        </div>
+
+        {job.location && (
+          <p className="text-xs text-muted mt-1">{job.location}</p>
+        )}
+
+        {job.description && (
+          <p className="text-sm text-body leading-relaxed mt-2">
+            {job.description}
+          </p>
+        )}
+
+        {job.metrics?.length > 0 && (
+          <ul className="font-mono text-xs text-muted mt-3 flex flex-wrap gap-x-3 gap-y-1">
+            {job.metrics.map((metric, i) => (
+              <li key={metric.label}>
+                <span className="sr-only">{metric.sentence}</span>
+                <span aria-hidden="true">
+                  {i > 0 && <span className="text-faint mr-3">·</span>}
+                  <span className="text-ink-2">
+                    {metric.before ? `${metric.before} → ${metric.after}` : metric.after}
+                  </span>{" "}
+                  {metric.label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {job.tech?.length > 0 && (
+          <p className="text-xs text-muted mt-3">{job.tech.join("  ·  ")}</p>
+        )}
       </div>
-
-      {job.location && (
-        <p className={`${inter.className} text-xs text-neutral-500 mt-1`}>
-          {job.location}
-        </p>
-      )}
-
-      {job.description && (
-        <p
-          className={`${inter.className} text-sm text-neutral-400 leading-relaxed mt-2`}
-        >
-          {job.description}
-        </p>
-      )}
-
-      {job.metrics?.length > 0 && (
-        <ul
-          className={`${jetbrainsMono.className} text-xs text-neutral-400 mt-3 flex flex-wrap gap-x-3 gap-y-1`}
-        >
-          {job.metrics.map((metric, i) => (
-            <li key={metric.label}>
-              <span className="sr-only">{metric.sentence}</span>
-              <span aria-hidden="true">
-                {i > 0 && <span className="text-neutral-600 mr-3">·</span>}
-                <span className="text-neutral-200">
-                  {metric.before ? `${metric.before} → ${metric.after}` : metric.after}
-                </span>{" "}
-                {metric.label}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {job.tech?.length > 0 && (
-        <p className={`${inter.className} text-xs text-neutral-500 mt-3`}>
-          {job.tech.join("  ·  ")}
-        </p>
-      )}
     </div>
   );
 };
@@ -135,7 +126,7 @@ const Entry = ({ job, railRef, scaleY }) => {
 const ExperienceSection = () => {
   const railRef = useRef(null);
 
-  // The amber rail draws from the top as the list scrolls through the
+  // The green rail draws from the top as the list scrolls through the
   // viewport; a spring keeps it from snapping between scroll events.
   // Reduced motion is handled in CSS (motion-reduce:*), never by branching
   // the markup: useReducedMotion() is null on the server and resolved on the
@@ -152,16 +143,16 @@ const ExperienceSection = () => {
 
   return (
     <Reveal className="mb-16">
-      <SectionHeading eyebrow="experience" title="Work experience" />
+      <SectionHeading title="Work experience" />
 
       <div ref={railRef} className="relative">
         <div
-          className="absolute left-[5px] top-2 bottom-2 w-px bg-neutral-800"
+          className="absolute left-[5px] top-2 bottom-2 w-px bg-line"
           aria-hidden="true"
         />
         <motion.div
           style={{ scaleY }}
-          className="absolute left-[5px] top-2 bottom-2 w-px bg-amber-300/70 origin-top motion-reduce:hidden"
+          className="absolute left-[5px] top-2 bottom-2 w-px bg-accent/70 origin-top motion-reduce:hidden"
           aria-hidden="true"
         />
 

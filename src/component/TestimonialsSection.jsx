@@ -1,4 +1,3 @@
-import { inter } from "@/app/fonts";
 import { testimonials } from "@/data/testimonials";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
@@ -13,18 +12,18 @@ const TestimonialsSection = () => {
 
   return (
     <Reveal className="mb-16">
-      <SectionHeading eyebrow="testimonials" title="What clients say" />
+      <SectionHeading title="What clients say" />
 
-      <figure className="rounded-xl border border-neutral-700/60 bg-neutral-800/30 p-6">
+      <figure className="rounded-card border border-line-strong bg-surface p-6">
         <blockquote
-          className={`${inter.className} text-gray-100 text-lg leading-relaxed`}
+          className="text-ink text-lg leading-relaxed"
         >
           &ldquo;{featured.quote}&rdquo;
         </blockquote>
         <figcaption
-          className={`${inter.className} text-sm text-neutral-400 mt-4`}
+          className="text-sm text-muted mt-4"
         >
-          <span className="text-neutral-200 font-medium">{featured.name}</span>
+          <span className="text-ink-2 font-medium">{featured.name}</span>
           {featured.role && <>, {featured.role}</>}
           {featured.href && featured.source && (
             <>
@@ -33,7 +32,7 @@ const TestimonialsSection = () => {
                 href={featured.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-4 decoration-neutral-700 hover:text-neutral-100 transition-colors"
+                className="underline underline-offset-4 decoration-line-strong hover:text-ink transition-colors"
               >
                 via {featured.source}
               </a>

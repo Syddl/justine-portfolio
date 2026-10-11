@@ -3,7 +3,7 @@
 // `tag` is the one scannable fact about each entry: a placement where there
 // was one, otherwise the format of the event. It never implies a placement
 // that wasn't earned. Set `highlight: true` only for an actual result, which
-// is what turns the tag amber.
+// is what turns the tag green.
 export const hackathons = [
   {
     tag: "Finalist",
