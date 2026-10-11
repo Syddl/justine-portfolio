@@ -1,18 +1,31 @@
 "use client";
 
-import { BiLogoGmail } from "react-icons/bi";
-import { FaSquareGithub } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FiSend, FiCheck } from "react-icons/fi";
+import {
+  FiArrowUpRight,
+  FiCheck,
+  FiCopy,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiSend,
+} from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
 import TimezoneLine from "@/component/TimezoneLine";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
-import { email, github, linkedin } from "@/lib/site";
+import { email, github, githubHandle, linkedin } from "@/lib/site";
+import SectionHeading from "@/component/SectionHeading";
 
 const container = staggerContainer(0.1, 0.1);
 const cardItem = fadeInUp(20, 0.4);
+
+// One row style for every contact link, matching the project rows.
+const rowClass =
+  "group -mx-3 flex w-full items-center gap-4 rounded-card px-3 py-3.5 text-left transition-colors duration-150 hover:bg-hover";
+const iconTile =
+  "grid size-9 shrink-0 place-items-center rounded-card border border-line-strong bg-surface text-ink-2";
+const linkedinHandle = linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\//, "");
 
 export default function ContactView() {
   const [formData, setFormData] = useState({
@@ -106,79 +119,74 @@ export default function ContactView() {
         <TimezoneLine />
       </motion.div>
 
-      {/* Social links, laid out as an inverted triangle: email + LinkedIn on
-          top, GitHub centered beneath them at the same card width. */}
-      <motion.div
+      {/* Where to reach me, as rows like the rest of the site. The email row
+          copies the address (falling back to the mail app); the others open
+          in a new tab. */}
+      <motion.ul
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-2 gap-3 mb-12"
+        className="mb-14 border-t border-line divide-y divide-line"
       >
-        <motion.button
-          type="button"
-          variants={cardItem}
-          whileHover={{ y: -3 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          onClick={copyEmail}
-          aria-label="Copy email address"
-          className="h-36 rounded-card flex flex-col items-center justify-center gap-3
-            border border-line-strong bg-surface
-            hover:bg-hover transition-all duration-200 cursor-pointer"
-        >
-          {copied ? (
-            <FiCheck className="text-5xl text-accent" />
-          ) : (
-            <BiLogoGmail className="text-5xl text-ink-2" />
-          )}
-          <span
-            className="flex flex-col items-center gap-1"
+        <motion.li variants={cardItem}>
+          <button
+            type="button"
+            onClick={copyEmail}
+            aria-label="Copy email address"
+            className={rowClass}
           >
-            <span className="text-xs text-muted break-all px-2">
-              {email}
+            <span className={iconTile}>
+              <FiMail className="size-4" aria-hidden="true" />
             </span>
-            <span className="text-[11px] text-muted">
-              {copied ? "Copied" : "Click to copy"}
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-ink">Email</span>
+              <span className="block truncate text-sm text-muted">{email}</span>
             </span>
-          </span>
-        </motion.button>
+            <span className="text-sm text-muted">{copied ? "Copied" : "Copy"}</span>
+            {copied ? (
+              <FiCheck className="size-4 text-accent" aria-hidden="true" />
+            ) : (
+              <FiCopy className="size-4 text-faint group-hover:text-ink" aria-hidden="true" />
+            )}
+          </button>
+        </motion.li>
 
-        <motion.a
-          variants={cardItem}
-          whileHover={{ y: -3 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit LinkedIn profile"
-          className="h-36 rounded-card flex flex-col items-center justify-center gap-3
-            border border-line-strong bg-surface
-            hover:bg-hover transition-all duration-200 cursor-pointer"
-        >
-          <FaLinkedin className="text-5xl text-ink-2" />
-          <span className="text-xs text-muted">
-            LinkedIn
-          </span>
-        </motion.a>
+        <motion.li variants={cardItem}>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={rowClass}
+          >
+            <span className={iconTile}>
+              <FiLinkedin className="size-4" aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-ink">LinkedIn</span>
+              <span className="block truncate text-sm text-muted">{linkedinHandle}</span>
+            </span>
+            <FiArrowUpRight className="size-4 text-faint group-hover:text-ink" aria-hidden="true" />
+          </a>
+        </motion.li>
 
-        <motion.a
-          variants={cardItem}
-          whileHover={{ y: -3 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Visit GitHub profile"
-          className="h-36 rounded-card flex flex-col items-center justify-center gap-3
-            border border-line-strong bg-surface
-            hover:bg-hover transition-all duration-200 cursor-pointer
-            col-span-2 justify-self-center w-[calc(50%-0.375rem)]"
-        >
-          <FaSquareGithub className="text-5xl text-ink-2" />
-          <span className="text-xs text-muted">
-            @Syddl
-          </span>
-        </motion.a>
-      </motion.div>
+        <motion.li variants={cardItem}>
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={rowClass}
+          >
+            <span className={iconTile}>
+              <FiGithub className="size-4" aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-medium text-ink">GitHub</span>
+              <span className="block truncate text-sm text-muted">@{githubHandle}</span>
+            </span>
+            <FiArrowUpRight className="size-4 text-faint group-hover:text-ink" aria-hidden="true" />
+          </a>
+        </motion.li>
+      </motion.ul>
 
       {/* Contact form */}
       <motion.div
@@ -186,15 +194,15 @@ export default function ContactView() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className="mb-6">
-          <h2 className="text-ink text-xl font-semibold mb-1">
-            Send a message
-          </h2>
-          <p className="text-body text-sm">
-            A rough idea is enough. &quot;We track this in a spreadsheet and
-            it&apos;s breaking&quot; is a perfectly good first message.
-          </p>
-        </div>
+        <SectionHeading
+          title="Send a message"
+          lede={
+            <>
+              A rough idea is enough. &quot;We track this in a spreadsheet and
+              it&apos;s breaking&quot; is a perfectly good first message.
+            </>
+          }
+        />
 
         <form
           onSubmit={handleSubmit}
