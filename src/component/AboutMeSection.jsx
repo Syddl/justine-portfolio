@@ -16,25 +16,18 @@ const AboutMeSection = () => {
       <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-10">
       <div className="text-[17px] text-body leading-relaxed space-y-4">
         <p>
-          I&apos;m Justine Jude Cuevas. Before I ever wrote code, I was into
-          video games and anything tech. My first job was graphic design, and
+          I&apos;m Justine Jude Cuevas. I was into video games and anything
+          tech long before I wrote code: my first job was graphic design, and
           on the side I edited videos and made YouTube content.
         </p>
         <p>
-          Games are what pulled me in. I got curious about how they, and the
-          systems behind everyday apps, actually work, and I fell for it. Code
-          meant I could build anything I wanted, and with AI in the loop I can
-          build it a lot faster.
+          Curiosity about how games and apps work behind the scenes pulled me
+          into programming, and I fell for it. These days it&apos;s school and
+          AI, and when something grabs me, I lock in until it&apos;s done.
         </p>
         <p>
-          These days most of my time goes to school and to learning, lately a
-          deep dive into AI. I can be lazy about things that don&apos;t grab
-          me, but when one does, I lock in until it&apos;s done.
-        </p>
-        <p>
-          Looking ahead, I want to work as an AI engineer, building products
-          people actually use. Want to talk shop, or just say hi? The inbox is
-          open.
+          Next, I want to work as an AI engineer. Want to talk shop? The inbox
+          is open.
         </p>
       </div>
 
