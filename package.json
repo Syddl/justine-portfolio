@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test \"src/**/*.test.mjs\""
+    "test": "node --test \"src/**/*.test.mjs\"",
+    "check:hooks": "node scripts/check-hooks.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.11.0",
