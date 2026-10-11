@@ -131,9 +131,13 @@ value (judged by eye, not by screenshot: JPEG hides grain).
  ● Available for work   Philippines   GitHub  LinkedIn
 ```
 
-- Photo: `public/justine.jpg` (the photo Justine supplied, copied as is),
-  rendered by `next/image` in an 80px circle with `object-cover` and an
-  `object-position` that centres the face. No image tooling.
+- Photo: `public/justine.jpg`, cropped once from the photo Justine supplied
+  (1056x992) to a 480px square around the face (source square at x 265,
+  y 150, 600px), using Windows' built-in System.Drawing from PowerShell, no
+  new dependency. Centring with `object-position` alone was tried on paper
+  and rejected: the face is about a quarter of the frame, so it would be tiny
+  in an 80px circle. Rendered by `next/image` in an 80px circle (64px on
+  phones).
 - Name is the page `h1` (22px, weight 600, `text-ink`); role below in
   `text-muted`.
 - Resume pill on the right: file icon plus "Resume", opens
