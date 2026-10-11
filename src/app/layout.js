@@ -2,7 +2,7 @@ import "./globals.css";
 import Link from "next/link";
 import { Toaster } from "sonner";
 import Script from "next/script";
-import { inter, jetbrainsMono } from "./fonts";
+import { figtree, inter, jetbrainsMono, newsreader } from "./fonts";
 import Logo from "@/component/Logo";
 import MouseHoverEffect from "@/component/MouseHoverEffect";
 import MotionProvider from "@/component/motion/MotionProvider";
@@ -118,8 +118,11 @@ export default function RootLayout({ children }) {
   const year = new Date().getFullYear();
 
   return (
-    <html lang="en">
-      <body className="bg-neutral-900 w-full min-h-screen flex flex-col">
+    <html
+      lang="en"
+      className={`${figtree.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="bg-bg text-body font-sans antialiased w-full min-h-screen flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

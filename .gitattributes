@@ -1,0 +1,2 @@
+# globals.test.mjs parses this file; keep it LF on every checkout.
+src/app/globals.css text eol=lf

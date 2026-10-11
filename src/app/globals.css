@@ -4,6 +4,104 @@
   display: none;
 }
 
+/* Colour tokens. Each holds its light and its dark value; light-dark()
+   picks the half that matches the computed color-scheme. With no saved
+   choice the scheme is "light dark", so the OS decides, live. When the
+   visitor picks a theme, the <head> script in layout.js sets data-theme,
+   which pins the scheme. Text tokens (ink, ink-2, body, muted, accent) must
+   stay at 4.5:1 or more on bg, surface and hover in both themes:
+   globals.test.mjs checks it. faint, line and line-strong are non-text
+   only (dots, icons, punctuation, borders). */
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#fcfcfb, #0f0f11);
+  --surface: light-dark(#ffffff, #19191c);
+  --hover: light-dark(#f3f3f1, #212125);
+  --ink: light-dark(#111113, #ececee);
+  --ink-2: light-dark(#3a3a3f, #c6c6cb);
+  --body: light-dark(#4a4a4f, #adadb3);
+  --muted: light-dark(#67676c, #8b8b91);
+  --faint: light-dark(#9a9a9e, #66666c);
+  --line: light-dark(#ebebea, #232327);
+  --line-strong: light-dark(#dcdcda, #34343a);
+  --accent: light-dark(#1d7a44, #5fd08a);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Tailwind names for the tokens: text-ink, bg-surface, border-line,
+   text-accent/40 and so on. "inline" makes utilities read the variables at
+   runtime, so a theme switch needs nothing rebuilt. The font variables are
+   set on <html> by next/font (src/app/fonts.js). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-hover: var(--hover);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+@theme {
+  /* max-w-col: the 640px column plus px-6 (24px) on each side. */
+  --container-col: 43rem;
+  --radius-card: 10px;
+}
+
+/* dark: follows the effective theme, not only the OS: a saved
+   data-theme="dark", or the OS in dark mode with no saved light choice. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+/* The one button shape: outline pill, hover fill, a small press. */
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
+  &:hover {
+    background-color: var(--hover);
+  }
+  &:active {
+    transform: scale(0.97);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
 /* Server-rendered page entrance - replaces the framer-motion page wrapper so
    the hero paints before hydration (LCP) while keeping the same feel. */
 @keyframes page-enter {
