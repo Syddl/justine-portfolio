@@ -13,7 +13,7 @@ const ScrollProgress = () => {
     <motion.div
       aria-hidden="true"
       style={{ scaleX: scrollYProgress }}
-      className="fixed top-0 left-0 right-0 h-0.5 origin-left bg-amber-300/70 z-50 motion-reduce:hidden"
+      className="fixed top-0 left-0 right-0 h-0.5 origin-left bg-accent/70 z-50 motion-reduce:hidden"
     />
   );
 };

@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Toaster } from "sonner";
 import Script from "next/script";
-import { figtree, inter, jetbrainsMono, newsreader } from "./fonts";
+import { figtree, jetbrainsMono, newsreader } from "./fonts";
 import SmoothScroll from "@/component/motion/SmoothScroll";
 import ClickBurst from "@/component/motion/ClickBurst";
 import MotionProvider from "@/component/motion/MotionProvider";
@@ -150,22 +150,22 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         <MotionProvider>{children}</MotionProvider>
         <Toaster richColors />
-        <footer className="border-t border-solid border-gray-800">
-          <div className="mx-auto max-w-3xl w-full px-6 min-h-15 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <footer className="border-t border-line">
+          <div className="mx-auto max-w-col w-full px-6 min-h-15 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <p
-              className={`${inter.className} text-sm font-semibold text-[#A8ADB2] whitespace-nowrap`}
+              className="text-sm font-medium text-muted whitespace-nowrap"
             >
               © {year} Justine Jude Cuevas
             </p>
             <nav
               aria-label="Elsewhere"
-              className={`${jetbrainsMono.className} flex items-center gap-4 text-xs text-neutral-400`}
+              className="font-mono flex items-center gap-4 text-xs text-muted"
             >
               <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-100 transition-colors"
+                className="hover:text-ink transition-colors"
               >
                 GitHub
               </a>
@@ -173,13 +173,13 @@ export default function RootLayout({ children }) {
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-gray-100 transition-colors"
+                className="hover:text-ink transition-colors"
               >
                 LinkedIn
               </a>
               <a
                 href={`mailto:${email}`}
-                className="hover:text-gray-100 transition-colors"
+                className="hover:text-ink transition-colors"
               >
                 email
               </a>

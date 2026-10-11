@@ -1,4 +1,4 @@
-import { Figtree, Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Figtree, JetBrains_Mono, Newsreader } from "next/font/google";
 
 // Figtree is the site face. Newsreader italic is only for the accent word in
 // the hero headline. JetBrains Mono is for the logo, dates, tags, the ASCII
@@ -23,11 +23,4 @@ export const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   weight: ["400", "600"],
   variable: "--font-jetbrains-mono",
-});
-
-// Still imported by components until Task 8 of the redesign plan moves them
-// to font-sans; deleted there.
-export const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
 });

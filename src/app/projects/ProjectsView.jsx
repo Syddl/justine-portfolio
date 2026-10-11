@@ -1,17 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { inter } from "@/app/fonts";
 import { projects } from "@/data/projects";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import ProjectCard from "@/component/ProjectCard";
 
 const container = staggerContainer(0.2, 0.3);
-const cardVariant = fadeInUp(30, 0.5);
+const cardVariant = fadeInUp(14, 0.5);
 
 export default function ProjectsView() {
   return (
-    <main className="flex-grow mx-auto max-w-3xl w-full px-6 pt-8 pb-24 lg:pt-12">
+    <main className="flex-grow mx-auto max-w-col w-full px-6 pt-8 pb-24 lg:pt-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -19,12 +18,12 @@ export default function ProjectsView() {
         className="mb-12"
       >
         <h1
-          className={`${inter.className} font-bold text-4xl text-gray-100 mb-3`}
+          className="text-[2.125rem] font-medium tracking-[-0.02em] leading-tight text-ink mb-3"
         >
           Projects
         </h1>
         <p
-          className={`${inter.className} text-neutral-400 text-sm leading-relaxed max-w-2xl`}
+          className="text-body text-[15px] leading-relaxed max-w-xl"
         >
           Each case study covers the problem, what I built and how it went.
           Where a project is live, the demo link is on its card.
@@ -35,7 +34,7 @@ export default function ProjectsView() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-1 md:grid-cols-2 gap-5"
+        className="divide-y divide-line"
       >
         {projects.map((project) => (
           <ProjectCard

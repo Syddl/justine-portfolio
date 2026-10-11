@@ -1,7 +1,6 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { jetbrainsMono } from "@/app/fonts";
 import { availability } from "@/data/availability";
 import {
   describeOffset,
@@ -61,9 +60,9 @@ const TimezoneLine = () => {
   const diff = now ? manilaMinusVisitor(now.getTimezoneOffset()) : null;
 
   return (
-    <p className={`${jetbrainsMono.className} text-xs text-neutral-400`}>
-      Manila <span className="text-neutral-200">{manila}</span>
-      {" · "}your time <span className="text-neutral-200">{local}</span>
+    <p className="font-mono text-xs text-muted">
+      Manila <span className="text-ink-2">{manila}</span>
+      {" · "}your time <span className="text-ink-2">{local}</span>
       {diff !== null && <>{" · "}{describeOffset(diff)}</>}
       {diff !== null && availability.hours && (
         <>{" · "}{onlineWindow(availability.hours, diff)}</>

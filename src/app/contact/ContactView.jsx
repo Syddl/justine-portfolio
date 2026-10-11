@@ -7,7 +7,6 @@ import { FiSend, FiCheck } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { toast } from "sonner";
-import { inter } from "@/app/fonts";
 import TimezoneLine from "@/component/TimezoneLine";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { email, github, linkedin } from "@/lib/site";
@@ -85,7 +84,7 @@ export default function ContactView() {
   };
 
   return (
-    <main className="flex-grow mx-auto max-w-3xl w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
+    <main className="flex-grow mx-auto max-w-col w-full p-6 pt-10 sm:px-6 lg:pt-8 mb-10">
       {/* Intro - indexable copy, not just a form. The timezone line replaces
           the old "my mornings overlap with US evenings" sentence with the
           visitor's own numbers. */}
@@ -93,12 +92,12 @@ export default function ContactView() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`${inter.className} mb-10`}
+        className="mb-10"
       >
-        <h1 className="text-gray-100 text-3xl font-bold mb-3">
+        <h1 className="text-[2.125rem] font-medium tracking-[-0.02em] leading-tight text-ink mb-3">
           Let&apos;s build something for your business
         </h1>
-        <p className="text-neutral-400 text-sm leading-relaxed max-w-2xl mb-4">
+        <p className="text-body text-[15px] leading-relaxed max-w-xl mb-4">
           I&apos;m an AI full-stack engineer in the Philippines, available for
           full-time remote roles and freelance projects worldwide. Describe your project in a couple of
           sentences and I&apos;ll reply within 24 hours with an honest read on
@@ -118,26 +117,26 @@ export default function ContactView() {
         <motion.button
           type="button"
           variants={cardItem}
-          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
+          whileHover={{ y: -3 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           onClick={copyEmail}
           aria-label="Copy email address"
-          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
-            border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer"
+          className="h-36 rounded-card flex flex-col items-center justify-center gap-3
+            border border-line-strong bg-surface
+            hover:bg-hover transition-all duration-200 cursor-pointer"
         >
           {copied ? (
-            <FiCheck className="text-5xl text-green-500" />
+            <FiCheck className="text-5xl text-accent" />
           ) : (
-            <BiLogoGmail className="text-5xl text-neutral-200" />
+            <BiLogoGmail className="text-5xl text-ink-2" />
           )}
           <span
-            className={`${inter.className} flex flex-col items-center gap-1`}
+            className="flex flex-col items-center gap-1"
           >
-            <span className="text-xs text-neutral-400 break-all px-2">
+            <span className="text-xs text-muted break-all px-2">
               {email}
             </span>
-            <span className="text-[11px] text-neutral-600">
+            <span className="text-[11px] text-muted">
               {copied ? "Copied" : "Click to copy"}
             </span>
           </span>
@@ -145,37 +144,37 @@ export default function ContactView() {
 
         <motion.a
           variants={cardItem}
-          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
+          whileHover={{ y: -3 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           href={linkedin}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit LinkedIn profile"
-          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
-            border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer"
+          className="h-36 rounded-card flex flex-col items-center justify-center gap-3
+            border border-line-strong bg-surface
+            hover:bg-hover transition-all duration-200 cursor-pointer"
         >
-          <FaLinkedin className="text-5xl text-neutral-200" />
-          <span className={`${inter.className} text-xs text-neutral-400`}>
+          <FaLinkedin className="text-5xl text-ink-2" />
+          <span className="text-xs text-muted">
             LinkedIn
           </span>
         </motion.a>
 
         <motion.a
           variants={cardItem}
-          whileHover={{ y: -3, borderColor: "rgba(255,255,255,0.15)" }}
+          whileHover={{ y: -3 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           href={github}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit GitHub profile"
-          className="h-36 rounded-xl flex flex-col items-center justify-center gap-3
-            border border-neutral-700/60 bg-neutral-800/30
-            hover:bg-neutral-800/60 transition-all duration-200 cursor-pointer
+          className="h-36 rounded-card flex flex-col items-center justify-center gap-3
+            border border-line-strong bg-surface
+            hover:bg-hover transition-all duration-200 cursor-pointer
             col-span-2 justify-self-center w-[calc(50%-0.375rem)]"
         >
-          <FaSquareGithub className="text-5xl text-neutral-200" />
-          <span className={`${inter.className} text-xs text-neutral-400`}>
+          <FaSquareGithub className="text-5xl text-ink-2" />
+          <span className="text-xs text-muted">
             @Syddl
           </span>
         </motion.a>
@@ -187,11 +186,11 @@ export default function ContactView() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <div className={`${inter.className} mb-6`}>
-          <h2 className="text-gray-100 text-xl font-bold mb-1">
+        <div className="mb-6">
+          <h2 className="text-ink text-xl font-semibold mb-1">
             Send a message
           </h2>
-          <p className="text-neutral-400 text-sm">
+          <p className="text-body text-sm">
             A rough idea is enough. &quot;We track this in a spreadsheet and
             it&apos;s breaking&quot; is a perfectly good first message.
           </p>
@@ -199,13 +198,13 @@ export default function ContactView() {
 
         <form
           onSubmit={handleSubmit}
-          className={`${inter.className} text-gray-100`}
+          className="text-ink"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="flex flex-col gap-1.5">
               <label
                 htmlFor="name"
-                className="text-sm font-medium text-neutral-300"
+                className="text-sm font-medium text-ink-2"
               >
                 Name
               </label>
@@ -216,9 +215,9 @@ export default function ContactView() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your name"
-                className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
-                  text-neutral-100 placeholder-neutral-500
-                  focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                className="bg-surface border border-line-strong rounded-card px-4 py-2.5 text-sm
+                  text-ink placeholder:text-muted
+                  focus:outline-none focus:border-muted focus:ring-1 focus:ring-muted/30
                   transition-all duration-200"
                 required
               />
@@ -226,7 +225,7 @@ export default function ContactView() {
             <div className="flex flex-col gap-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-neutral-300"
+                className="text-sm font-medium text-ink-2"
               >
                 Email
               </label>
@@ -237,9 +236,9 @@ export default function ContactView() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Your email"
-                className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
-                  text-neutral-100 placeholder-neutral-500
-                  focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+                className="bg-surface border border-line-strong rounded-card px-4 py-2.5 text-sm
+                  text-ink placeholder:text-muted
+                  focus:outline-none focus:border-muted focus:ring-1 focus:ring-muted/30
                   transition-all duration-200"
                 required
               />
@@ -249,7 +248,7 @@ export default function ContactView() {
           <div className="flex flex-col gap-1.5 mb-6">
             <label
               htmlFor="message"
-              className="text-sm font-medium text-neutral-300"
+              className="text-sm font-medium text-ink-2"
             >
               Message
             </label>
@@ -260,27 +259,18 @@ export default function ContactView() {
               onChange={handleChange}
               placeholder="What are you trying to build or replace?"
               rows={5}
-              className="bg-neutral-800/50 border border-neutral-700/60 rounded-lg px-4 py-2.5 text-sm
-                text-neutral-100 placeholder-neutral-500 resize-none
-                focus:outline-none focus:border-neutral-500 focus:ring-1 focus:ring-neutral-500/30
+              className="bg-surface border border-line-strong rounded-card px-4 py-2.5 text-sm
+                text-ink placeholder:text-muted resize-none
+                focus:outline-none focus:border-muted focus:ring-1 focus:ring-muted/30
                 transition-all duration-200"
               required
             />
           </div>
 
-          <motion.button
-            type="submit"
-            disabled={loading}
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg
-              bg-neutral-100 text-neutral-900 font-medium text-sm
-              hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed
-              transition-colors duration-200"
-          >
+          <button type="submit" disabled={loading} className="pill">
             <FiSend className="w-4 h-4" />
             {loading ? "Sending..." : "Send Message"}
-          </motion.button>
+          </button>
         </form>
       </motion.div>
     </main>
