@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
-import { projects } from "@/data/projects";
+import { projects, upcomingProjects } from "@/data/projects";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import ProjectCard from "@/component/ProjectCard";
 import SectionHeading from "@/component/SectionHeading";
 
 const container = staggerContainer(0.08, 0.2);
 const rowVariant = fadeInUp(14, 0.5);
+// Shipped projects first, then the "Coming soon" rows; the count covers both.
+const rows = [...projects, ...upcomingProjects];
 
 // The same parts as every other page: a back link, the headline, one intro
 // line, then a labelled list of project rows with the count on the right.
@@ -43,7 +45,7 @@ export default function ProjectsView() {
         className="mb-2"
         action={
           <span className="font-mono text-sm text-muted">
-            {String(projects.length).padStart(2, "0")}
+            {String(rows.length).padStart(2, "0")}
           </span>
         }
       />
@@ -54,8 +56,8 @@ export default function ProjectsView() {
         animate="show"
         className="divide-y divide-line"
       >
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} variants={rowVariant} />
+        {rows.map((project) => (
+          <ProjectCard key={project.name} project={project} variants={rowVariant} />
         ))}
       </motion.div>
     </main>

@@ -10,5 +10,5 @@
 export const availability = {
   open: true,
   note: "Available now for remote work",
-  currentlyBuilding: "QuizyLite",
+  currentlyBuilding: "LoreOS",
 };

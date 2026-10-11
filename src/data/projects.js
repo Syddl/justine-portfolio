@@ -114,3 +114,16 @@ export const projects = [
       "linear-gradient(135deg, rgba(124,58,237,0.25), rgba(109,40,217,0.1), rgba(17,17,19,1))",
   },
 ];
+
+// Work in progress, listed after the shipped projects as a "Coming soon" row
+// with no link: no slug (there is no case study yet) and no stack (the stack
+// section only credits shipped work). Move an entry into `projects`, with its
+// case-study fields, once it ships. LoreOS's repo is private, so no link.
+export const upcomingProjects = [
+  {
+    name: "LoreOS",
+    kind: "Coming soon",
+    summary:
+      "Self-hostable document Q&A that answers from your own files and cites the passage each answer came from.",
+  },
+];

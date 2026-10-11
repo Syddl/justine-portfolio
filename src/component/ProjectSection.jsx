@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import Link from "next/link";
-import { projects } from "@/data/projects";
+import { projects, upcomingProjects } from "@/data/projects";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
@@ -42,7 +42,7 @@ const ProjectSection = () => {
         viewport={{ once: true, margin: "-60px" }}
         className="divide-y divide-line"
       >
-        {featured.map((project) => (
+        {[...featured, ...upcomingProjects].map((project) => (
           <ProjectCard
             key={project.name}
             project={project}
