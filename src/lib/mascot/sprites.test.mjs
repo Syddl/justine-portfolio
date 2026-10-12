@@ -3,6 +3,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   BASE,
+  DESK,
+  DESK_CODE,
+  DESK_CODE_LAYERS,
+  DESK_LAYERS,
   EYE_ROWS,
   EYE_WHITES,
   PALETTE,
@@ -11,6 +15,7 @@ import {
   PUPILS,
   SIZE,
   hasEyes,
+  overlayPaths,
   patch,
   spriteLayers,
   withOutline,
@@ -41,11 +46,13 @@ test("patch writes text, clears with '.', and keeps pixels under ' '", () => {
   assert.deepEqual(patch(["XXXX"], [[0, 1, "."]]), ["X.XX"]);
 });
 
-test("the eyes are where the eye layers expect them, except under sunglasses", () => {
-  for (const name of ["idle", "waveA", "waveB", "typingA", "typingB", "envelope"]) {
+test("the front eyes show where the eye layers expect them, and nowhere else", () => {
+  for (const name of ["idle", "waveA", "waveB", "typingA", "typingB", "envelope", "held"]) {
     assert.ok(hasEyes(POSES[name]), `${name} should show eyes`);
   }
-  assert.equal(hasEyes(POSES.sunglasses), false);
+  for (const name of ["sunglasses", "walkA", "walkB", "seatedA", "seatedB"]) {
+    assert.equal(hasEyes(POSES[name]), false, `${name} should not show the front eyes`);
+  }
 });
 
 test("the outline sits only on empty pixels next to filled ones", () => {
@@ -61,8 +68,9 @@ test("the layers draw every filled and outline pixel exactly once", () => {
         if (ch !== ".") expected.add(`${x},${y}`);
       }),
     );
-    const { size, paths, whites, pupils } = spriteLayers(map);
-    assert.equal(size, SIZE + 2);
+    const { width, height, paths, whites, pupils } = spriteLayers(map);
+    assert.equal(width, SIZE + 2);
+    assert.equal(height, SIZE + 2);
     const drawn = paths.flatMap(({ d }) => cells(d));
     assert.equal(drawn.length, new Set(drawn).size, `${name}: a pixel is drawn twice`);
     assert.deepEqual(new Set(drawn), expected, `${name}: body covers exactly the outlined sprite`);
@@ -89,4 +97,45 @@ test("under the eye layers the face is skin, so a blink shows skin", () => {
 
 test("POSE_LAYERS holds the layers of every pose", () => {
   assert.deepEqual(Object.keys(POSE_LAYERS).sort(), Object.keys(POSES).sort());
+});
+
+test("the desk is 36 x 27 and uses only palette keys", () => {
+  const allowed = new Set([".", ...Object.keys(PALETTE)]);
+  assert.equal(DESK.length, 27);
+  for (const row of DESK) {
+    assert.equal(row.length, 36);
+    for (const ch of row) assert.ok(allowed.has(ch), `desk: unknown pixel "${ch}"`);
+  }
+});
+
+test("the desk's layers are 38 x 29 and draw each outlined pixel once", () => {
+  const expected = new Set();
+  withOutline(DESK).forEach((row, y) =>
+    [...row].forEach((ch, x) => {
+      if (ch !== ".") expected.add(`${x},${y}`);
+    }),
+  );
+  assert.equal(DESK_LAYERS.width, 38);
+  assert.equal(DESK_LAYERS.height, 29);
+  const drawn = DESK_LAYERS.paths.flatMap(({ d }) => cells(d));
+  assert.equal(drawn.length, new Set(drawn).size);
+  assert.deepEqual(new Set(drawn), expected);
+  assert.equal(DESK_LAYERS.whites, "");
+});
+
+test("the screen code sits on the screens, and frame B types more", () => {
+  const screen = new Set(cells(DESK_LAYERS.paths.find((p) => p.key === "N").d));
+  for (const [i, layer] of DESK_CODE_LAYERS.entries()) {
+    const code = layer.flatMap(({ d }) => cells(d));
+    assert.ok(code.length > 0, `frame ${i} is empty`);
+    for (const cell of code) assert.ok(screen.has(cell), `frame ${i}: ${cell} is off the screens`);
+  }
+  const count = (layer) => layer.flatMap(({ d }) => cells(d)).length;
+  assert.ok(count(DESK_CODE_LAYERS[1]) > count(DESK_CODE_LAYERS[0]));
+  assert.equal(DESK_CODE.length, 2);
+  for (const frame of DESK_CODE) assert.equal(frame.length, DESK.length);
+});
+
+test("an overlay is drawn without an outline, shifted by the padding", () => {
+  assert.deepEqual(overlayPaths(["G."]), [{ key: "G", d: "M1 1h1v1h-1z" }]);
 });

@@ -1,5 +1,6 @@
-// Mini Justine, drawn as pixel maps: one character per pixel, "." empty.
-// Spec: docs/superpowers/specs/2026-10-12-mascot-design.md. Pure (no DOM),
+// Mini Justine and the desk, drawn as pixel maps: one character per pixel,
+// "." empty. Specs: docs/superpowers/specs/2026-10-12-mascot-design.md and
+// docs/superpowers/specs/2026-10-12-mascot-stage-design.md. Pure (no DOM),
 // so node --test covers it. The palette is character art with fixed colours;
 // only the outline is themed, through --mascot-outline in globals.css.
 
@@ -18,6 +19,10 @@ export const PALETTE = {
   D: "#55555c", // trousers, laptop edge
   B: "#3b5bcc", // hoodie print
   G: "#3fbf73", // laptop logo, envelope seal
+  N: "#262b38", // monitor screens
+  T: "#b08259", // desk top
+  t: "#7c5638", // desk edge and legs
+  P: "#c96f4a", // plant pot, mug
 };
 
 // The idle pose. The body is centred on column 9; the two spare columns on
@@ -116,6 +121,96 @@ const ENVELOPE = [
   [19, 17, "."],
 ];
 
+// Picked up: both arms up, mouth open, feet hanging. The front eyes stay,
+// so it still blinks and looks around while held.
+const HELD = [
+  [6, 0, "S"],
+  [7, 0, "S"],
+  [8, 0, "L"],
+  [9, 0, "L"],
+  [10, 1, "L"],
+  [11, 1, "L"],
+  [12, 1, "L"],
+  [13, 2, "L"],
+  [6, 18, "S"],
+  [7, 18, "S"],
+  [8, 18, "L"],
+  [9, 18, "L"],
+  [10, 17, "L"],
+  [11, 17, "L"],
+  [12, 17, "L"],
+  [13, 16, "L"],
+  [19, 1, "L"],
+  [19, 17, "L"],
+  [12, 9, "K"],
+  [20, 3, ".DDDD...DDDD."],
+  [21, 3, "..KKK...KKK.."],
+];
+
+// Side view, facing right (CSS mirrors it to walk left): rows 0-19 are the
+// head and body; each walk frame adds its hand and its two rows of legs.
+const SIDE = [
+  "......HHHHHH..........",
+  "....HHHHHHHHhH........",
+  "...HHHHHHHHHHhHH......",
+  "..HHHHHHHHHHHHHHH.....",
+  ".HHHHHHHHHHHHHHHHH....",
+  ".HHHHHHHHHHHHHHHHH....",
+  ".HHHHHHHHHHHHHHHHHH...",
+  ".HHHHHHHHHSSSSSSSH....",
+  ".HHHHHHHHSSSSSSSSS....",
+  ".HHHHHHHSSSSSSWKSS....",
+  ".HHHHHHHsSSSSSWKSS....",
+  "..HHHHHHSSSSSSSSSSS...",
+  "..HHHHHSSSSSSSSSsS....",
+  "...HHHHSSSSSSSSSS.....",
+  ".....MMMMKKKK.........",
+  "....MLLLLLKKLL........",
+  "....LLLLLLLLLLL.......",
+  "....LLLLLLLLLBL.......",
+  "....LLLLLLLLLLL.......",
+  ".....LLLLLLLLL........",
+];
+const WALK_A = [
+  ...patch(SIDE, [
+    [17, 12, "S"],
+    [18, 12, "S"],
+  ]),
+  ".....DD....DD.........",
+  "....KKK....KKKK.......",
+];
+const WALK_B = [
+  ...patch(SIDE, [[19, 8, "S"]]),
+  "......DDDDD...........",
+  ".......KKKKK..........",
+];
+
+// Seated at the desk, seen from behind; the elbows take turns typing.
+const SEATED = [
+  "......................",
+  "......................",
+  "......................",
+  "......HHHHHHH.........",
+  "....HHHHHhHHHHH.......",
+  "...HHHHHHHHhHHHH......",
+  "..HHHHHHHHHHHHHHH.....",
+  "..HHHHHHHHHHHHHHH.....",
+  ".SHHHHHHHHHHHHHHHS....",
+  "..HHHHHHHHHHHHHHH.....",
+  "...HHHHHHHHHHHHH......",
+  "....HHHHHHHHHHH.......",
+  "...MMMMSSSSSMMMM......",
+  "..MLLLLMMMMMLLLLM.....",
+  ".LLLLLLLMMMLLLLLLL....",
+  "LLLLLLLLLLLLLLLLLLL...",
+  "LLLKKKKKKKKKKKKKLLL...",
+  "...KDDDDDDDDDDDK......",
+  "...KDDDDDDDDDDDK......",
+  "...KDDDDDDDDDDDK......",
+  "...KKKKKKKKKKKKK......",
+  ".....K...K...K........",
+];
+
 export const POSES = {
   idle: BASE,
   waveA: patch(BASE, WAVE_A),
@@ -124,7 +219,51 @@ export const POSES = {
   typingA: patch(BASE, [...LAPTOP, [18, 2, "S"]]),
   typingB: patch(BASE, [...LAPTOP, [18, 16, "S"]]),
   envelope: patch(BASE, ENVELOPE),
+  walkA: WALK_A,
+  walkB: WALK_B,
+  held: patch(BASE, HELD),
+  seatedA: patch(SEATED, [[17, 1, "LL"]]),
+  seatedB: patch(SEATED, [[17, 16, "LL"]]),
 };
+
+// The desk at the right end of the hero stage: two monitors on stands, a
+// plant and a mug. 36 x 27; the screens are N.
+const MONITORS = ".KNNNNNNNNNNNNNNK..KNNNNNNNNNNNNNNK.";
+const BEZEL = ".KKKKKKKKKKKKKKKK..KKKKKKKKKKKKKKKK.";
+const LEGS = ".tt..............................tt.";
+export const DESK = [
+  BEZEL,
+  ...Array(9).fill(MONITORS),
+  BEZEL,
+  "........KK................KK........",
+  "........KK................KK........",
+  "..G.....KK................KK........",
+  ".GGG....KK................KK...PP...",
+  "GGGGG...KK................KK...PPP..",
+  ".PPP..KKKKKK............KKKKKK.PP...",
+  "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+  "tttttttttttttttttttttttttttttttttttt",
+  ...Array(8).fill(LEGS),
+];
+
+// What the screens show while Mini Justine codes: code on the left, a page
+// preview on the right. Frame B has typed a few more characters.
+const SCREEN = [
+  [2, 3, "BBBB.WWWW"],
+  [4, 4, "GGGGGG"],
+  [6, 4, "MMM.WWWWW"],
+  [8, 3, "BB"],
+  [2, 21, "MMMMMMMMMMMM"],
+  [4, 26, "GGGGG"],
+  [5, 26, "GGGGG"],
+  [7, 22, "WWWWWWWWWWW"],
+  [8, 22, "WWWWWWW"],
+];
+const BLANK_DESK = DESK.map((row) => ".".repeat(row.length));
+export const DESK_CODE = [
+  patch(BLANK_DESK, SCREEN),
+  patch(BLANK_DESK, [...SCREEN, [8, 3, "BB.WWWW"]]),
+];
 
 // True when a pose shows the standard eyes (the sunglasses pose does not).
 export const hasEyes = (map) =>
@@ -152,8 +291,9 @@ export const withOutline = (map) => {
   );
 };
 
-// One SVG path for one colour: every horizontal run becomes a 1-high rect.
-const runsPath = (rows, key) => {
+// One SVG path for one colour: every horizontal run becomes a 1-high rect,
+// moved by `offset` (1 for an overlay drawn on a padded sprite).
+const runsPath = (rows, key, offset = 0) => {
   let d = "";
   rows.forEach((row, y) => {
     let x = 0;
@@ -164,7 +304,7 @@ const runsPath = (rows, key) => {
       }
       let end = x;
       while (row[end] === key) end += 1;
-      d += `M${x} ${y}h${end - x}v1h-${end - x}z`;
+      d += `M${x + offset} ${y + offset}h${end - x}v1h-${end - x}z`;
       x = end;
     }
   });
@@ -191,14 +331,24 @@ export const spriteLayers = (map) => {
     .map((key) => ({ key, d: runsPath(body, key) }))
     .filter((layer) => layer.d);
   return {
-    size: SIZE + 2,
+    width: map[0].length + 2,
+    height: map.length + 2,
     paths,
     whites: eyes ? cellsPath(EYE_ROWS, eyeCols) : "",
     pupils: eyes ? cellsPath(EYE_ROWS, PUPILS) : "",
   };
 };
 
-// Every pose's layers, computed once at import.
+// An overlay drawn on a sprite without an outline (the screen code): one
+// path per colour, shifted by the padding of the sprite underneath.
+export const overlayPaths = (map) =>
+  Object.keys(PALETTE)
+    .map((key) => ({ key, d: runsPath(map, key, 1) }))
+    .filter((layer) => layer.d);
+
+// Every pose's layers, and the desk's, computed once at import.
 export const POSE_LAYERS = Object.fromEntries(
   Object.entries(POSES).map(([name, map]) => [name, spriteLayers(map)]),
 );
+export const DESK_LAYERS = spriteLayers(DESK);
+export const DESK_CODE_LAYERS = DESK_CODE.map(overlayPaths);
