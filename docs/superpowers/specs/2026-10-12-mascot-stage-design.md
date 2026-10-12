@@ -56,7 +56,7 @@ Modes: `stand`, `walk`, `held`, `desk`.
 - **Click (or Enter/Space):** as today, a hop and the next click line.
   - A click while walking stops the walk where Mini Justine is.
   - A click while seated makes Mini Justine stand up at the seat, then hop and talk.
-- **Idle routine:** the visitor is idle after 8 s with no pointer movement, press, key, wheel, touch or scroll. While idle:
+- **Idle routine:** Mini Justine starts walking about 5 s after the visitor's last input (Justine's follow-up; it was 11 s). The visitor counts as idle after 2 s with no pointer movement, press, key, wheel, touch or scroll. While idle:
   - When standing, Mini Justine waits 3 s. Then, if it is at the seat (it just got up), it walks to a random spot in the free part of the row. Otherwise it walks to the seat and sits.
   - When seated, it codes for 25 s, then stands up.
   - A walk is 70 px/s, and the routine then loops.

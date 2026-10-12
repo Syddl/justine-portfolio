@@ -5,7 +5,9 @@ import assert from "node:assert/strict";
 import {
   DESK_H,
   DESK_W,
+  IDLE_MS,
   MASCOT_PX,
+  STAND_MS,
   bubbleRoom,
   bubbleSide,
   clampX,
@@ -22,6 +24,10 @@ test("the stage sizes are the sprites drawn at 4x", () => {
   assert.equal(MASCOT_PX, 96);
   assert.equal(DESK_W, 152);
   assert.equal(DESK_H, 116);
+});
+
+test("the idle routine starts walking 5 s after the visitor's last input", () => {
+  assert.equal(IDLE_MS + STAND_MS, 5000);
 });
 
 test("the seat and the free range at desktop and phone widths", () => {

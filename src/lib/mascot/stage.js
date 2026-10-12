@@ -11,7 +11,9 @@ export const DESK_H = DESK_LAYERS.height * SCALE;
 // Seated, Mini Justine is drawn this far in from the desk's left edge.
 export const SEAT_OFFSET = 36;
 export const WALK_PX_PER_S = 70;
-export const IDLE_MS = 8000;
+// The visitor counts as idle after IDLE_MS; a standing Mini Justine then
+// waits STAND_MS, so it starts walking 5 s after the last input.
+export const IDLE_MS = 2000;
 export const STAND_MS = 3000;
 export const DESK_MS = 25000;
 export const BUBBLE_MS = 6000;
