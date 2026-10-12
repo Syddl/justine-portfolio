@@ -61,7 +61,7 @@ Modes: `stand`, `walk`, `held`, `desk`.
   - A walk is 70 px/s, and the routine then loops.
   - When the visitor becomes active again, nothing new starts. A walk in progress finishes and Mini Justine stands, and if seated it keeps coding. A click or a drag gets its attention at any time.
 - **Seated:** the back view types (two frames, 300 ms each), and the monitors light up with code that changes with each keystroke frame. The monitors are dark when nobody sits at the desk.
-- **Monitor glow:** while seated, a soft radial glow fades in (0.6 s) behind the desk, 280 x 180 px, centred on the monitors, so the screens light up the wall around them. Its colour is the token `--mascot-glow: light-dark(transparent, rgb(150 180 255 / 0.45))`, so it only shows in the dark theme.
+- **Monitor glow:** while seated, a soft radial glow fades in (0.6 s) behind the desk, 280 x 180 px (200 x 140 px under 768px wide, so it never reaches past the screen edge), centred on the monitors, so the screens light up the wall around them. Its colour is the token `--mascot-glow: light-dark(transparent, rgb(150 180 255 / 0.45))`, so it only shows in the dark theme.
 - **Walking:** the side view, two frames (stride and passing, 200 ms each), mirrored when walking left.
 - **Theme toggle:** standing reacts as today (sunglasses + "Too bright!", or a hop + "Ahh, much better."). Walking, held or seated shows the line only.
 - **Eyes:** follow the pointer as today wherever the pose shows the front eyes (idle, held). The side and back views have no pupils layer.

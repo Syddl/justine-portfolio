@@ -510,6 +510,15 @@
   opacity: 1;
 }
 
+/* Under 768px the column sits 24px from the screen edge: a smaller glow
+   (half its width fits beside the desk) never reaches past the screen. */
+@media (max-width: 767px) {
+  .mascot-glow {
+    width: 200px;
+    height: 140px;
+  }
+}
+
 /* The glow and a dragged Mini Justine can reach past the column; the page
    still never scrolls sideways. clip, unlike hidden, keeps the sticky header. */
 body {
