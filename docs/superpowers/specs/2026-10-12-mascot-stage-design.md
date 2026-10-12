@@ -7,11 +7,12 @@
 
 ## Goal
 
-Make the hero mascot feel alive: it can be picked up and moved along its row, and when the visitor goes quiet it walks over to a dual-monitor desk and codes. Justine has a dual-monitor setup in real life.
+Make the hero mascot feel alive: it can be picked up and carried anywhere (it falls back to its row when let go), and when the visitor goes quiet it walks over to a dual-monitor desk and codes. Justine has a dual-monitor setup in real life.
 
 ## Decisions made with the user
 
-- Drag and drop: the visitor can pick Mini Justine up and drop it anywhere along its own row. It only ever moves sideways.
+- Drag and drop: the visitor can pick Mini Justine up and carry it anywhere, including up and away from its row (Justine's follow-up; this replaces the first "sideways only" idea). Let go and it falls back down to its row. It only ever walks along its row.
+- In the dark theme, the lit monitors cast a soft glow on their surroundings (Justine's follow-up).
 - Idle routine: when the visitor isn't doing anything, it moves on its own, mainly coding at the desk.
 - A desk with two monitors at the right end of the row (Justine left the details to Claude: a small plant and a mug were added).
 - Walking uses a side view, facing the way it walks (Justine's follow-up request).
@@ -20,7 +21,7 @@ Make the hero mascot feel alive: it can be picked up and moved along its row, an
 
 ## Non-goals
 
-- Moving up or down, or leaving the hero row.
+- Walking or resting anywhere but its row (only a drag takes it elsewhere, and it always falls back).
 - Dragging with the keyboard (the movement is decorative; Enter and Space still make it talk).
 - Remembering its position between visits.
 - Changing the cameos.
@@ -40,13 +41,17 @@ The hero's mascot row becomes a stage as wide as the text column, 160px tall (`h
 Modes: `stand`, `walk`, `held`, `desk`.
 
 - **Load:** `stand` at the left edge, the CSS wave, and the greeting bubble as today.
-- **Drag:** a press on Mini Justine followed by 4px or more of sideways movement picks it up (`held`).
-  - It follows the pointer sideways only, clamped to the stage.
-  - It is lifted 16px, swings gently, and says "Whoa! Put me down!".
-  - On release over the desk (its centre past the desk's left edge), it sits down: `desk`.
-  - On release anywhere else, it drops to the floor with a squash and stands there.
+- **Drag:** a press on Mini Justine followed by 4px or more of movement in any direction picks it up (`held`).
+  - It follows the pointer anywhere on the page, keeping the spot where it was grabbed under the pointer.
+  - While held, it is drawn above everything, including the sticky header.
+  - It swings gently, tilts against the drag direction (up to 20 degrees, from the latest horizontal pointer movement, easing back to upright when the pointer stops), and says "Whoa! Put me down!".
+- **Drop:** on release, it returns to its row.
+  - Sideways, it goes to where it was let go, clamped to the stage.
+  - Vertically, it falls with gravity (ease-in) when let go above the row, or rises back (ease-out) when let go below it.
+  - The fall takes `clamp(220, sqrt(distance in px) x 28, 750)` ms. A fall from above ends with a landing squash.
+  - If its centre is past the desk's left edge, it lands in the chair: `desk`. Otherwise it stands where it landed.
   - A drag never counts as a click.
-  - On touch screens, `touch-action: pan-y`: a sideways drag moves Mini Justine, and an up-and-down swipe still scrolls the page.
+- **Touch:** `touch-action: none` on Mini Justine, so a drag that starts on it moves it in any direction. A swipe that starts on it does not scroll the page; it is 96px wide, and everywhere else scrolls as usual.
 - **Click (or Enter/Space):** as today, a hop and the next click line.
   - A click while walking stops the walk where Mini Justine is.
   - A click while seated makes Mini Justine stand up at the seat, then hop and talk.
@@ -56,10 +61,11 @@ Modes: `stand`, `walk`, `held`, `desk`.
   - A walk is 70 px/s, and the routine then loops.
   - When the visitor becomes active again, nothing new starts. A walk in progress finishes and Mini Justine stands, and if seated it keeps coding. A click or a drag gets its attention at any time.
 - **Seated:** the back view types (two frames, 300 ms each), and the monitors light up with code that changes with each keystroke frame. The monitors are dark when nobody sits at the desk.
+- **Monitor glow:** while seated, a soft radial glow fades in (0.6 s) behind the desk, 280 x 180 px, centred on the monitors, so the screens light up the wall around them. Its colour is the token `--mascot-glow: light-dark(transparent, rgb(150 180 255 / 0.45))`, so it only shows in the dark theme.
 - **Walking:** the side view, two frames (stride and passing, 200 ms each), mirrored when walking left.
 - **Theme toggle:** standing reacts as today (sunglasses + "Too bright!", or a hop + "Ahh, much better."). Walking, held or seated shows the line only.
 - **Eyes:** follow the pointer as today wherever the pose shows the front eyes (idle, held). The side and back views have no pupils layer.
-- **Reduced motion:** no idle routine (it never walks on its own), no swing, no fall, no hop. Frame loops (typing, screens) hold still. Drag still works. Markup never changes for reduced motion.
+- **Reduced motion:** no idle routine (it never walks on its own), no swing, no tilt, no fall animation (it is back on its row at once), no hop. Frame loops (typing, screens) hold still and the glow appears without fading. Drag still works. Markup never changes for reduced motion.
 - **Resize:** positions are clamped to the stage width; a seated Mini Justine stays on the seat.
 
 ## Sprite additions
@@ -180,13 +186,13 @@ The left screen shows code and the right one a page preview.
 | Unit | Change |
 |---|---|
 | `src/lib/mascot/sprites.js` | The palette keys above; poses `walkA`, `walkB`, `held`, `seatedA`, `seatedB`; `DESK`, `DESK_CODE` (two overlays); `spriteLayers` reports `width` and `height` from the map (the desk is not square); an overlay helper draws a map without an outline. Pure. |
-| `src/lib/mascot/stage.js` (new) | The stage numbers (sizes, seat offset, speeds, timings, drag threshold) and pure helpers: the seat position, the free range, clamping, where a drop lands, where the routine walks next, how long a walk takes, and which side the bubble aligns to. Pure. |
+| `src/lib/mascot/stage.js` (new) | The stage numbers (sizes, seat offset, speeds, timings, drag threshold) and pure helpers: the seat position, the free range, clamping, where a drop lands, where the routine walks next, how long a walk and a fall take, and which side the bubble aligns to. Pure. |
 | `src/lib/mascot/lines.js` | `HELD_LINE = "Whoa! Put me down!"`. |
 | `src/component/mascot/useIdle.js` (new) | `useIdle(ms)`: true once the visitor has been inactive for `ms`; false on the server and on first render. |
 | `src/component/mascot/Desk.jsx` (new) | The desk SVG with both screen-code overlays. Server-safe. |
 | `src/component/mascot/Sprite.jsx` | Uses `width` and `height` for the viewBox. |
 | `src/component/mascot/HeroMascot.jsx` | Becomes the stage: desk, Mini Justine, bubble; modes, drag, routine, click, theme and eyes. |
-| `src/app/globals.css` | Layer visibility per mode, walk mirror, swing, screen code, typing and walk frames, the bubble tail pointing down, reduced-motion overrides. |
+| `src/app/globals.css` | The `--mascot-glow` token and the glow; layer visibility per mode, walk mirror, swing and tilt, the held stacking order, screen code, typing and walk frames, the bubble tail pointing down, reduced-motion overrides. |
 
 Rules that still apply: all layers stay mounted and switch by opacity (so the wave never restarts); no synchronous `setState` in effect bodies (timers, observers and event handlers set state); `matchMedia` only inside effects and handlers; the server renders `stand` at the left edge with the fallback greeting.
 
@@ -202,12 +208,14 @@ Rules that still apply: all layers stay mounted and switch by opacity (so the wa
   - the seat position, the free range and clamping at wide and phone widths;
   - a drop over the desk sits, and a drop elsewhere stands where it landed;
   - from the seat the routine walks somewhere in the free range, and from elsewhere it walks to the seat;
-  - walk duration;
+  - walk duration, and fall duration at its 220 ms and 750 ms bounds;
   - bubble alignment by half.
 - `lines.test.mjs`: the held line has no em-dash.
 - Browser (headless Edge):
-  - drag moves sideways only and is lifted while held;
-  - a drop on the desk sits and lights the screens, and a drop elsewhere stands;
+  - a drag carries it up and away from its row, held above the header;
+  - a release above the row brings it back down onto its row;
+  - a release above the desk sits it in the chair and lights the screens, and the glow shows in dark only;
+  - a release elsewhere stands it where it landed;
   - a click after a drag is ignored;
   - after waiting out the idle time with no input, it walks to the desk and sits;
   - reduced motion: no routine;
