@@ -355,6 +355,10 @@
   animation: mascot-flip 0.5s steps(1) 5;
 }
 
+.mascot-wave .mascot-sprite:not(.mascot-frame-b) {
+  animation: mascot-flop 0.5s steps(1) 5;
+}
+
 /* The wave layer hides at 2.4s; its first blink would land after that. */
 .mascot-wave .mascot-eyes {
   animation: none;
@@ -362,6 +366,10 @@
 
 .mascot-typing .mascot-frame-b {
   animation: mascot-flip 0.6s steps(1) infinite;
+}
+
+.mascot-typing .mascot-sprite:not(.mascot-frame-b) {
+  animation: mascot-flop 0.6s steps(1) infinite;
 }
 
 .mascot-bob {
@@ -436,10 +444,18 @@
   animation: mascot-flip 0.4s steps(1) infinite;
 }
 
+.mascot-stage[data-mode="walk"] .mascot-walk .mascot-sprite:not(.mascot-frame-b) {
+  animation: mascot-flop 0.4s steps(1) infinite;
+}
+
 /* Seated: typing and the screen code flip together (they start together). */
 .mascot-stage[data-mode="desk"] .mascot-seated .mascot-frame-b,
 .mascot-stage[data-mode="desk"] .mascot-code-b {
   animation: mascot-flip 0.6s steps(1) infinite;
+}
+
+.mascot-stage[data-mode="desk"] .mascot-seated .mascot-sprite:not(.mascot-frame-b) {
+  animation: mascot-flop 0.6s steps(1) infinite;
 }
 
 .mascot-stage[data-mode="desk"] .mascot-bob {
@@ -520,7 +536,8 @@
 }
 
 /* The glow and a dragged Mini Justine can reach past the column; the page
-   still never scrolls sideways. clip, unlike hidden, keeps the sticky header. */
+   still never scrolls sideways. On body this moves to the viewport (as
+   hidden there), and the sticky header keeps working. */
 body {
   overflow-x: clip;
 }
@@ -531,7 +548,7 @@ body {
   position: absolute;
   bottom: calc(100% + 8px);
   width: max-content;
-  max-width: 18rem;
+  max-width: min(18rem, var(--bubble-room, 18rem));
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
@@ -633,6 +650,17 @@ body {
   }
 }
 
+/* The inverse of mascot-flip, for frame A: the two frames swap, since frame
+   B does not cover every pixel of frame A (the walk's feet move). */
+@keyframes mascot-flop {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 @keyframes mascot-hide {
   to {
     visibility: hidden;
@@ -658,17 +686,23 @@ body {
   .mascot-bob,
   .mascot-eyes,
   .mascot-wave .mascot-frame-b,
-  .mascot-typing .mascot-frame-b {
+  .mascot-wave .mascot-sprite:not(.mascot-frame-b),
+  .mascot-typing .mascot-frame-b,
+  .mascot-typing .mascot-sprite:not(.mascot-frame-b) {
     animation: none;
   }
 
   .mascot-stage[data-mode="held"] .mascot-bob,
   .mascot-stage[data-mode="walk"] .mascot-walk .mascot-frame-b,
+  .mascot-stage[data-mode="walk"] .mascot-walk .mascot-sprite:not(.mascot-frame-b),
   .mascot-stage[data-mode="desk"] .mascot-seated .mascot-frame-b,
+  .mascot-stage[data-mode="desk"] .mascot-seated .mascot-sprite:not(.mascot-frame-b),
   .mascot-stage[data-mode="desk"] .mascot-code-b {
     animation: none;
   }
 
+  .mascot-x,
+  .mascot-y,
   .mascot-pupils,
   .mascot-cameo-line,
   .mascot-body,

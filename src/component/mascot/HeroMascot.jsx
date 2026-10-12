@@ -20,6 +20,7 @@ import {
   IDLE_MS,
   MASCOT_PX,
   STAND_MS,
+  bubbleRoom,
   bubbleSide,
   clampX,
   fallMs,
@@ -210,6 +211,7 @@ const HeroMascot = () => {
         setMotion(null);
         setMode(landTo.mode);
         setLandTo(null);
+        setBubbleOn(false);
         if (landTo.squash) play(bodyRef.current, SQUASH, 280);
       },
       motion ? motion.ms : 0,
@@ -225,7 +227,7 @@ const HeroMascot = () => {
   };
 
   const onClick = () => {
-    if (Date.now() - dropAtRef.current < DROP_CLICK_MS || landTo) return;
+    if (Date.now() - dropAtRef.current < DROP_CLICK_MS || landTo || mode === "held") return;
     if (mode === "walk") {
       setMotion(null);
       setX(drawnAt().x);
@@ -239,7 +241,7 @@ const HeroMascot = () => {
   };
 
   const onPointerDown = (e) => {
-    if (e.button !== 0 || landTo) return;
+    if (e.button !== 0 || landTo || dragRef.current) return; // one drag at a time
     const { box } = drawnAt();
     dragRef.current = {
       id: e.pointerId,
@@ -267,8 +269,12 @@ const HeroMascot = () => {
       setBubbleOn(true);
     }
     const stage = stageRef.current.getBoundingClientRect();
-    setX(e.clientX - stage.left - drag.grabX);
-    setY(e.clientY - (stage.bottom - MASCOT_PX) - drag.grabY);
+    const nextX = e.clientX - stage.left - drag.grabX;
+    const nextY = e.clientY - (stage.bottom - MASCOT_PX) - drag.grabY;
+    drag.x = nextX;
+    drag.y = nextY;
+    setX(nextX);
+    setY(nextY);
     if (!reducedMotion()) setTilt(tiltDeg(e.clientX - drag.lastX));
     drag.lastX = e.clientX;
     clearTimeout(drag.rest);
@@ -283,11 +289,11 @@ const HeroMascot = () => {
     if (!drag.moved) return; // a plain press: onClick takes it
     dropAtRef.current = Date.now();
     setTilt(0);
-    const land = landing(x, width ?? MASCOT_PX);
-    setMotion({ kind: y < 0 ? "down" : "up", ms: reducedMotion() ? 0 : fallMs(y) });
+    const land = width === null ? { mode: "stand", x: Math.max(drag.x, 0) } : landing(drag.x, width);
+    setMotion({ kind: drag.y < 0 ? "down" : "up", ms: reducedMotion() ? 0 : fallMs(drag.y) });
     setX(land.x);
     setY(0);
-    setLandTo({ mode: land.mode, squash: land.mode === "stand" && y < -8 });
+    setLandTo({ mode: land.mode, squash: land.mode === "stand" && drag.y < -8 });
   };
 
   let line = FALLBACK_GREETING;
@@ -299,6 +305,7 @@ const HeroMascot = () => {
   if (width !== null && mode === "desk") left = seatX(width);
   else if (width !== null && mode !== "held") left = clampX(x, width);
   const side = width === null ? "left" : bubbleSide(left, width);
+  const room = width === null ? null : bubbleRoom(left, width);
   // The CSS reads the running move's duration and the desk's height.
   const stageVars = {
     "--i": 3,
@@ -331,6 +338,7 @@ const HeroMascot = () => {
             data-side={side}
             data-on={bubbleOn}
             className="mascot-bubble rounded-card border border-line-strong bg-surface px-3 py-1.5 text-sm text-ink"
+            style={{ "--bubble-room": room === null ? undefined : `${room}px` }}
           >
             {line}
           </p>
@@ -342,6 +350,7 @@ const HeroMascot = () => {
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
+            onLostPointerCapture={onPointerUp}
             aria-label="Mini Justine, say something"
             className="mascot relative block size-full touch-none select-none"
           >

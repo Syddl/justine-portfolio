@@ -4,7 +4,8 @@
 // so node --test covers it. The palette is character art with fixed colours;
 // only the outline is themed, through --mascot-outline in globals.css.
 
-// Every pose map is SIZE x SIZE; the drawn sprite is SIZE + 2 with the outline.
+// Every pose map is SIZE x SIZE (the desk is not square); the drawn sprite
+// is SIZE + 2 with the outline.
 export const SIZE = 22;
 
 export const PALETTE = {

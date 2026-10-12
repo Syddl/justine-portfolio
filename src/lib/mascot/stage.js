@@ -44,5 +44,9 @@ export const fallMs = (dy) => Math.round(Math.min(750, Math.max(220, Math.sqrt(M
 
 export const bubbleSide = (x, width) => (x + MASCOT_PX / 2 > width / 2 ? "right" : "left");
 
+// The room the bubble has on its side of the stage: from Mini Justine's left
+// edge to the stage's right edge, or from the stage's left edge to its right.
+export const bubbleRoom = (x, width) => (bubbleSide(x, width) === "left" ? width - x : x + MASCOT_PX);
+
 // Leans against the latest horizontal pointer movement.
 export const tiltDeg = (dx) => Math.max(-MAX_TILT_DEG, Math.min(MAX_TILT_DEG, -dx * 1.5));

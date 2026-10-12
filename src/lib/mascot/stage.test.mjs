@@ -6,6 +6,7 @@ import {
   DESK_H,
   DESK_W,
   MASCOT_PX,
+  bubbleRoom,
   bubbleSide,
   clampX,
   fallMs,
@@ -60,6 +61,13 @@ test("a walk takes distance at 70 px/s; a fall stays between 220 and 750 ms", ()
 test("the bubble aligns to the half of the stage Mini Justine is in", () => {
   assert.equal(bubbleSide(0, 640), "left");
   assert.equal(bubbleSide(524, 640), "right");
+});
+
+test("the bubble's room is the stage beyond Mini Justine on its side", () => {
+  assert.equal(bubbleRoom(0, 640), 640);
+  assert.equal(bubbleRoom(524, 640), 620);
+  assert.equal(bubbleRoom(94, 342), 248);
+  assert.equal(bubbleRoom(130, 342), 226);
 });
 
 test("the tilt leans against the drag and stops at 20 degrees", () => {

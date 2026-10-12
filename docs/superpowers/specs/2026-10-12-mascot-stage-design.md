@@ -28,13 +28,13 @@ Make the hero mascot feel alive: it can be picked up and carried anywhere (it fa
 
 ## Stage
 
-The hero's mascot row becomes a stage as wide as the text column, 160px tall (`h-40`), under the status row in the same place.
+The hero's mascot row becomes a stage as wide as the text column, 144px tall (`h-36`), under the status row in the same place.
 
 - The desk stands at the right end, bottom-aligned: 152 x 116 px (a 36 x 27 map plus outline, at 4x).
 - Mini Justine stands on the stage floor, 96 x 96 px as before, starting at the left edge.
 - While seated, Mini Justine is drawn 36px in from the desk's left edge (the seat), in front of the desk, so its head sits between the two monitors.
 - The free range is from the left edge to where a standing Mini Justine would touch the desk (stage width minus desk minus 96px, never below 0).
-- The speech bubble moves with Mini Justine, floating above its head (above the desk while seated). It is left-aligned with Mini Justine when Mini Justine is in the left half of the stage and right-aligned in the right half, so it never leaves the stage. It fades out about 6 s after it last changed.
+- The speech bubble moves with Mini Justine, floating above its head (above the desk while seated). It is left-aligned with Mini Justine when Mini Justine is in the left half of the stage and right-aligned in the right half, and it is never wider than the stage on that side, so a long line wraps instead of leaving the stage. It fades out about 6 s after it last changed.
 
 ## Behaviour
 
@@ -49,6 +49,7 @@ Modes: `stand`, `walk`, `held`, `desk`.
   - Sideways, it goes to where it was let go, clamped to the stage.
   - Vertically, it falls with gravity (ease-in) when let go above the row, or rises back (ease-out) when let go below it.
   - The fall takes `clamp(220, sqrt(distance in px) x 28, 750)` ms. A fall from above ends with a landing squash.
+  - The bubble hides as it lands.
   - If its centre is past the desk's left edge, it lands in the chair: `desk`. Otherwise it stands where it landed.
   - A drag never counts as a click.
 - **Touch:** `touch-action: none` on Mini Justine, so a drag that starts on it moves it in any direction. A swipe that starts on it does not scroll the page; it is 96px wide, and everywhere else scrolls as usual.
