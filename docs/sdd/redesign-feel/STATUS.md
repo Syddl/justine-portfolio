@@ -1,9 +1,11 @@
 ---
-status: open
+status: done
 feature: redesign-feel
 ---
 
 # Status: redesign-feel
+
+Merged as PR #9 (merge commit 2e9ca07) on 2026-10-11 and live on www.justinecuevas.me; the live check after the deploy found every page up and the new resume without a phone number. Port ledger: one long-lived branch (main), nothing to port.
 
 ## Verification ledger
 

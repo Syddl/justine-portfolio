@@ -7,6 +7,7 @@ import { experience } from "@/data/experience";
 import { buildStackUsage, sharesContext } from "@/lib/stackUsage";
 import Reveal from "@/component/motion/Reveal";
 import SectionHeading from "@/component/SectionHeading";
+import Cameo from "@/component/mascot/Cameo";
 
 const usage = buildStackUsage({ projects, experience });
 
@@ -78,6 +79,7 @@ const TechStackSection = () => {
         <SectionHeading
           title="Tech stack"
           lede={<Caption active={active} />}
+          action={<Cameo kind="typing" />}
         />
 
         {/* Static description for the tool buttons. The live caption above

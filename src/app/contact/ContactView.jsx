@@ -16,6 +16,7 @@ import TimezoneLine from "@/component/TimezoneLine";
 import { staggerContainer, fadeInUp } from "@/lib/animations";
 import { email, github, githubHandle, linkedin } from "@/lib/site";
 import SectionHeading from "@/component/SectionHeading";
+import Cameo from "@/component/mascot/Cameo";
 
 const container = staggerContainer(0.1, 0.1);
 const cardItem = fadeInUp(20, 0.4);
@@ -201,6 +202,7 @@ export default function ContactView() {
               it&apos;s breaking&quot; is a perfectly good first message.
             </>
           }
+          action={<Cameo kind="envelope" />}
         />
 
         <form

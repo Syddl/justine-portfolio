@@ -2,11 +2,13 @@ import Image from "next/image";
 import { FiFileText, FiGithub, FiLinkedin, FiMapPin } from "react-icons/fi";
 import { availability } from "@/data/availability";
 import { github, linkedin, resumeUrl } from "@/lib/site";
+import HeroMascot from "@/component/mascot/HeroMascot";
 
 // Server component on purpose: the name lands in the initial HTML. Who,
 // what, where: photo, name and role with the resume beside them, then the
 // tagline as the headline. The three blocks rise in 60ms apart (.rise-in in
 // globals.css) while the first-load dissolve clears.
+// Mini Justine stands under the status row (HeroMascot, a client island).
 const HeroSection = () => {
   return (
     <section className="mb-20">
@@ -92,6 +94,7 @@ const HeroSection = () => {
           </a>
         </span>
       </div>
+      <HeroMascot />
     </section>
   );
 };
