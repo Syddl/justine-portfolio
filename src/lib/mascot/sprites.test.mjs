@@ -1,3 +1,4 @@
+// Does NOT exercise: rendering, the CSS motion, or HeroMascot/Cameo behaviour (browser check only).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -67,9 +68,9 @@ test("the layers draw every filled and outline pixel exactly once", () => {
     assert.deepEqual(new Set(drawn), expected, `${name}: body covers exactly the outlined sprite`);
     if (hasEyes(map)) {
       // White sits under the pupils too, so a pupil that looks aside leaves white behind.
-      const eyeCells = EYE_ROWS.length * (EYE_WHITES.length + PUPILS.length);
-      assert.equal(cells(whites).length, eyeCells, `${name}: whites`);
-      assert.equal(cells(pupils).length, EYE_ROWS.length * PUPILS.length, `${name}: pupils`);
+      const grid = (cols) => new Set(EYE_ROWS.flatMap((r) => cols.map((c) => `${c + 1},${r + 1}`)));
+      assert.deepEqual(new Set(cells(whites)), grid([...EYE_WHITES, ...PUPILS]), `${name}: whites`);
+      assert.deepEqual(new Set(cells(pupils)), grid(PUPILS), `${name}: pupils`);
     } else {
       assert.equal(whites, "", `${name}: no whites layer`);
       assert.equal(pupils, "", `${name}: no pupils layer`);

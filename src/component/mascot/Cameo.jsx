@@ -18,7 +18,7 @@ const Cameo = ({ kind }) => {
   const [open, setOpen] = useState(false);
   const [first, second] = FRAMES[kind];
   const line = CAMEO_LINES[kind];
-  const motion = second ? "mascot-typing" : "mascot-bob";
+  const motionClass = second ? "mascot-typing" : "mascot-bob";
 
   return (
     <span className="mascot-cameo relative -mb-3 inline-flex" data-open={open}>
@@ -33,7 +33,7 @@ const Cameo = ({ kind }) => {
         onClick={() => setOpen((value) => !value)}
         onBlur={() => setOpen(false)}
         aria-label={`Mini Justine: ${line}`}
-        className={`${motion} relative size-12`}
+        className={`${motionClass} relative size-12`}
       >
         <Sprite pose={first} />
         {second && <Sprite pose={second} className="mascot-frame-b" />}

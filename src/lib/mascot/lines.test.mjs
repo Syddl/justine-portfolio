@@ -1,3 +1,4 @@
+// Does NOT exercise: how lines are shown, timing, or HeroMascot/Cameo behaviour (browser check only).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {

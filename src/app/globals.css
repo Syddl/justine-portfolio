@@ -349,7 +349,12 @@
 }
 
 .mascot-wave .mascot-frame-b {
-  animation: mascot-flip 0.5s steps(1) infinite;
+  animation: mascot-flip 0.5s steps(1) 5;
+}
+
+/* The wave layer hides at 2.4s; its first blink would land after that. */
+.mascot-wave .mascot-eyes {
+  animation: none;
 }
 
 .mascot-typing .mascot-frame-b {
@@ -414,7 +419,7 @@
   transform: translateY(-50%) rotate(45deg);
 }
 
-/* A cameo's line: hidden until hover, keyboard focus or a tap (data-open). */
+/* A cameo's line: hidden until hover on devices that hover, keyboard focus, or a tap (data-open). */
 .mascot-cameo-line {
   opacity: 0;
   transform: translateY(4px);
@@ -424,11 +429,19 @@
     transform 150ms ease;
 }
 
-.mascot-cameo:hover .mascot-cameo-line,
-.mascot-cameo:focus-within .mascot-cameo-line,
+@media (hover: hover) {
+  .mascot-cameo:hover .mascot-cameo-line {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+.mascot-cameo:has(:focus-visible) .mascot-cameo-line,
 .mascot-cameo[data-open="true"] .mascot-cameo-line {
   opacity: 1;
   transform: none;
+  pointer-events: auto;
 }
 
 @keyframes mascot-bob {

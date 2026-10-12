@@ -53,14 +53,16 @@ const HeroMascot = () => {
   useEffect(() => {
     if (!matchMedia("(pointer: fine)").matches || reducedMotion()) return undefined;
     let frame = 0;
+    let pointerX = 0;
     const onMove = (e) => {
+      pointerX = e.clientX;
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;
         const el = buttonRef.current;
         if (!el) return;
         const rect = el.getBoundingClientRect();
-        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dx = pointerX - (rect.left + rect.width / 2);
         let look = 0;
         if (dx > LOOK_DEADZONE_PX) look = 1;
         if (dx < -LOOK_DEADZONE_PX) look = -1;
