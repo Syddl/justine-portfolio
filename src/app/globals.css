@@ -28,6 +28,8 @@
   /* Mini Justine's outline: dark on light, a soft grey rim on dark so
      black hair does not vanish into the background. */
   --mascot-outline: light-dark(#1b1b1f, #6a6a72);
+  /* The lit monitors' glow behind the desk: dark theme only. */
+  --mascot-glow: light-dark(transparent, rgb(150 180 255 / 0.45));
 }
 
 :root[data-theme="light"] {
@@ -323,9 +325,10 @@
 }
 
 /* Mini Justine (src/component/mascot): pose layers, idle bob and blink, the
-   wave on load, the typing loop and the speech bubbles. All motion is CSS so
-   it starts without JavaScript; reduced motion turns it off below. Spec:
-   docs/superpowers/specs/2026-10-12-mascot-design.md. */
+   wave on load, the typing loop, the hero stage and the speech bubbles. Idle
+   motion is CSS so it starts without JavaScript; reduced motion turns it off
+   below. Specs: docs/superpowers/specs/2026-10-12-mascot-design.md and
+   docs/superpowers/specs/2026-10-12-mascot-stage-design.md. */
 .mascot-sprite {
   display: block;
   width: 100%;
@@ -388,35 +391,176 @@
   animation: mascot-show 0s linear 2.4s forwards;
 }
 
-.mascot-sunglasses {
+.mascot-sunglasses,
+.mascot-walk,
+.mascot-held,
+.mascot-seated {
   opacity: 0;
 }
 
-.mascot[data-pose="sunglasses"] .mascot-wave,
-.mascot[data-pose="sunglasses"] .mascot-idle {
+.mascot-stage[data-pose="sunglasses"] .mascot-wave,
+.mascot-stage[data-pose="sunglasses"] .mascot-idle {
   opacity: 0;
 }
 
-.mascot[data-pose="sunglasses"] .mascot-sunglasses {
+.mascot-stage[data-pose="sunglasses"] .mascot-sunglasses {
   opacity: 1;
 }
 
-/* The hero bubble's tail points left, at the mascot. */
+/* The hero stage (HeroMascot): away from standing, only the mode's own
+   layer shows. These come after the pose rules, so they win. Spec:
+   docs/superpowers/specs/2026-10-12-mascot-stage-design.md. */
+.mascot-stage:not([data-mode="stand"]) .mascot-wave,
+.mascot-stage:not([data-mode="stand"]) .mascot-idle,
+.mascot-stage:not([data-mode="stand"]) .mascot-sunglasses {
+  opacity: 0;
+}
+
+.mascot-stage[data-mode="walk"] .mascot-walk,
+.mascot-stage[data-mode="held"] .mascot-held,
+.mascot-stage[data-mode="desk"] .mascot-seated {
+  opacity: 1;
+}
+
+/* Held, it is drawn above the sticky header (z-30) and below the grain (z-40). */
+.mascot-stage[data-mode="held"] {
+  z-index: 35;
+}
+
+/* Walking left mirrors the side view. */
+.mascot-stage[data-dir="-1"] .mascot-walk {
+  transform: scaleX(-1);
+}
+
+.mascot-stage[data-mode="walk"] .mascot-walk .mascot-frame-b {
+  animation: mascot-flip 0.4s steps(1) infinite;
+}
+
+/* Seated: typing and the screen code flip together (they start together). */
+.mascot-stage[data-mode="desk"] .mascot-seated .mascot-frame-b,
+.mascot-stage[data-mode="desk"] .mascot-code-b {
+  animation: mascot-flip 0.6s steps(1) infinite;
+}
+
+.mascot-stage[data-mode="desk"] .mascot-bob {
+  animation: none;
+}
+
+.mascot-stage[data-mode="held"] .mascot-bob {
+  transform-origin: 50% 0;
+  animation: mascot-dangle 1s ease-in-out infinite;
+}
+
+.mascot-body {
+  transition: rotate 0.25s ease-out;
+}
+
+/* Position: x and y are transforms set by HeroMascot; --mascot-move is the
+   running walk or fall (0ms while dragging, so it follows the pointer). */
+.mascot-x,
+.mascot-y {
+  transition-property: transform;
+  transition-duration: var(--mascot-move, 0ms);
+}
+
+.mascot-stage[data-motion="walk"] .mascot-x {
+  transition-timing-function: linear;
+}
+
+.mascot-stage[data-motion="down"] .mascot-x,
+.mascot-stage[data-motion="up"] .mascot-x,
+.mascot-stage[data-motion="up"] .mascot-y {
+  transition-timing-function: ease-out;
+}
+
+/* Let go above the row, it falls: slow at first, then faster. */
+.mascot-stage[data-motion="down"] .mascot-y {
+  transition-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+}
+
+/* The screens are dark until Mini Justine sits down. */
+.mascot-code {
+  opacity: 0;
+}
+
+.mascot-stage[data-mode="desk"] .mascot-code {
+  opacity: 1;
+}
+
+.mascot-stage[data-mode="desk"] .mascot-code-b {
+  opacity: 0;
+}
+
+/* The monitors light up the wall around them (the token is transparent in
+   the light theme): centred on the screens, which fill the desk's top 44px. */
+.mascot-glow {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  translate: -50% -50%;
+  width: 280px;
+  height: 180px;
+  background: radial-gradient(closest-side, var(--mascot-glow), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.mascot-stage[data-mode="desk"] .mascot-glow {
+  opacity: 1;
+}
+
+/* The glow and a dragged Mini Justine can reach past the column; the page
+   still never scrolls sideways. clip, unlike hidden, keeps the sticky header. */
+body {
+  overflow-x: clip;
+}
+
+/* The hero bubble floats above Mini Justine's head (above the desk while
+   seated), on the stage's side it is in, with its tail pointing down. */
 .mascot-bubble {
-  position: relative;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  width: max-content;
+  max-width: 18rem;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.mascot-bubble[data-side="left"] {
+  left: 0;
+}
+
+.mascot-bubble[data-side="right"] {
+  right: 0;
+}
+
+.mascot-bubble[data-on="false"] {
+  opacity: 0;
+}
+
+.mascot-stage[data-mode="desk"] .mascot-bubble {
+  bottom: calc(var(--mascot-desk-h) + 8px);
 }
 
 .mascot-bubble::before {
   content: "";
   position: absolute;
-  left: -5px;
-  top: 50%;
+  bottom: -5px;
   width: 8px;
   height: 8px;
   background: var(--surface);
-  border-left: 1px solid var(--line-strong);
+  border-right: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line-strong);
-  transform: translateY(-50%) rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.mascot-bubble[data-side="left"]::before {
+  left: 40px;
+}
+
+.mascot-bubble[data-side="right"]::before {
+  right: 40px;
 }
 
 /* A cameo's line: hidden until hover on devices that hover, keyboard focus, or a tap (data-open). */
@@ -461,6 +605,16 @@
   }
 }
 
+@keyframes mascot-dangle {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
 @keyframes mascot-flip {
   0% {
     opacity: 0;
@@ -499,8 +653,18 @@
     animation: none;
   }
 
+  .mascot-stage[data-mode="held"] .mascot-bob,
+  .mascot-stage[data-mode="walk"] .mascot-walk .mascot-frame-b,
+  .mascot-stage[data-mode="desk"] .mascot-seated .mascot-frame-b,
+  .mascot-stage[data-mode="desk"] .mascot-code-b {
+    animation: none;
+  }
+
   .mascot-pupils,
-  .mascot-cameo-line {
+  .mascot-cameo-line,
+  .mascot-body,
+  .mascot-glow,
+  .mascot-bubble {
     transition: none;
   }
 }
