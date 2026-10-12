@@ -32,6 +32,9 @@ export const THEME_LINES = {
   dark: "Ahh, much better.",
 };
 
+// While the visitor holds Mini Justine up in the air.
+export const HELD_LINE = "Whoa! Put me down!";
+
 export const CAMEO_LINES = {
   typing: "Shipping something.",
   envelope: "Send me a message!",

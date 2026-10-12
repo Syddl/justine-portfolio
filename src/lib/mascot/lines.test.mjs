@@ -5,6 +5,7 @@ import {
   CAMEO_LINES,
   CLICK_LINES,
   FALLBACK_GREETING,
+  HELD_LINE,
   THEME_LINES,
   greeting,
   nextLineIndex,
@@ -31,6 +32,7 @@ test("click lines start at the first line and loop", () => {
 test("no line uses an em-dash (house style)", () => {
   const all = [
     FALLBACK_GREETING,
+    HELD_LINE,
     ...[0, 6, 13, 20].map(greeting),
     ...CLICK_LINES,
     ...Object.values(THEME_LINES),
