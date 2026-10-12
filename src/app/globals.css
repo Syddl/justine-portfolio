@@ -28,8 +28,6 @@
   /* Mini Justine's outline: dark on light, a soft grey rim on dark so
      black hair does not vanish into the background. */
   --mascot-outline: light-dark(#1b1b1f, #6a6a72);
-  /* The lit monitors' glow behind the desk: dark theme only. */
-  --mascot-glow: light-dark(transparent, rgb(150 180 255 / 0.45));
 }
 
 :root[data-theme="light"] {
@@ -507,36 +505,8 @@
   opacity: 0;
 }
 
-/* The monitors light up the wall around them (the token is transparent in
-   the light theme): centred on the screens, which fill the desk's top 44px. */
-.mascot-glow {
-  position: absolute;
-  left: 50%;
-  top: 24px;
-  translate: -50% -50%;
-  width: 280px;
-  height: 180px;
-  background: radial-gradient(closest-side, var(--mascot-glow), transparent);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
-
-.mascot-stage[data-mode="desk"] .mascot-glow {
-  opacity: 1;
-}
-
-/* Under 768px the column sits 24px from the screen edge: a smaller glow
-   (half its width fits beside the desk) never reaches past the screen. */
-@media (max-width: 767px) {
-  .mascot-glow {
-    width: 200px;
-    height: 140px;
-  }
-}
-
-/* The glow and a dragged Mini Justine can reach past the column; the page
-   still never scrolls sideways. On body this moves to the viewport (as
+/* A dragged Mini Justine can reach past the column; the page still never
+   scrolls sideways. On body this moves to the viewport (as
    hidden there), and the sticky header keeps working. */
 body {
   overflow-x: clip;
@@ -706,7 +676,6 @@ body {
   .mascot-pupils,
   .mascot-cameo-line,
   .mascot-body,
-  .mascot-glow,
   .mascot-bubble {
     transition: none;
   }
